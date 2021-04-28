@@ -12,7 +12,6 @@ export default function artistService() {
             } )
     }
 
-    
     const getArtistById = ( id ) => {
         axios(`https://localhost:5001/artist/${id}`)
             .then( response => {
@@ -26,7 +25,6 @@ export default function artistService() {
                 artists.artistByName = response.data;
             } );
     }
-
 
     const createNewArtist = ( postArtist, imageObject ) => {
         axios.post("https://localhost:5001/artist/", postArtist)

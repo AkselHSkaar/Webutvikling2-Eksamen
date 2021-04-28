@@ -7,7 +7,7 @@ export default function bookingService() {
 
     const getBookings = () => {
         axios("https://localhost:5001/booking")
-            .then( response=> {
+            .then( response => {
                 booking.bookingList = response.data;
             } )
     }

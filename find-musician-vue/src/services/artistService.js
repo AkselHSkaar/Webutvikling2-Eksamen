@@ -3,7 +3,7 @@ import { reactive, toRefs } from 'vue'
 
 export default function artistService() {
 
-    const artists = reactive({ artistList: [], artistById: "" });
+    const artists = reactive({ artistList: [], artistById: "", artistByName: "" });
 
     const getArtists = () =>{
         axios("https://localhost:5001/artist")
@@ -12,14 +12,19 @@ export default function artistService() {
             } )
     }
 
-    
     const getArtistById = ( id ) => {
         axios(`https://localhost:5001/artist/${id}`)
             .then( response => {
                 artists.artistById = response.data;
             } );
     }
-    
+
+    const getArtistByName = ( name ) => {
+        axios(`https://localhost:5001/artist/getArtistByName/${name}`)
+            .then( response => {
+                artists.artistByName = response.data;
+            } );
+    }
 
     const createNewArtist = ( postArtist, imageObject ) => {
         axios.post("https://localhost:5001/artist/", postArtist)
@@ -40,6 +45,7 @@ export default function artistService() {
         ...toRefs( artists ),
         getArtists,
         getArtistById,
+        getArtistByName,
         createNewArtist
     }
 }

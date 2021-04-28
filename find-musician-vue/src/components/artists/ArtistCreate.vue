@@ -3,36 +3,25 @@
         <div>
             <h3>Lag en ny artist</h3>
         </div>
-
-        <div>
-            <div>
-                <label>Navn:</label>
-            </div>
-            <input v-model="name" class="form-control" type="text">
+        <div class="form-floating mb-3">
+            <input v-model="name" type="text" id="name-input" class="form-control" placeholder="Navn">
+            <label for="name-input">Navn</label>
         </div>
-        <div>
-            <div>
-                <label>Sjanger:</label>
-            </div>
-            <input v-model="genre" class="form-control" type="text">
+        <div class="form-floating mb-3">
+            <input v-model="genre" type="text" id="genre-input" class="form-control" placeholder="Sjanger">
+            <label for="genre-input">Sjanger</label>
         </div>
-        <div>
-            <div>
-                <label>Pris per time:</label>
-            </div>
-            <input v-model="price" class="form-control" type="text">
+        <div class="form-floating mb-3">
+            <input v-model="price" type="text" id="price-input" class="form-control" placeholder="Pris">
+            <label for="price-input">Pris per time</label>
         </div>
-        <div>
-            <div>
-                <label>Instrument: (Fullt band, Sang, Gitar..)</label>
-            </div>
-            <input v-model="instrument" class="form-control" type="text">
+        <div class="form-floating mb-3">
+            <input v-model="instrument" type="text" id="instrument-input" class="form-control" placeholder="Instrument">
+            <label for="instrument-input">Instrument: (Fullt band, Sang, Gitar..)</label>
         </div>
-        <div>
-            <div>
-                <label>Biografi:(skriv litt om deg / dere)</label>
-            </div>
-            <input v-model="biography" class="form-control" type="text">
+        <div class="form-floating mb-3">
+            <input v-model="biography" type="text" id="biography-input" class="form-control" placeholder="Biografi">
+            <label for="biography-input">Biografi</label>
         </div>
         <div>
             <div>

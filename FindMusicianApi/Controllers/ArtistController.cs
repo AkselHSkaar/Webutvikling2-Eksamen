@@ -6,6 +6,7 @@ using FindMusicianApi.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using System.Linq;
 
 namespace FindMusicianApi.Controllers {
 
@@ -41,6 +42,15 @@ namespace FindMusicianApi.Controllers {
             return artist;
         }
 
+        [HttpGet("artist/{name}")]
+        public async Task<IEnumerable<Artist>> Get(string name){
+            List<Artist> artistList = await _context.Artist.Where(
+                artist => artist.Name.ToLower()
+                .Contains(name.ToLower())
+            ).ToListAsync();
+
+            return artistList;
+        }
 
         [HttpPost]
         public async Task<Artist> Post(Artist newArtist){

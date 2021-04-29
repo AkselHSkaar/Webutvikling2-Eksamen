@@ -30,20 +30,17 @@ export default {
     name: 'ArtistList',
     components: {ArtistItem},
     setup() {
-        const { artistList, searchResult, getArtists, searchForArtist } = artistService();
+        const { artistList, getArtists, searchResult, searchForArtist} = artistService();
         
         getArtists(); 
 
         const inputValue = ref("");
 
-        const listArtistsByName = () =>{
-            searchForArtist( inputValue );
+        const listArtistsByName = () =>{   
+            searchForArtist( inputValue.value );
 
-            console.log(searchResult);
-        }
-
-
-        
+            console.log( searchResult );
+        }    
         
         return{
             artistList,

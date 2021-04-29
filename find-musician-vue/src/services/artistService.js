@@ -27,7 +27,7 @@ export default function artistService() {
     }
 
     const searchForArtist = ( input ) => {
-        axios(`https://localhost:5001/artist/search/${input}`)
+        axios(`https://localhost:5001/artist/Search/${input}`)
                 .then( response => {
                     artists.searchResult = response.data;
                 } );

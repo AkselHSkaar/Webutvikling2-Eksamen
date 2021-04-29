@@ -1,12 +1,10 @@
 <template>
     <section>
+
         <div class="row">
             <div class="col form-floating mb-3">
                 <input v-model="inputValue" @keyup="listArtistsByName" type="text" class="form-control" id="floatingInput" placeholder="Ole ivars">
                 <label for="floatingInput">Søk etter artist</label>
-            </div>
-            <div class="col">
-
             </div>
         </div>
         
@@ -53,15 +51,12 @@ export default {
     components: {ArtistItem},
     setup() {
         const { artistList, getArtists, searchResult, searchForArtist} = artistService();
+        const inputValue = ref("");
         
         getArtists(); 
 
-        const inputValue = ref("");
-
         const listArtistsByName = () =>{   
             searchForArtist( inputValue.value );
-
-            console.log( searchResult );
         }    
         
         return{
@@ -73,7 +68,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>

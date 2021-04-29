@@ -28,7 +28,6 @@ namespace FindMusicianApi.Controllers {
             return review;
         }
 
-
         [HttpPost]
         public async Task<Review> Post(Review newReview){
             _context.Review.Add( newReview );
@@ -41,6 +40,14 @@ namespace FindMusicianApi.Controllers {
             _context.Update( review );
             await _context.SaveChangesAsync();
             return review;
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<Review> Delete(int id){
+            Review reviewToDelete = await _context.Review.FirstOrDefaultAsync(review => review.Id == id);
+            _context.Remove(reviewToDelete);
+            await _context.SaveChangesAsync();
+            return reviewToDelete;
         }
 
     }

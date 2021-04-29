@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FindMusicianApi.Models;
+using System.Linq;
 
 namespace FindMusicianApi.Controllers {
 
@@ -28,6 +29,12 @@ namespace FindMusicianApi.Controllers {
             return booking;
         }
 
+        [HttpGet("Search/{title}")]
+        public async Task<IEnumerable<Booking>> Get(string title){
+            List<Booking> bookingList = 
+            await _context.Booking.Where(booking => booking.Title.ToLower().Contains(title.ToLower())).ToListAsync();
+            return bookingList;
+        }
 
         [HttpPost]
         public async Task<Booking> Post(Booking newBooking){
@@ -41,6 +48,14 @@ namespace FindMusicianApi.Controllers {
             _context.Update( booking );
             await _context.SaveChangesAsync();
             return booking;
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<Booking> Delete(int id){
+            Booking bookingToDelete = await _context.Booking.FirstOrDefaultAsync(booking => booking.Id == id);
+            _context.Remove(bookingToDelete);
+            await _context.SaveChangesAsync();
+            return bookingToDelete;
         }
 
     }

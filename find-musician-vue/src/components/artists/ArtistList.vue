@@ -1,5 +1,6 @@
 <template>
     <section>
+
         <div class="row">
             <div class="col form-floating mb-3">
                 <input v-model="searchInput" @keyup="listArtistsByName" type="text" class="form-control" id="floatingInput" placeholder="Ole ivars">
@@ -136,7 +137,3 @@ export default {
     
 }
 </script>
-
-<style scoped>
-
-</style>

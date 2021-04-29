@@ -19,7 +19,9 @@
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <button class="btn btn-outline-light" type="button">Lag et oppdrag</button>
+                    <router-link :to="{ name:'AddBookingPage' }" class="btn btn-outline-light m-2">Legg til et oppdrag</router-link>
+                    <router-link :to="{ name:'AddArtistPage' }" class="btn btn-outline-light m-2">Legg til en artist</router-link>
+                    <router-link :to="{ name:'AdminPage' }" class="btn btn-outline-light m-2">Administrator</router-link>
                 </form>
                 </div>
             </div>

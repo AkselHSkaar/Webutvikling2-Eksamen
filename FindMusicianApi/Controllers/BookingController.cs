@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FindMusicianApi.Models;
+using System.Linq;
 
 namespace FindMusicianApi.Controllers {
 
@@ -26,6 +27,13 @@ namespace FindMusicianApi.Controllers {
         public async Task<Booking> Get(int id){
             Booking booking = await _context.Booking.FirstAsync( _booking => _booking.Id == id );
             return booking;
+        }
+
+        [HttpGet("Search/{title}")]
+        public async Task<IEnumerable<Booking>> Get(string title){
+            List<Booking> bookingList = 
+            await _context.Booking.Where(booking => booking.Title.ToLower().Contains(title.ToLower())).ToListAsync();
+            return bookingList;
         }
 
         [HttpPost]

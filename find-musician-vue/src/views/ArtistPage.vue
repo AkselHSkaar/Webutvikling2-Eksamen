@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-hero title="Artists" description="Lorem ipsum dolor sitt amet." image="artist-hero-bg.jpg"></page-hero>
+        <page-hero title="Artister" description="Lorem ipsum dolor sitt amet." image="artist-hero-bg.jpg"></page-hero>
         <div class="container py-5">
             <artist-list></artist-list>
             <artist-create></artist-create>

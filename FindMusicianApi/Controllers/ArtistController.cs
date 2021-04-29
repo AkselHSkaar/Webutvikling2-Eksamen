@@ -73,6 +73,14 @@ namespace FindMusicianApi.Controllers {
             return artist;
         }
 
+        [HttpDelete("{id}")]
+        public async Task<Artist> Delete(int id){
+            Artist artistToDelete = await _context.Artist.FirstOrDefaultAsync(artist => artist.Id == id);
+            _context.Remove(artistToDelete);
+            await _context.SaveChangesAsync();
+            return artistToDelete;
+        }
+
     }
 
 }

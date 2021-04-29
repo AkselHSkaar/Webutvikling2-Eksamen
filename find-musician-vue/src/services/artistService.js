@@ -27,7 +27,8 @@ export default function artistService() {
     }
 
     const searchForArtist = ( input ) => {
-        axios(`https://localhost:5001/artist/Search/${input}`)
+        //Return is needed to wait for response before soring artistList
+        return axios(`https://localhost:5001/artist/Search/${input}`)
                 .then( response => {
                     artists.searchResult = response.data;
                 } );

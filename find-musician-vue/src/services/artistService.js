@@ -3,7 +3,7 @@ import { reactive, toRefs } from 'vue'
 
 export default function artistService() {
 
-    const artists = reactive({ artistList: [], artistById: "", artistByName: "" });
+    const artists = reactive({ artistList: [], artistById: "", artistByName: "", searchResult: [] });
 
     const getArtists = () =>{
         axios("https://localhost:5001/artist")
@@ -24,6 +24,13 @@ export default function artistService() {
             .then( response => {
                 artists.artistByName = response.data;
             } );
+    }
+
+    const searchForArtist = ( input ) => {
+        axios(`https://localhost:5001/artist/artist/${input}`)
+                .then( response => {
+                    artists.searchResult = response.data;
+                } );
     }
 
     //Post metode for å legge til ny artist med bilde.
@@ -50,6 +57,7 @@ export default function artistService() {
         getArtists,
         getArtistById,
         getArtistByName,
+        searchForArtist,
         createNewArtist
     }
 }

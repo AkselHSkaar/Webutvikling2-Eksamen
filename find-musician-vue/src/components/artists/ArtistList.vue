@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Ole ivars">
+            <input v-model="inputValue" @keyup="listArtistsByName" type="text" class="form-control" id="floatingInput" placeholder="Ole ivars">
             <label for="floatingInput">Søk etter artist</label>
         </div>
         <div class="row g-4">
@@ -24,17 +24,31 @@
 <script>
 import ArtistItem from './ArtistItem'
 import artistService from '../../services/artistService'
+import { ref } from 'vue'
 
 export default {
     name: 'ArtistList',
     components: {ArtistItem},
     setup() {
-        const { artistList, getArtists } = artistService();
+        const { artistList, searchResult, getArtists, searchForArtist } = artistService();
         
         getArtists(); 
+
+        const inputValue = ref("");
+
+        const listArtistsByName = () =>{
+            searchForArtist( inputValue );
+
+            console.log(searchResult);
+        }
+
+
+        
         
         return{
-            artistList
+            artistList,
+            inputValue,
+            listArtistsByName,
         }
     }
 }

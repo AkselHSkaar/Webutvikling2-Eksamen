@@ -52,12 +52,23 @@ export default function artistService() {
             } )
     }
 
+    const putArtist = ( artistToEdit ) => {
+        axios.put("https://localhost:5001/artist/", artistToEdit)
+    }
+
+
+    const deleteArtist = ( id ) => {
+        axios.delete(`https://localhost:5001/artist/${id}`)
+    }
+
     return {
         ...toRefs( artists ),
         getArtists,
         getArtistById,
         getArtistByName,
         searchForArtist,
-        createNewArtist
+        createNewArtist,
+        putArtist,
+        deleteArtist
     }
 }

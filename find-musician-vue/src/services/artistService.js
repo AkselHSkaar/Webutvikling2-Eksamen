@@ -26,10 +26,13 @@ export default function artistService() {
             } );
     }
 
+    //Post metode for å legge til ny artist med bilde.
     const createNewArtist = ( postArtist, imageObject ) => {
+        //Legger til tekstfeltene i database
         axios.post("https://localhost:5001/artist/", postArtist)
             .then( response => {
 
+                //Sender inn bilde til images i wwwroot via uploadImage funksjon i artistController  
                 axios({
                     method: "POST",
                     url: "https://localhost:5001/artist/UploadImage",
@@ -37,6 +40,7 @@ export default function artistService() {
                     config: { headers: {"Content-type" : "multipart/form-data"} }
                 })
 
+                //Pusher ny artist inn i artistList
                 artists.artistList.push( response.data );
             } )
     }

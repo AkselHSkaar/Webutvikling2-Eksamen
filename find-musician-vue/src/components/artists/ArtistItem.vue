@@ -9,7 +9,9 @@
                 <p>Sjanger: {{ genre }}, pris per time: {{ price }},- NOK</p>
                 <p>Instrument: {{ instrument }}</p>
                 <p class="card-text">{{ biography }}</p>
-                <a href="#" class="btn btn-primary">Book artist</a>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Les mer
+                </button>
             </div>
         </div>
     </article>

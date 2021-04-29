@@ -44,11 +44,8 @@ namespace FindMusicianApi.Controllers {
 
         [HttpGet("Search/{name}")]
         public async Task<IEnumerable<Artist>> Get(string name){
-            List<Artist> artistList = await _context.Artist.Where(
-                artist => artist.Name.ToLower()
-                .Contains(name.ToLower())
-            ).ToListAsync();
-
+            List<Artist> artistList = 
+            await _context.Artist.Where(artist => artist.Name.ToLower().Contains(name.ToLower())).ToListAsync();
             return artistList;
         }
 

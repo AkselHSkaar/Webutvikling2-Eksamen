@@ -1,7 +1,7 @@
 <template>
     <section>
         <div>
-            <h3>Lag en ny artist</h3>
+            <h3>Legg til en ny artist</h3>
         </div>
         <div class="form-floating mb-3">
             <input v-model="name" type="text" id="name-input" class="form-control" placeholder="Navn">
@@ -25,10 +25,9 @@
         </div>
         <div>
             <div>
-                <label>Bilde (filnavn)</label>
+                <label>Bilde</label>
             </div>
             <input @change="setImage" class="form-control" type="file">
-            <p>Valgt bilde: {{ image }}</p>
         </div>
         <div>
             <input @click="addArtist" type="button" value="Legg til artist" class="form-control bg-success text-white mt-2">

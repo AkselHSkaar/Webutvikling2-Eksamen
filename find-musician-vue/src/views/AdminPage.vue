@@ -1,9 +1,16 @@
 <template>
-    <h1>Adminpage</h1>
+    <div>
+        <page-hero title="Administrator" description="Lorem ipsum dolor sitt amet." image="artist-hero-bg.jpg"></page-hero>
+    </div>
 </template>
 
 <script>
+import PageHero from '../components/shared/PageHero'
+
 export default {
-    name: 'AdminPage'
+    name: 'AdminPage',
+    components: {
+        PageHero
+    }
 }
 </script>

@@ -9,7 +9,7 @@
                 <p>Sjanger: {{ genre }}</p>
                 <p>{{ customerName }}</p>
                 <p>{{ customerEmail }}</p>
-                <p>{{ customerName }}</p>
+                <p>{{ customerPhone }}</p>
             </div>
         </div>
     </article>
@@ -24,6 +24,7 @@ export default {
         description: String,
         date: Number,
         startTime: String,
+        endTime: String,
         genre: String,
         price: Number,
         customerName: String,

@@ -52,6 +52,7 @@
                         :description="booking.description"
                         :date="booking.date"
                         :startTime="booking.startTime"
+                        :endTime="booking.endTime"
                         :genre="booking.genre"
                         :price="booking.price"
                         :customerName="booking.customerName"

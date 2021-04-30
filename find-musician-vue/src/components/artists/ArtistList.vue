@@ -1,15 +1,15 @@
 <template>
     <section>
-        <div class="row">
-            <div class="col">
+        <div class="row pb-5">
+            <div class="col-12 col-sm-6 col-lg-4">
                 <div class="form-floating mb-3">
                     <input v-model="searchInput" @keyup="updateArtistList" type="text" class="form-control form-control-lg" id="floatingInput" placeholder="Ole ivars">
                     <label for="floatingInput">Søk etter artist</label>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-12 col-sm-6 col-lg-4">
                 <div class="form-floating mb-3">
-                    <select v-model="sortSelect" class="form-select form-select-lg mb-3 py-2 fs-5" aria-label=".form-select-lg example" @change="sortArtistList()">
+                    <select v-model="sortSelect" class="form-select form-select-lg mb-3 py-2 fs-6" aria-label=".form-select-lg example" @change="sortArtistList()">
                         <option value="0" disabled>Sorter resultater</option>
                         <option value="1">Rating - lav til høy</option>
                         <option value="2">Rating - høy til lav</option>
@@ -18,7 +18,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-12 col-lg-4">
                 <label for="customRange1" class="form-label">Maks timepris: {{priceRangeSlider}}kr</label>
                 <input v-model="priceRangeSlider" @change="updateArtistList()" type="range" class="form-range" id="customRange1" min="1" max="1000">
             </div>

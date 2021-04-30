@@ -27,6 +27,8 @@ namespace FindMusicianApi.Models {
 
         public string CustomerPhone { get; set; }
 
+        public string Image { get; set; }
+
     }
     
 }

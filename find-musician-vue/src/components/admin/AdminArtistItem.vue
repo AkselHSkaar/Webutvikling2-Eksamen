@@ -54,7 +54,6 @@
 
 <script>
 import artistService from '../../services/artistService'
-//import axios from 'axios'
 
 export default {
     name: 'AdminArtistItem',
@@ -80,7 +79,8 @@ export default {
             getArtistById( props.id );
 
             const editArtist = (element) => {
-            const artistToEdit = {
+            const artistToEdit = 
+            {
                 id: parseInt( element.id ),
                 name: element.name,
                 genre: element.genre,
@@ -89,22 +89,20 @@ export default {
                 biography: element.biography,
                 rating: element.rating,
                 image: element.image
-                }
+            }
                 putArtist( artistToEdit );
                 location.reload();
             }
-            editArtist(artistById.value);
-        }
 
-        
-        
+            editArtist(artistById.value);
+
+        }
 
         return {
             artistById,
             updateArtist,
             getArtist
         }
-        
     }
 }
 </script>

@@ -3,7 +3,7 @@ import { reactive, toRefs } from 'vue'
 
 export default function bookingService() {
 
-    const booking = reactive({ bookingList: [], bookingById: {} });
+    const booking = reactive({ bookingList: [], bookingById: {}, searchResult: [] });
 
     const getBookings = () => {
         axios("https://localhost:5001/booking")
@@ -19,6 +19,14 @@ export default function bookingService() {
             } );
     }
 
+    const searchForBooking = ( input ) => {
+        //Return is needed to wait for response before soring artistList
+        return axios(`https://localhost:5001/booking/Search/${input}`)
+                .then( response => {
+                    booking.searchResult = response.data;
+                } );
+    }
+
     const createNewBooking = ( postBooking ) => {
         axios.post("https://localhost:5001/booking/", postBooking)
             .then( response => {
@@ -30,6 +38,7 @@ export default function bookingService() {
         ...toRefs(booking),
         getBookings,
         getBookingById,
+        searchForBooking,
         createNewBooking
     }
 }

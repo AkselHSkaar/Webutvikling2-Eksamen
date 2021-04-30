@@ -4,9 +4,20 @@
 
         <section>
             <h1>Alle artister:</h1>
-            <article v-for="( artist, i ) in artistList" :key="i">
-                <h3>{{ artist.name }}</h3>
-            </article>
+            <div class="row g-4">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" v-for="( artist, i ) in artistList" :key="i">
+                    <admin-artist-item
+                    :id="artist.id"
+                    :name="artist.name"
+                    :genre="artist.genre"
+                    :price="artist.price"
+                    :instrument="artist.instrument"
+                    :biography="artist.biography"
+                    :rating="artist.rating"
+                    :image="artist.image"
+                    ></admin-artist-item>
+                </div>
+            </div>
         </section>
 
         <section>
@@ -30,11 +41,13 @@ import PageHero from '../components/shared/PageHero'
 import artistService from '../services/artistService'
 import bookingService from '../services/bookingService'
 import reviewService from '../services/reviewService'
+import AdminArtistItem from '../components/admin/AdminArtistItem'
 
 export default {
     name: 'AdminPage',
     components: {
-        PageHero
+        PageHero,
+        AdminArtistItem
     },
     setup(){
 

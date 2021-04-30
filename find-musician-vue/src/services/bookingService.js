@@ -6,7 +6,7 @@ export default function bookingService() {
     const booking = reactive({ bookingList: [], bookingById: {}, searchResult: [] });
 
     const getBookings = () => {
-        axios("https://localhost:5001/booking")
+        return axios("https://localhost:5001/booking")
             .then( response => {
                 booking.bookingList = response.data;
             } )

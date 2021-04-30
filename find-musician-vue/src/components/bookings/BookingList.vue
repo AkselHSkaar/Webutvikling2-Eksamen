@@ -68,7 +68,7 @@ export default {
         BookingItem 
     },
     setup() {
-        const {bookingList, getBookings, searchResult} = bookingService();
+        const {bookingList, getBookings, searchResult, searchForBooking} = bookingService();
 
         getBookings();
 

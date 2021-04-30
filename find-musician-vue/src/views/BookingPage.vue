@@ -1,7 +1,9 @@
 <template>
     <div>
         <page-hero title="Oppdrag" description="Lorem ipsum dolor sitt amet." image="artist-hero-bg.jpg"></page-hero>
-        <booking-list></booking-list>
+        <div class="container py-5">
+            <booking-list></booking-list>
+        </div>
     </div>
 
 </template>

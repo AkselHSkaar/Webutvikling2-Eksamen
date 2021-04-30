@@ -3,13 +3,13 @@ import { reactive, toRefs } from 'vue'
 
 export default function artistService() {
 
-    const artists = reactive({ artistList: [], artistById: "", artistByName: "", searchResult: [] });
+    const artists = reactive({ artistList: [], artistById: {}, artistByName: "", searchResult: [] });
 
     const getArtists = () =>{
         return axios("https://localhost:5001/artist")
             .then( response => {
                 artists.artistList = response.data;
-            } )
+            } );
     }
 
     const getArtistById = ( id ) => {
@@ -50,7 +50,7 @@ export default function artistService() {
 
                 //Pusher ny artist inn i artistList
                 artists.artistList.push( response.data );
-            } )
+            } );
     }
 
     const putArtist = ( artistToEdit ) => {

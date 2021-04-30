@@ -6,7 +6,7 @@ export default function artistService() {
     const artists = reactive({ artistList: [], artistById: "", artistByName: "", searchResult: [] });
 
     const getArtists = () =>{
-        axios("https://localhost:5001/artist")
+        return axios("https://localhost:5001/artist")
             .then( response => {
                 artists.artistList = response.data;
             } )

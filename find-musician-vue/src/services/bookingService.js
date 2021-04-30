@@ -3,13 +3,20 @@ import { reactive, toRefs } from 'vue'
 
 export default function bookingService() {
 
-    const booking = reactive({ bookingList: [] });
+    const booking = reactive({ bookingList: [], bookingById: {} });
 
     const getBookings = () => {
         axios("https://localhost:5001/booking")
             .then( response => {
                 booking.bookingList = response.data;
             } )
+    }
+
+    const getBookingById = ( id ) => {
+        axios(`https://localhost:5001/booking/${id}`)
+            .then( response => {
+                booking.bookingById = response.data;
+            } );
     }
 
     const createNewBooking = ( postBooking ) => {
@@ -22,6 +29,7 @@ export default function bookingService() {
     return {
         ...toRefs(booking),
         getBookings,
+        getBookingById,
         createNewBooking
     }
 }

@@ -9,7 +9,7 @@
                 <p>Sjanger: {{ genre }}</p>
                 <p>{{ customerName }}</p>
                 <p>{{ customerEmail }}</p>
-                <p>{{ customerName }}</p>
+                <p>{{ customerPhone }}</p>
             </div>
         </div>
     </article>

@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { collapse } from 'bootstrap';
+import collapse from 'bootstrap/js/dist/collapse'
 
 export default {
     name: 'TheHeader',

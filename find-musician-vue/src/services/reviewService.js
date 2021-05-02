@@ -3,13 +3,20 @@ import { reactive, toRefs } from 'vue'
 
 export default function reviewService() {
 
-    const review = reactive({ reviewList: [] });
+    const review = reactive({ reviewList: [], reviewById: {} });
 
     const getReviews = () => {
         axios("https://localhost:5001/review")
             .then( response => {
                 review.reviewList = response.data;
             } )
+    }
+
+    const getReviewById = ( id ) => {
+        axios(`https://localhost:5001/review/${id}`)
+            .then( response => {
+                review.reviewById = response.data;
+            } );
     }
 
     const createNewReview = ( postReview ) => {
@@ -19,9 +26,20 @@ export default function reviewService() {
             } )
     }
 
+    const putReview = ( reviewToEdit ) => {
+        axios.put("https://localhost:5001/review/", reviewToEdit)
+    }
+
+    const deleteReview = ( id ) => {
+        axios.delete(`https://localhost:5001/review/${id}`)
+    }
+
     return {
         ...toRefs(review),
         getReviews,
-        createNewReview
+        getReviewById,
+        createNewReview,
+        putReview,
+        deleteReview
     }
 }

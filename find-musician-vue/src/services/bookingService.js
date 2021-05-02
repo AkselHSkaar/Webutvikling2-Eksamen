@@ -27,11 +27,27 @@ export default function bookingService() {
                 } );
     }
 
-    const createNewBooking = ( postBooking ) => {
+    const createNewBooking = ( postBooking, imageObject ) => {
         axios.post("https://localhost:5001/booking/", postBooking)
             .then( response => {
+
+                axios({
+                    method: "POST",
+                    url: "https://localhost:5001/booking/UploadImage",
+                    data: imageObject,
+                    config: { headers: {"Content-type" : "multipart/form-data"} }
+                })
+
                 booking.bookingList.push( response.data );
             } )
+    }
+
+    const putBooking = ( bookingToEdit ) => {
+        axios.put("https://localhost:5001/booking/", bookingToEdit)
+    }
+
+    const deleteBooking = ( id ) => {
+        axios.delete(`https://localhost:5001/booking/${id}`)
     }
 
     return {
@@ -39,6 +55,8 @@ export default function bookingService() {
         getBookings,
         getBookingById,
         searchForBooking,
-        createNewBooking
+        createNewBooking,
+        putBooking,
+        deleteBooking 
     }
 }

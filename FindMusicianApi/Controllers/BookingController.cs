@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FindMusicianApi.Models;
 using System.Linq;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace FindMusicianApi.Controllers {
 
@@ -12,9 +15,12 @@ namespace FindMusicianApi.Controllers {
     public class BookingController : ControllerBase {
 
         private readonly FindMusicianContext _context;
+        private readonly IWebHostEnvironment _hosting;
+        
 
-        public BookingController(FindMusicianContext context){
+        public BookingController(FindMusicianContext context, IWebHostEnvironment hosting ){
             _context = context;
+            _hosting = hosting;
         }
 
         [HttpGet]
@@ -41,6 +47,16 @@ namespace FindMusicianApi.Controllers {
             _context.Booking.Add(newBooking);
             await _context.SaveChangesAsync();
             return newBooking;
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public void UploadImage(IFormFile file){
+            string webRootPath = _hosting.WebRootPath;
+            string absolutePath = Path.Combine($"{webRootPath}/images/{file.FileName}");
+            using(var fileStream = new FileStream( absolutePath, FileMode.Create )){
+                file.CopyTo( fileStream );
+            }
         }
 
         [HttpPut]

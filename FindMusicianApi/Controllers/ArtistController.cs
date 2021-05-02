@@ -64,7 +64,7 @@ namespace FindMusicianApi.Controllers {
             using(var fileStream = new FileStream( absolutePath, FileMode.Create )){
                 file.CopyTo( fileStream );
             }
-        }
+        } 
 
         [HttpPut]
         public async Task<Artist> Put(Artist artist){

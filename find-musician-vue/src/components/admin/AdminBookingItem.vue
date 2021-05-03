@@ -66,7 +66,7 @@
                                 <div>
                                     <label>Bilde</label>
                                 </div>
-                                <input class="form-control" type="file">
+                                <input @change="setImage" class="form-control" type="file">
                             </div>
                             <div>
                                 <input @click="updateBooking(bookingById.id)" type="button" value="Rediger oppdrag" class="form-control bg-success text-white mt-2">
@@ -106,10 +106,15 @@ export default {
             getBookingById( props.id );
         }
 
-        const updateBooking = () => {
-            getBookingById( props.id );
+        const imageObject = new FormData();
 
-            const editBooking = (element) => {
+        const setImage = ( e ) => {
+            imageObject.append("file", e.target.files[0]);
+            bookingById.image = e.target.files[0].name;
+        }
+
+        const updateBooking = () => {
+            const editBooking = ( element, image ) => {
             const bookingToEdit = {
                 id: parseInt( element.id ),
                 title: element.title,
@@ -122,13 +127,13 @@ export default {
                 customerName: element.customerName,
                 customerEmail: element.customerEmail,
                 customerPhone: element.customerPhone,
-                image: element.image
+                image: image
             }
-                putBooking( bookingToEdit );
+                putBooking( bookingToEdit, imageObject );
                 location.reload();
             }
 
-            editBooking(bookingById.value);
+            editBooking(bookingById.value, bookingById.image);
 
         }
 
@@ -141,7 +146,8 @@ export default {
             getBooking,
             bookingById,
             updateBooking,
-            deleteFromDb
+            deleteFromDb,
+            setImage
         }
         
     }

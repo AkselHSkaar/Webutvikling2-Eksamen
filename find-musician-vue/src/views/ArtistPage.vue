@@ -7,7 +7,7 @@
         </div>
         <div class="container pb-5">
             <h2 class="pb-2">Anmeld en artist</h2>
-            
+            <review-create></review-create>
         </div>
     </div>
 </template>
@@ -16,13 +16,15 @@
 import ArtistList from '../components/artists/ArtistList'
 import PageHero from '../components/shared/PageHero'
 import ArtistModal from '../components/artists/ArtistModal'
+import ReviewCreate from '../components/reviews/ReviewCreate'
 
 export default {
     name: 'ArtistPage',
     components: {
         ArtistList,
         PageHero,
-        ArtistModal
+        ArtistModal,
+        ReviewCreate
     }
 }
 </script>

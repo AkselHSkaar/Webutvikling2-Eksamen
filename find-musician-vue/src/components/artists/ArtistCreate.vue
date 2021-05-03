@@ -39,7 +39,6 @@
 import { reactive, toRefs } from 'vue'
 import artistService from '../../services/artistService'
 import genreService from '../../services/genreService'
-//import axios from 'axios'
 
 export default {
     name: 'ArtistCreate',
@@ -48,7 +47,6 @@ export default {
         const newArtist = reactive({ name: "", genre: "", price: "", instrument: "", biography: "", image: "" })
         const {genreList, getGenres} = genreService();
         getGenres();
-        console.log(genreList);
 
         const imageObject = new FormData();
 

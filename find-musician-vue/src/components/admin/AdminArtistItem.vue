@@ -9,9 +9,14 @@
                 <p>Rating (1-5): {{ rating }}</p>
                 <p>Sjanger: {{ genre }}</p>
                 <p>Instrument: {{ instrument }}</p>
-                <button @click="getArtist" class="btn btn-primary" type="button" data-bs-toggle="collapse" :data-bs-target="`#collapse${id}`" aria-expanded="false" aria-controls="collapse">
-                    Rediger
-                </button>
+                <div>
+                    <button @click="getArtist" class="btn btn-primary" type="button" data-bs-toggle="collapse" :data-bs-target="`#collapse${id}`" aria-expanded="false" aria-controls="collapse">
+                        Rediger
+                    </button>
+                    <button @click="deleteFromDb" class="btn btn-danger" type="button">
+                        Slett
+                    </button>
+                </div>
                 <div class="collapse" :id="`collapse${id}`">
                     <div>
                         <form>
@@ -69,7 +74,7 @@ export default {
     },
     setup(props){
 
-        const {artistById, getArtistById, putArtist} = artistService();
+        const {artistById, getArtistById, putArtist, deleteArtist} = artistService();
 
         const getArtist = () => {
             getArtistById( props.id );
@@ -98,10 +103,15 @@ export default {
 
         }
 
+        const deleteFromDb = () => {
+            deleteArtist( props.id )
+        }
+
         return {
             artistById,
             updateArtist,
-            getArtist
+            getArtist,
+            deleteFromDb
         }
     }
 }

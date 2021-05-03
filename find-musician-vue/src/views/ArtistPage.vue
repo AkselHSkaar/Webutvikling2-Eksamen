@@ -5,6 +5,10 @@
             <artist-list></artist-list>
             <artist-modal></artist-modal>
         </div>
+        <div class="container pb-5">
+            <h2 class="pb-2">Anmeld en artist</h2>
+            
+        </div>
     </div>
 </template>
 

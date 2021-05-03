@@ -15,6 +15,7 @@
                 :customerName="booking.customerName"
                 :customerEmail="booking.customerEmail"
                 :customerPhone="booking.customerPhone"
+                :image="booking.image"
                 ></admin-booking-item>
             </div>
         </div>

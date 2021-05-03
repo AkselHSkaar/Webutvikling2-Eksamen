@@ -9,10 +9,10 @@
             </div>
             <div class="col-12 col-sm-6 col-lg-4">
                 <div class="form-group">
-                    <div v-for="( genre, i ) in genreList" :key="i">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" :id="`${genre.id}-checkbox`" :value="genre.id">
-                            <label class="form-check-label" :for="`${genre.id}-checkbox`">{{genre.name}}</label>
+                    <div v-for="( genre, i ) in defaultGenreList" :key="i">
+                        <div v-if="checkIfGenreExists(genre.name)" class="form-check form-check-inline">
+                            <input @change="filterGenreList(genre.name)" class="form-check-input" type="checkbox" :id="`${genre.name}-checkbox`" :value="genre.id">
+                            <label class="form-check-label" :for="`${genre.name}-checkbox`">{{genre.name}}</label>
                         </div>
                     </div>
                 </div>
@@ -36,6 +36,7 @@
                         :customerName="booking.customerName"
                         :customerEmail="booking.customerEmail"
                         :customerPhone="booking.customerPhone"
+                        :image="booking.image"
                     ></booking-item>
                 </div>
             </div>
@@ -75,12 +76,12 @@ export default {
         const {bookingList, getBookings, searchResult, searchForBooking} = bookingService();
         const {genreList, getGenres} = genreService();
 
-        getBookings();
-        getGenres();
-
         let defaultBookingList = ref([]);
+        let defaultGenreList = ref([]);
+        const checkedGenres = ref([]);
 
         getBookings().then(() => defaultBookingList.value = bookingList.value);
+        getGenres().then(() => defaultGenreList.value = genreList.value);
 
         const searchInput = ref("");
         const priceRangeSlider = ref("10000");
@@ -101,36 +102,36 @@ export default {
         }
 */
 
-        const genreChecked = [];
-        //1 - Hente ut alle sjangere
-        genreList.value.forEach(genre => {
-            genreChecked[genre] = {
-                id: genre.id,
-                checked: false
-            }
-        });
-/*
-        //2 - Sjekk om checkboxes er disabled
-        const checkIfGenreExists = (identifier) => {
-            const genreObject = genreList.value.filter(obj => { return obj.id ===identifier });
-            genreList.value.forEach(genre => {
-                if(genreObject) {
-                    return true;
-                } else {
-                    return false;
+        const checkIfGenreExists = (nameOfGenre) => {
+            let genreExists = false;
+            bookingList.value.forEach(booking => {
+                if (booking.genre == nameOfGenre) {
+                    genreExists = true;
                 }
             });
+            return genreExists;
         }
-*/
-        //3 - Dynamisk sette REF variabler som sjekker om de er checked eller ikke.
-
-        //4 - sammenlign bookingLister med hva som er checked og hide med v-if
-
-
 
         const adjustPriceRange = () => {
             searchResult.value = searchResult.value.filter(booking => booking.price <= parseInt(priceRangeSlider.value));
             defaultBookingList.value = defaultBookingList.value.filter(booking => booking.price <= parseInt(priceRangeSlider.value));
+        }
+
+        const filterGenres = () => {
+            if (checkedGenres.value.length != 0) {
+                searchResult.value = searchResult.value.filter(booking => checkedGenres.value.includes(booking.genre));
+                defaultBookingList.value = defaultBookingList.value.filter(booking => checkedGenres.value.includes(booking.genre));
+            }
+        }
+
+        const filterGenreList = (genre) => {
+            if (checkedGenres.value.find(element => element == genre)) {
+                checkedGenres.value.splice(checkedGenres.value.indexOf(genre), 1);
+                updateBookingList();
+            } else {
+                checkedGenres.value.push(genre);
+                updateBookingList();
+            }
         }
 
         const updateBookingList = () =>{ 
@@ -138,11 +139,12 @@ export default {
             if (searchInput.value != '') {
                 searchForBooking( searchInput.value )
                     //.then(() => sortBookingList())
-                    .then(() => adjustPriceRange());
-                    console.log(searchResult.value);
+                    .then(() => adjustPriceRange())
+                    .then(() => filterGenres());
             } else {
                 //sortBookingList();
                 adjustPriceRange();
+                filterGenres();
             }
         } 
 
@@ -155,7 +157,10 @@ export default {
             //sortBookingList,
             priceRangeSlider,
             adjustPriceRange,
-            genreList
+            genreList,
+            defaultGenreList,
+            filterGenreList,
+            checkIfGenreExists
         }
     }
     

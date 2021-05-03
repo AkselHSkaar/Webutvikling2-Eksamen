@@ -15,7 +15,7 @@
                 <button @click="getBooking" class="btn btn-primary" type="button" data-bs-toggle="collapse" :data-bs-target="`#collapse${id}`" aria-expanded="false" aria-controls="collapse">
                     Rediger
                 </button>
-                <button class="btn btn-danger" type="button">
+                <button @click="deleteFromDb" class="btn btn-danger" type="button">
                     Slett
                 </button>
                 <div class="collapse" :id="`collapse${id}`">
@@ -100,7 +100,7 @@ export default {
     },
     setup(props){
 
-        const { getBookingById, bookingById, putBooking } = bookingService();
+        const { getBookingById, bookingById, putBooking, deleteBooking } = bookingService();
 
         const getBooking = () => {
             getBookingById( props.id );
@@ -132,10 +132,16 @@ export default {
 
         }
 
+        const deleteFromDb = () => {
+            deleteBooking( props.id );
+            location.reload();
+        }
+
         return {
             getBooking,
             bookingById,
-            updateBooking
+            updateBooking,
+            deleteFromDb
         }
         
     }

@@ -84,8 +84,7 @@ export default {
             getArtistById( props.id );
 
             const editArtist = (element) => {
-            const artistToEdit = 
-            {
+            const artistToEdit = {
                 id: parseInt( element.id ),
                 name: element.name,
                 genre: element.genre,

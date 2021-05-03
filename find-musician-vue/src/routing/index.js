@@ -7,6 +7,9 @@ import PageNotFound from '../views/PageNotFound'
 import AddArtistPage from '../views/AddArtistPage'
 import AddBookingPage from '../views/AddBookingPage'
 import AdminPage from '../views/AdminPage'
+import AdminArtistPage from '../views/AdminArtistPage'
+import AdminBookingPage from '../views/AdminBookingPage'
+import AdminReviewsPage from '../views/AdminReviewsPage'
 
 const routes = [
     {
@@ -40,8 +43,27 @@ const routes = [
     },
     {
         name: 'AdminPage',
-        path: '/admin',
+        path: '/administrator',
+        alias: '/admin',
         component: AdminPage
+    },
+    {
+        name: 'AdminArtistPage',
+        path: '/adminartist',
+        alias: ['/administrator-artist', '/admin-artist'],
+        component: AdminArtistPage
+    },
+    {
+        name: 'AdminBookingPage',
+        path: '/adminoppdrag',
+        alias: ['/administrator-oppdrag', '/admin-booking'],
+        component: AdminBookingPage
+    },
+    {
+        name: 'AdminReviewsPage',
+        path: '/adminomtaler',
+        alias: ['/administrator-omtaler', '/admin-reviews'],
+        component: AdminReviewsPage
     },
     {
         name: "PageNotFound",

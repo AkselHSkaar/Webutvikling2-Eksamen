@@ -20,7 +20,7 @@ export default function bookingService() {
     }
 
     const searchForBooking = ( input ) => {
-        //Return is needed to wait for response before soring artistList
+        //Return is needed to wait for response before sorting bookingList
         return axios(`https://localhost:5001/booking/Search/${input}`)
                 .then( response => {
                     booking.searchResult = response.data;

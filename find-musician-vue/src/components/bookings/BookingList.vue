@@ -9,15 +9,17 @@
             </div>
             <div class="col-12 col-sm-6 col-lg-4">
                 <div class="form-group">
-                    <label for="example-date-input" class="col-form-label">Arrangementer etter</label>
-                    <div class="col-10">
-                        <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+                    <div v-for="( genre, i ) in genreList" :key="i">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <label class="form-check-label" for="inlineCheckbox1">1</label>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-lg-4">
                 <label for="customRange1" class="form-label">Budsjett: {{priceRangeSlider}}kr per time</label>
-                <input v-model="priceRangeSlider" @change="updateBookingList()" type="range" class="form-range" id="customRange1" min="1" max="1000">
+                <input v-model="priceRangeSlider" @change="updateBookingList()" type="range" class="form-range" id="customRange1" min="1" max="10000">
             </div>
         </div>
             <div v-if="searchInput != ''" class="row g-4">
@@ -60,6 +62,7 @@
 <script>
 import BookingItem from './BookingItem'
 import bookingService from '../../services/bookingService'
+import genreService from '../../services/genreService'
 import { ref } from 'vue'
 
 export default {
@@ -69,37 +72,19 @@ export default {
     },
     setup() {
         const {bookingList, getBookings, searchResult, searchForBooking} = bookingService();
+        const {genreList} = genreService();
 
         getBookings();
+        getGenres();
 
         let defaultBookingList = ref([]);
 
         getBookings().then(() => defaultBookingList.value = bookingList.value);
 
         const searchInput = ref("");
-        const sortSelect = ref("0"); 
-        const priceRangeSlider = ref("1000");
+        const priceRangeSlider = ref("10000");
 
-        const sortRatingLowToHigh = () => {
-            defaultBookingList.value.sort((a, b) => (a.rating > b.rating) ? 1 : -1);
-            searchResult.value.sort((a, b) => (a.rating > b.rating) ? 1 : -1);
-        }
-
-        const sortRatingHighToLow = () => {
-            defaultBookingList.value.sort((a, b) => (a.rating < b.rating) ? 1 : -1);
-            searchResult.value.sort((a, b) => (a.rating < b.rating) ? 1 : -1);
-        }
-
-        const sortPriceLowToHigh = () => {
-            defaultBookingList.value.sort((a, b) => (a.price > b.price) ? 1 : -1);
-            searchResult.value.sort((a, b) => (a.price > b.price) ? 1 : -1);
-        }
-
-        const sortPriceHighToLow = () => {
-            defaultBookingList.value.sort((a, b) => (a.price < b.price) ? 1 : -1);
-            searchResult.value.sort((a, b) => (a.price < b.price) ? 1 : -1);
-        }
-
+/*
         const sortBookingList = () => {
             if (sortSelect.value != "") {
                 if (sortSelect.value == "1") {
@@ -113,7 +98,7 @@ export default {
                 }
             }
         }
-
+*/
         const adjustPriceRange = () => {
             searchResult.value = searchResult.value.filter(booking => booking.price <= parseInt(priceRangeSlider.value));
             defaultBookingList.value = defaultBookingList.value.filter(booking => booking.price <= parseInt(priceRangeSlider.value));
@@ -123,10 +108,11 @@ export default {
             defaultBookingList.value = bookingList.value;
             if (searchInput.value != '') {
                 searchForBooking( searchInput.value )
-                    .then(() => sortBookingList())
+                    //.then(() => sortBookingList())
                     .then(() => adjustPriceRange());
+                    console.log(searchResult.value);
             } else {
-                sortBookingList();
+                //sortBookingList();
                 adjustPriceRange();
             }
         } 
@@ -138,14 +124,15 @@ export default {
             searchInput,
             updateBookingList,
             searchResult,
-            sortRatingLowToHigh,
-            sortRatingHighToLow,
-            sortPriceLowToHigh,
-            sortPriceHighToLow,
-            sortSelect,
-            sortBookingList,
+            //sortRatingLowToHigh,
+            //sortRatingHighToLow,
+            //sortPriceLowToHigh,
+            //sortPriceHighToLow,
+            //sortSelect,
+            //sortBookingList,
             priceRangeSlider,
-            adjustPriceRange
+            adjustPriceRange,
+            genreList
         }
     }
     

@@ -11,8 +11,8 @@
                 <div class="form-group">
                     <div v-for="( genre, i ) in genreList" :key="i">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                            <label class="form-check-label" for="inlineCheckbox1">1</label>
+                            <input class="form-check-input" type="checkbox" :id="`${genre.id}-checkbox`" :value="genre.name">
+                            <label class="form-check-label" :for="`${genre.id}-checkbox`">{{genre.name}}</label>
                         </div>
                     </div>
                 </div>

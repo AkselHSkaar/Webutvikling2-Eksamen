@@ -104,7 +104,8 @@ export default {
         }
 
         const deleteFromDb = () => {
-            deleteArtist( props.id )
+            deleteArtist( props.id );
+            location.reload();
         }
 
         return {

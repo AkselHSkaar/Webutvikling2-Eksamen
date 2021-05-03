@@ -7,10 +7,16 @@
             <input v-model="name" type="text" id="name-input" class="form-control" placeholder="Navn">
             <label for="name-input">Navn</label>
         </div>
+        <!--
         <div class="form-floating mb-3">
             <input v-model="genre" type="text" id="genre-input" class="form-control" placeholder="Sjanger">
             <label for="genre-input">Sjanger</label>
         </div>
+        -->
+        <select v-model="genre" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+            <option value="0" disabled>Velg en sjanger</option>>
+            <option v-for="( genre, i ) in genreList" :key="i" :value="genre.name">{{genre.name}}</option>
+        </select>
         <div class="form-floating mb-3">
             <input v-model="price" type="text" id="price-input" class="form-control" placeholder="Pris">
             <label for="price-input">Pris per time</label>
@@ -38,6 +44,7 @@
 <script>
 import { reactive, toRefs } from 'vue'
 import artistService from '../../services/artistService'
+import genreService from '../../services/genreService'
 //import axios from 'axios'
 
 export default {
@@ -45,6 +52,10 @@ export default {
     setup() {
         
         const newArtist = reactive({ name: "", genre: "", price: "", instrument: "", biography: "", image: "" })
+        const {genreList, getGenres} = genreService();
+        getGenres();
+        console.log(genreList);
+
         const imageObject = new FormData();
 
         const setImage = ( e ) => {
@@ -71,7 +82,8 @@ export default {
         return {
             ...toRefs(newArtist),
             addArtist,
-            setImage
+            setImage,
+            genreList
         }
     }
 }

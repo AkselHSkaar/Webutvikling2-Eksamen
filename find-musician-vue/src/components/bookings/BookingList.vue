@@ -11,7 +11,7 @@
                 <div class="form-group">
                     <div v-for="( genre, i ) in genreList" :key="i">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" :id="`${genre.id}-checkbox`" :value="genre.name">
+                            <input class="form-check-input" type="checkbox" :id="`${genre.id}-checkbox`" :value="genre.id">
                             <label class="form-check-label" :for="`${genre.id}-checkbox`">{{genre.name}}</label>
                         </div>
                     </div>
@@ -100,6 +100,34 @@ export default {
             }
         }
 */
+
+        const genreChecked = [];
+        //1 - Hente ut alle sjangere
+        genreList.value.forEach(genre => {
+            genreChecked[genre] = {
+                id: genre.id,
+                checked: false
+            }
+        });
+/*
+        //2 - Sjekk om checkboxes er disabled
+        const checkIfGenreExists = (identifier) => {
+            const genreObject = genreList.value.filter(obj => { return obj.id ===identifier });
+            genreList.value.forEach(genre => {
+                if(genreObject) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        }
+*/
+        //3 - Dynamisk sette REF variabler som sjekker om de er checked eller ikke.
+
+        //4 - sammenlign bookingLister med hva som er checked og hide med v-if
+
+
+
         const adjustPriceRange = () => {
             searchResult.value = searchResult.value.filter(booking => booking.price <= parseInt(priceRangeSlider.value));
             defaultBookingList.value = defaultBookingList.value.filter(booking => booking.price <= parseInt(priceRangeSlider.value));
@@ -117,7 +145,6 @@ export default {
                 adjustPriceRange();
             }
         } 
-
 
         return{
             bookingList,

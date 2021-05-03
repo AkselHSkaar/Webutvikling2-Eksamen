@@ -86,22 +86,6 @@ export default {
         const searchInput = ref("");
         const priceRangeSlider = ref("10000");
 
-/*
-        const sortBookingList = () => {
-            if (sortSelect.value != "") {
-                if (sortSelect.value == "1") {
-                    sortRatingLowToHigh();
-                } else if (sortSelect.value == "2") {
-                    sortRatingHighToLow();
-                } else if (sortSelect.value == "3") {
-                    sortPriceLowToHigh();
-                } else {
-                    sortPriceHighToLow();
-                }
-            }
-        }
-*/
-
         const checkIfGenreExists = (nameOfGenre) => {
             let genreExists = false;
             bookingList.value.forEach(booking => {

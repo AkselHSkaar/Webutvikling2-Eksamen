@@ -40,7 +40,7 @@ export default {
         id: Number,
         title: String,
         description: String,
-        date: Number,
+        date: String,
         startTime: String,
         endTime: String,
         genre: String,

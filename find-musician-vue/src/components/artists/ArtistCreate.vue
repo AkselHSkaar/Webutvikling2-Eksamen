@@ -7,12 +7,6 @@
             <input v-model="name" type="text" id="name-input" class="form-control" placeholder="Navn">
             <label for="name-input">Navn</label>
         </div>
-        <!--
-        <div class="form-floating mb-3">
-            <input v-model="genre" type="text" id="genre-input" class="form-control" placeholder="Sjanger">
-            <label for="genre-input">Sjanger</label>
-        </div>
-        -->
         <select v-model="genre" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
             <option value="0" disabled>Velg en sjanger</option>>
             <option v-for="( genre, i ) in genreList" :key="i" :value="genre.name">{{genre.name}}</option>

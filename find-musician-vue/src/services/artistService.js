@@ -20,7 +20,7 @@ export default function artistService() {
     }
 
     const getArtistByName = ( name ) => {
-        axios(`https://localhost:5001/artist/getArtistByName/${name}`)
+        return axios(`https://localhost:5001/artist/getArtistByName/${name}`)
             .then( response => {
                 artists.artistByName = response.data;
             } );

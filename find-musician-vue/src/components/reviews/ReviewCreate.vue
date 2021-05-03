@@ -81,8 +81,10 @@ export default {
                 text: newReview.text,
                 artist: newReview.artist
             }
-
-            createNewReview( postReview ).then(() => location.reload());
+    
+            createNewReview( postReview )
+            //.then(() => getArtistByName(newReview.artist).then())
+            .then(() => location.reload());
         }
 
         return {

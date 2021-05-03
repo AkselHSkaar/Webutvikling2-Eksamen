@@ -53,8 +53,16 @@ export default function artistService() {
             } );
     }
 
-    const putArtist = ( artistToEdit ) => {
+    const putArtist = ( artistToEdit, imageObject ) => {
         axios.put("https://localhost:5001/artist/", artistToEdit)
+            .then( () => {
+                axios({
+                    method: "POST",
+                    url: "https://localhost:5001/artist/UploadImage",
+                    data: imageObject,
+                    config: { headers: {"Content-type" : "multipart/form-data"} }
+                })
+            })
     }
 
 

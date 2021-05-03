@@ -72,7 +72,7 @@ export default {
     },
     setup() {
         const {bookingList, getBookings, searchResult, searchForBooking} = bookingService();
-        const {genreList} = genreService();
+        const {genreList, getGenres} = genreService();
 
         getBookings();
         getGenres();
@@ -124,11 +124,6 @@ export default {
             searchInput,
             updateBookingList,
             searchResult,
-            //sortRatingLowToHigh,
-            //sortRatingHighToLow,
-            //sortPriceLowToHigh,
-            //sortPriceHighToLow,
-            //sortSelect,
             //sortBookingList,
             priceRangeSlider,
             adjustPriceRange,

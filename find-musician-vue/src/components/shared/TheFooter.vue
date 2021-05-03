@@ -12,10 +12,10 @@
                         <h5>Oppdrag</h5>
                         <ul class="list-unstyled text-small">
                             <li class="mb-1">
-                                <a class="link-secondary text-decoration-none" href="#">Legg ut et oppdrag</a>
+                                <router-link :to="{ name:'AddBookingPage' }" class="link-secondary text-decoration-none">Legg til et oppdrag</router-link>
                             </li>
                             <li class="mb-1">
-                                <a class="link-secondary text-decoration-none" href="#">Alle oppdrag</a>
+                                <router-link :to="{ name:'BookingPage' }" class="link-secondary text-decoration-none">Alle oppdrag</router-link>
                             </li>
                         </ul>
                     </div>
@@ -23,10 +23,10 @@
                         <h5>Artister</h5>
                         <ul class="list-unstyled text-small">
                             <li class="mb-1">
-                                <a class="link-secondary text-decoration-none" href="#">Alle artister</a>
+                                <router-link :to="{ name:'ArtistPage' }" class="link-secondary text-decoration-none">Alle artister</router-link>
                             </li>
                             <li class="mb-1">
-                                <a class="link-secondary text-decoration-none" href="#">Registrer en artist</a>
+                                <router-link :to="{ name:'AddArtistPage' }" class="link-secondary text-decoration-none">Registrer en artist</router-link>
                             </li>
                             <li class="mb-1">
                                 <a class="link-secondary text-decoration-none" href="#">Anmeldelser</a>

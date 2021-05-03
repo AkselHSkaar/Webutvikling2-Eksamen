@@ -44,7 +44,7 @@
                                 <div>
                                     <label>Bilde</label>
                                 </div>
-                                <input class="form-control" type="file">
+                                <input @change="setImage" class="form-control" type="file">
                             </div>
                             <div>
                                 <input @click="updateArtist(artistById.id)" type="button" value="Rediger artist" class="form-control bg-success text-white mt-2">
@@ -80,10 +80,15 @@ export default {
             getArtistById( props.id );
         }
 
-        const updateArtist = () => {
-            getArtistById( props.id );
+        const imageObject = new FormData();
 
-            const editArtist = (element) => {
+        const setImage = ( e ) => {
+            imageObject.append("file", e.target.files[0]);
+            artistById.image = e.target.files[0].name;
+        }
+
+        const updateArtist = () => {
+            const editArtist = (element, image) => {
             const artistToEdit = {
                 id: parseInt( element.id ),
                 name: element.name,
@@ -92,13 +97,15 @@ export default {
                 instrument: element.instrument,
                 biography: element.biography,
                 rating: element.rating,
-                image: element.image
-            }
-                putArtist( artistToEdit );
-                location.reload();
+                image: image
             }
 
-            editArtist(artistById.value);
+            putArtist( artistToEdit, imageObject );
+            location.reload();
+
+            }
+
+            editArtist(artistById.value, artistById.image);
 
         }
 
@@ -111,7 +118,8 @@ export default {
             artistById,
             updateArtist,
             getArtist,
-            deleteFromDb
+            deleteFromDb,
+            setImage
         }
     }
 }

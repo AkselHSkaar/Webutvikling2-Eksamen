@@ -3,7 +3,7 @@
         <div class="card mb-3">
             <div class="row g-0">
                 <div class="col-md-4 col-lg-3">
-                    <img src="" alt="">
+                    <img :src="`https://localhost:5001/images/${image}`" class="card-img-top" alt="...">
                 </div>
                 <div class="col-md-8 col-lg-9">
                     <div class="card-body">
@@ -15,7 +15,7 @@
                             Les mer
                         </button>
                     </div>
-                </div>
+                </div> 
                 <div class="collapse row col-12 p-3" :id="`collapse${id}`">
                     <div class="col-12 col-lg-6">
                         <p class="fs-5 fw-bold">Beskrivelse</p>
@@ -47,7 +47,8 @@ export default {
         price: Number,
         customerName: String,
         customerEmail: String,
-        customerPhone: String
+        customerPhone: String,
+        image: String
     }
 }
 </script>

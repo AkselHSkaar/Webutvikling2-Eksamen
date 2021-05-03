@@ -53,6 +53,7 @@
                         :customerName="booking.customerName"
                         :customerEmail="booking.customerEmail"
                         :customerPhone="booking.customerPhone"
+                        :image="booking.image"
                     ></booking-item>
                 </div>
             </div>

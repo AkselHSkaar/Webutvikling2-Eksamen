@@ -6,8 +6,11 @@
             <artist-modal></artist-modal>
         </div>
         <div class="container pb-5">
-            <h2 class="pb-4">Siste anmeldelser av artister</h2>
-            <review-list></review-list>
+            <div class="mb-5">
+                <h2 class="pb-4">Siste anmeldelser av artister</h2>
+                <review-list></review-list>
+            </div>
+            
             <h2 class="pb-2">Anmeld en artist</h2>
             <review-create></review-create>
         </div>

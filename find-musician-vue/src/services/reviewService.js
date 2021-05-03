@@ -20,7 +20,7 @@ export default function reviewService() {
     }
 
     const createNewReview = ( postReview ) => {
-        axios.post("https://localhost:5001/review/", postReview)
+        return axios.post("https://localhost:5001/review/", postReview)
             .then( response => {
                 review.reviewList.push( response.data );
             } )

@@ -20,7 +20,7 @@ export default function artistService() {
     }
 
     const getArtistByName = ( name ) => {
-        return axios(`https://localhost:5001/artist/getArtistByName/${name}`)
+        return axios(`https://localhost:5001/artist/getbyname/${name}`)
             .then( response => {
                 artists.artistByName = response.data;
             } );
@@ -65,6 +65,11 @@ export default function artistService() {
             })
     }
 
+    const putArtistRating = ( artistToEdit ) => {
+        axios.put("https://localhost:5001/artist/", artistToEdit)
+            
+    }
+
 
     const deleteArtist = ( id ) => {
         axios.delete(`https://localhost:5001/artist/${id}`)
@@ -78,6 +83,7 @@ export default function artistService() {
         searchForArtist,
         createNewArtist,
         putArtist,
+        putArtistRating,
         deleteArtist
     }
 }

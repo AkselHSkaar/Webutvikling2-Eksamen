@@ -28,9 +28,6 @@
                             <li class="mb-1">
                                 <router-link :to="{ name:'AddArtistPage' }" class="link-secondary text-decoration-none">Registrer en artist</router-link>
                             </li>
-                            <li class="mb-1">
-                                <a class="link-secondary text-decoration-none" href="#">Anmeldelser</a>
-                            </li>
                         </ul>
                     </div>
                 </div>

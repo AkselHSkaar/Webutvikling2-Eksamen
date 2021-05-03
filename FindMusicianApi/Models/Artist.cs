@@ -19,6 +19,8 @@ namespace FindMusicianApi.Models {
 
         public double Rating { get; set; }
 
+        public int NumberOfRatings { get; set; }
+
         public string Image { get; set; }
 
     }

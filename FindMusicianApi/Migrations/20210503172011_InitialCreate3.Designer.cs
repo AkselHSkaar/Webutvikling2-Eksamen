@@ -2,14 +2,16 @@
 using FindMusicianApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FindMusicianApi.Migrations
 {
     [DbContext(typeof(FindMusicianContext))]
-    partial class FindMusicianContextModelSnapshot : ModelSnapshot
+    [Migration("20210503172011_InitialCreate3")]
+    partial class InitialCreate3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -22,6 +22,16 @@
                 <label for="customRange1" class="form-label">Maks timepris: {{priceRangeSlider}}kr</label>
                 <input v-model="priceRangeSlider" @change="updateArtistList()" type="range" class="form-range" id="customRange1" min="1" max="1000">
             </div>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <div v-for="( genre, i ) in defaultGenreList" :key="i">
+                        <div v-if="checkIfGenreExists(genre.name)" class="form-check form-check-inline">
+                            <input @change="filterGenreList(genre.name)" class="form-check-input" type="checkbox" :id="`${genre.name}-checkbox`" :value="genre.id">
+                            <label class="form-check-label" :for="`${genre.name}-checkbox`">{{genre.name}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div>
             <div v-if="searchInput != ''" class="row g-4">
@@ -58,6 +68,7 @@
 <script>
 import ArtistItem from './ArtistItem'
 import artistService from '../../services/artistService'
+import genreService from '../../services/genreService'
 import { ref } from 'vue'
 
 export default {
@@ -65,9 +76,13 @@ export default {
     components: {ArtistItem},
     setup() {
         const { artistList, getArtists, searchResult, searchForArtist} = artistService();
+        const {genreList, getGenres} = genreService();
         let defaultArtistList = ref([]);
+        let defaultGenreList = ref([]);
+        const checkedGenres = ref([]);
 
         getArtists().then(() => defaultArtistList.value = artistList.value);
+        getGenres().then(() => defaultGenreList.value = genreList.value);
 
         const searchInput = ref("");
         const sortSelect = ref("0"); 
@@ -93,6 +108,16 @@ export default {
             searchResult.value.sort((a, b) => (a.price < b.price) ? 1 : -1);
         }
 
+        const checkIfGenreExists = (nameOfGenre) => {
+            let genreExists = false;
+            artistList.value.forEach(artist => {
+                if (artist.genre == nameOfGenre) {
+                    genreExists = true;
+                }
+            });
+            return genreExists;
+        }
+
         const sortArtistList = () => {
             if (sortSelect.value != "") {
                 if (sortSelect.value == "1") {
@@ -112,15 +137,34 @@ export default {
             defaultArtistList.value = defaultArtistList.value.filter(artist => artist.price <= parseInt(priceRangeSlider.value));
         }
 
+        const filterGenres = () => {
+            if (checkedGenres.value.length != 0) {
+                searchResult.value = searchResult.value.filter(artist => checkedGenres.value.includes(artist.genre));
+                defaultArtistList.value = defaultArtistList.value.filter(artist => checkedGenres.value.includes(artist.genre));
+            }
+        }
+
+        const filterGenreList = (genre) => {
+            if (checkedGenres.value.find(element => element == genre)) {
+                checkedGenres.value.splice(checkedGenres.value.indexOf(genre), 1);
+                updateArtistList();
+            } else {
+                checkedGenres.value.push(genre);
+                updateArtistList();
+            }
+        }
+
         const updateArtistList = () =>{ 
             defaultArtistList.value = artistList.value;
             if (searchInput.value != '') {
                 searchForArtist( searchInput.value )
                     .then(() => sortArtistList())
-                    .then(() => adjustPriceRange());
+                    .then(() => adjustPriceRange())
+                    .then(() => filterGenres());
             } else {
                 sortArtistList();
                 adjustPriceRange();
+                filterGenres();
             }
         } 
 
@@ -137,7 +181,11 @@ export default {
             sortSelect,
             sortArtistList,
             priceRangeSlider,
-            adjustPriceRange
+            adjustPriceRange,
+            genreList,
+            defaultGenreList,
+            checkIfGenreExists,
+            filterGenreList
         }
     },
     

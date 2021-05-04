@@ -22,6 +22,28 @@ namespace FindMusicianApi.Controllers{
             return newsletterList;
         }
 
+        [HttpPost]
+        public async Task<Newsletter> Post(Newsletter newNewsletter){
+            _context.Newsletter.Add(newNewsletter);
+            await _context.SaveChangesAsync();
+            return newNewsletter;
+        }
+
+        [HttpPut]
+        public async Task<Newsletter> Put(Newsletter newsletter){
+            _context.Update( newsletter );
+            await _context.SaveChangesAsync();
+            return newsletter;
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<Newsletter> Delete(int id){
+            Newsletter newsletterToDelete = await _context.Newsletter.FirstOrDefaultAsync(newsletter => newsletter.Id == id);
+            _context.Remove(newsletterToDelete);
+            await _context.SaveChangesAsync();
+            return newsletterToDelete;
+        }
+
     }
     
 }

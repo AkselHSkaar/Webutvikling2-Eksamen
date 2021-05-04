@@ -12,7 +12,7 @@ export default function newsletterService() {
             } )
     }
 
-    const createNew = () => {
+    const createNew = ( postEmail ) => {
         axios.post("https://localhost:5001/newsletter", postEmail)
             .then( response => {
                 newsletter.newsletterList.push(response.data);

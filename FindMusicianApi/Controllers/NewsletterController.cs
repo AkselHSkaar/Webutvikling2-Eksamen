@@ -22,6 +22,12 @@ namespace FindMusicianApi.Controllers{
             return newsletterList;
         }
 
+        [HttpGet("{id}")]
+        public async Task<Newsletter> Get(int id){
+            Newsletter newsletter = await _context.Newsletter.FirstAsync( _newsletter => _newsletter.Id == id );
+            return newsletter;
+        }
+
         [HttpPost]
         public async Task<Newsletter> Post(Newsletter newNewsletter){
             _context.Newsletter.Add(newNewsletter);

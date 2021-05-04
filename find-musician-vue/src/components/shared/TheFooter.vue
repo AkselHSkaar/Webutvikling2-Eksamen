@@ -35,14 +35,12 @@
                     <h5>Nyhetsbrev</h5>
                     <ul class="list-unstyled text-small">
                         <p>Meld deg på nyhetsbrevet og motta varsler om nye oppdrag og artister på mail!</p>
-                        <form>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">E-post</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                <input v-model="email" type="email" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp">
                             </div>
-                            <button type="submit" class="btn btn-primary">Meld meg på!</button>
-                        </form>
+                            <button @click="addEmailToNewsletter" type="button" class="btn btn-primary">Meld meg på!</button>
                     </ul>
                 </div>
             </div>
@@ -57,7 +55,25 @@
 </template>
 
 <script>
+import newsletterService from '../../services/newsletterService'
+import { reactive, toRefs } from 'vue'
+
 export default {
-    name: 'TheFooter'
+    name: 'TheFooter',
+    setup(){
+
+        const { createNew } = newsletterService();
+        const newEmail = reactive({ email: "" });
+
+        const addEmailToNewsletter = () => {
+            createNew(newEmail);
+        }
+
+        return {
+            ...toRefs(newEmail),
+            addEmailToNewsletter
+        }
+
+    }
 }
 </script>

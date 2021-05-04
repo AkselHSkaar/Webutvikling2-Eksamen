@@ -10,6 +10,7 @@ import AdminPage from '../views/AdminPage'
 import AdminArtistPage from '../views/AdminArtistPage'
 import AdminBookingPage from '../views/AdminBookingPage'
 import AdminReviewsPage from '../views/AdminReviewsPage'
+import AdminNewsletterPage from '../views/AdminNewsletterPage'
 
 const routes = [
     {
@@ -64,6 +65,12 @@ const routes = [
         path: '/adminomtaler',
         alias: ['/administrator-omtaler', '/admin-reviews'],
         component: AdminReviewsPage
+    },
+    {
+        name: 'AdminNewsletterPage',
+        path: '/admin-lewsletter',
+        alias: ['/adminnewsletter', '/administrator-newsletter', '/administrator-nyhetsbrev'],
+        component: AdminNewsletterPage
     },
     {
         name: "PageNotFound",

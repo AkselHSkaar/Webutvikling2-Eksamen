@@ -36,6 +36,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Administrer nyhetsbrev</h5>
+                            <p class="card-text">På denne siden vil du ha mulighet til å endre eller slette email adresser som står på nyhetsbrev-listen.</p>
+                                <router-link :to="{ name:'AdminNewsletterPage' }">
+                                    <div class="btn btn-primary">Nyhetsbrev</div>
+                                </router-link>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

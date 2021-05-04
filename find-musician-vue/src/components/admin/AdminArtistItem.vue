@@ -34,7 +34,7 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <input v-model="artistById.instrument" type="text" id="instrument-input" class="form-control" placeholder="Instrument">
-                                <label for="instrument-input">Instrument: (Fullt band, Sang, Gitar..)</label>
+                                <label for="instrument-input">Instrument: (Sang, Gitar..)</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input v-model="artistById.biography" type="text" id="biography-input" class="form-control" placeholder="Biografi">

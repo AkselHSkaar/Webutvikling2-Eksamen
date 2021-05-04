@@ -1,7 +1,7 @@
 <template>
     <section>
         <div>
-            <h3>Legg til et nytt oppdrag</h3>
+            <h2 class="mb-5">Legg til et nytt oppdrag</h2>
         </div>
         <div class="form-floating mb-3">
             <input v-model="title" type="text" id="title-input" class="form-control" placeholder="Navn">
@@ -32,7 +32,7 @@
             <label for="price-input">Totalpris for oppdrag</label>
         </div>
         <div>
-            <h3>Kontaktinfo:</h3>
+            <h3 class="py-3">Kontaktinformasjon</h3>
         </div>
         <div class="form-floating mb-3">
             <input v-model="customerName" type="text" id="name-input" class="form-control" placeholder="Instrument">

@@ -1,8 +1,8 @@
 <template>
     <div>
-        <page-hero title="Registrer deg som artist" description="Lorem ipsum dolor sitt amet." image="artist-hero-bg.jpg"></page-hero>
+        <page-hero title="Registrer en artist" description="Fyll inn skjemaet under for å legge til en ny artist i databasen." image="artist-hero-bg.jpg"></page-hero>
 
-        <div>
+        <div class="container py-5">
             <artist-create></artist-create>
         </div>
     </div>

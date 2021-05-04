@@ -1,7 +1,7 @@
 <template>
     <div>
         <section>
-            <h1>Alle artister:</h1>
+            <h2 class="mb-5">Alle artister:</h2>
             <div class="row g-4">
                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3" v-for="( artist, i ) in artistList" :key="i">
                     <admin-artist-item

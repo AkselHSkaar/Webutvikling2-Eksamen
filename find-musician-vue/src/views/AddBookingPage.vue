@@ -1,9 +1,11 @@
 <template>
     <section>
 
-        <page-hero title="Legg til ett oppdrag" description="Lorem ipsum dolor sitt amet." image="artist-hero-bg.jpg"></page-hero>
+        <page-hero title="Publiser et oppdrag" description="Fyll ut skjemaet under for å publisere et oppdrag på siden." image="artist-hero-bg.jpg"></page-hero>
 
-        <booking-create></booking-create>
+        <div class="container py-5">
+            <booking-create></booking-create>
+        </div>
 
     </section>
 </template>

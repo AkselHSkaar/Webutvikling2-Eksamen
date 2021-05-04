@@ -1,7 +1,7 @@
 <template>
     <section>
         <div>
-            <h3>Legg til en ny artist</h3>
+            <h2 class="mb-5">Legg til en ny artist</h2>
         </div>
         <div class="form-floating mb-3">
             <input v-model="name" type="text" id="name-input" class="form-control" placeholder="Navn">

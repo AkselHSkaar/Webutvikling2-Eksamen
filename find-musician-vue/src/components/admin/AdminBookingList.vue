@@ -1,6 +1,6 @@
 <template>
     <section>
-        <h1>Alle oppdrag:</h1>
+        <h2 class="mb-5">Alle oppdrag:</h2>
         <div class="row g-4">
             <div class="col-12 col-sm-6 col-lg-4 col-xl-3" v-for="( booking, i ) in bookingList" :key="i">
                 <admin-booking-item

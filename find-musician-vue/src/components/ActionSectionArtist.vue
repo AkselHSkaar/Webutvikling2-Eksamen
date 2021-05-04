@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="col-12 col-lg-6 col-xxl-6">
-          <img src="images/andrew-petrischev-qTKt5aeMFBQ-unsplash.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+          <img :src="require('@/assets/artist-front-page-2.jpg')" class="section-image d-block mx-lg-auto img-fluid rounded-3 shadow-lg" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
         </div>
       </div>
     </div>
@@ -21,3 +21,12 @@ export default {
   name: 'ActionSectionArtist'
 }
 </script>
+
+<style scoped>
+  .section-image {
+    height: 100%;
+    max-height: 450px;
+    background-position: center;
+    object-fit: cover;
+  }
+</style>

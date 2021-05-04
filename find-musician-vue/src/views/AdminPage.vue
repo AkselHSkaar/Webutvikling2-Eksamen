@@ -1,23 +1,42 @@
 <template>
     <div>
         <page-hero title="Administrator" description="Lorem ipsum dolor sitt amet." image="artist-hero-bg.jpg"></page-hero>
-        <div>
-            <h1>Administrer artister</h1>
-            <router-link :to="{ name:'AdminArtistPage' }">
-                Artister
-            </router-link>
-        </div>
-        <div>
-            <h1>Administrer oppdrag</h1>
-            <router-link :to="{ name:'AdminBookingPage' }">
-                Oppdrag
-            </router-link>
-        </div>
-        <div>
-            <h1>Administrer omtaler</h1>
-            <router-link :to="{ name:'AdminReviewsPage' }">
-                Omtaler
-            </router-link>
+        <div class="container py-5">
+            <div class="row g-4">
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Administrer artister</h5>
+                            <p class="card-text">På denne siden vil du ha mulighet til å oppdatere informasjon om artister eller slette dem fra databasen.</p>
+                                <router-link :to="{ name:'AdminArtistPage' }">
+                                    <div class="btn btn-primary">Artister</div>
+                                </router-link>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Administrer oppdrag</h5>
+                            <p class="card-text">På denne siden vil du ha mulighet til å redigere oppdrag eller slette dem fra databasen.</p>
+                                <router-link :to="{ name:'AdminBookingPage' }">
+                                    <div class="btn btn-primary">Oppdrag</div>
+                                </router-link>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Administrer omtaler</h5>
+                            <p class="card-text">På denne siden vil du ha mulighet til å slette omtaler av artister som ikke er i tråd med rettningslinjene.</p>
+                                <router-link :to="{ name:'AdminReviewsPage' }">
+                                    <div class="btn btn-primary">Omtaler</div>
+                                </router-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>

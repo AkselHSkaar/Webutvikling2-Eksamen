@@ -13,6 +13,8 @@ namespace FindMusicianApi.Models {
         public DbSet<Review> Review { get; set; }
 
         public DbSet<Genre> Genre { get; set; }
+
+        public DbSet<Newsletter> Newsletter { get; set; }
         
     }
 

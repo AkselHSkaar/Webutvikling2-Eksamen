@@ -1,6 +1,5 @@
 <template>
-    <article>
-
+    <article :class="artistGenre">
         <div class="card">
             <img :src="`https://localhost:5001/images/${image}`" class="card-img-top" alt="...">
             <div class="card-body">
@@ -22,7 +21,7 @@
 </template>
 
 <script>
-//import { ref } from 'vue'
+import { ref } from 'vue'
 
 export default {
     name: 'ArtistItem',
@@ -34,6 +33,25 @@ export default {
         biography: String,
         rating: Number,
         image: String
+    },
+    setup(props){
+
+    const artistGenre = ref(props.genre.toLowerCase());
+
+    const changeGenreName = () => {
+        if ( artistGenre.value === "edm / dj" ){
+            artistGenre.value = "edm";
+
+        }else if ( artistGenre.value === "hip hop" ) {
+            artistGenre.value = "hiphop"
+        }
+    }
+
+    changeGenreName();
+
+    return {
+        artistGenre
+    }
     }
 }
 </script>
@@ -49,6 +67,38 @@ img {
 .star{
         height: 25px;
         width: 25px;
+}
+
+.rock {
+    border: 2px solid #ff0000;
+}
+
+.country {
+    border: 2px solid #800000;
+}
+
+.pop {
+    border: 2px solid #800080;
+}
+
+.hiphop {
+    border: 2px solid #ffd700;
+}
+
+.jazz {
+    border: 2px solid #bada55;
+}
+
+.blues {
+    border: 2px solid #003366;
+}
+
+.folk {
+    border: 2px solid #7fe5f0;
+}
+
+.edm {
+    border: 2px solid #ff80ed;
 }
 
 </style>

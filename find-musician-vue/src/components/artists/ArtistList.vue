@@ -64,7 +64,6 @@
         </div>
     </section>
 </template>
-
 <script>
 import ArtistItem from './ArtistItem'
 import artistService from '../../services/artistService'
@@ -76,7 +75,7 @@ export default {
     components: {ArtistItem},
     setup() {
         const { artistList, getArtists, searchResult, searchForArtist} = artistService();
-        const {genreList, getGenres} = genreService();
+        const { genreList, getGenres } = genreService();
         let defaultArtistList = ref([]);
         let defaultGenreList = ref([]);
         const checkedGenres = ref([]);

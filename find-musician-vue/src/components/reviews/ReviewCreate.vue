@@ -84,7 +84,7 @@ export default {
                 .then(() => {
                     getArtistByName(postReview.artist)
                         .then(() => {
-                            const numberOfRatings = artistByName.value.numberOfRatings + 1;
+                            const addNumberOfRatings = artistByName.value.numberOfRatings + 1;
                             const artistToEdit = {
                                 id: parseInt(artistByName.value.id),
                                 name: artistByName.value.name,
@@ -92,8 +92,8 @@ export default {
                                 price: parseInt(artistByName.value.price),
                                 instrument: artistByName.value.instrument,
                                 biography: artistByName.value.biography,
-                                numberOfRatings: artistByName.value.numberOfRatings + 1,
-                                rating: (artistByName.value.rating + parseInt(newReview.stars)) / numberOfRatings,
+                                numberOfRatings: addNumberOfRatings,
+                                rating: (artistByName.value.rating + parseFloat(newReview.stars)) / addNumberOfRatings,
                                 image: artistByName.value.image
                             }
                             putArtistRating(artistToEdit).then( () => {

@@ -22,6 +22,13 @@ namespace FindMusicianApi.Controllers{
             return genreList;
         }
 
+        [HttpGet]
+        [Route("[action]/{name}")]
+        public async Task<Genre> GetByName(string Name){
+            Genre genre = await _context.Genre.FirstAsync( _genre => _genre.Name.ToLower() == Name.ToLower() );
+            return genre;
+        }
+
     }
     
 }

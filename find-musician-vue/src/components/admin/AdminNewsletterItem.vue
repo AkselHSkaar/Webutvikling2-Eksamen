@@ -1,5 +1,5 @@
 <template>
-    <article>
+    <article class="m-3">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-text">{{ email }}</h5>

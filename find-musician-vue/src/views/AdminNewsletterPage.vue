@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h1>Administrer nyhetsbrev</h1>
+    <div class="container pt-3">
+        <h3>Alle registrerte email adresser:</h3>
         <admin-newsletter-list></admin-newsletter-list>
     </div>
 </template>

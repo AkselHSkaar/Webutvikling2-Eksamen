@@ -9,14 +9,16 @@ WebAPi:
 ### todoo's ###
 - Legge til ny tabell og oppsett for nyhetsbrev [x]
 - Lage farger på artister ut i fra sjanger (hex i tabell) [x]
+- rating systemet [x]
 
-- prøve meg frem på rating systemet [ ]
+- Max value i artist pris input (for at slider skal funke) [ ]
+- location.reload etter addArtistPage [ ]
 
 
 - gjøre ferdig content [ ]
-- debug []
-: Fikse location.reload på alle knapper [ ]
+### debug ###
+-  Fikse location.reload på alle knapper [ ]
 
+### ekstra ###
 - Gjøre koden finere [ ]
-
 - Fikse css for index.html i wwwroot [ ]

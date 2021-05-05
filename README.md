@@ -13,9 +13,10 @@ WebAPi:
 
 - Max value i artist pris input (for at slider skal funke) [ ]
 - location.reload etter addArtistPage [ ]
-
-
+- endre kommentarer til engselsk [ ]
 - gjøre ferdig content [ ]
+
+
 ### debug ###
 -  Fikse location.reload på alle knapper [ ]
 

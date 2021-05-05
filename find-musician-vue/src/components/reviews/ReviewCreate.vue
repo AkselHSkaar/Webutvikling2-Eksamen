@@ -66,7 +66,7 @@ export default {
     name: 'ReviewCreate',
     setup() {
         
-        const { artistList, getArtists, getArtistByName, artistByName } = artistService();
+        const { artistList, getArtists, getArtistByName, artistByName, putArtistRating } = artistService();
         const { createNewReview } = reviewService();
         const newReview = reactive({ stars: 3, title: "", text: "", artist: "" });
 
@@ -87,10 +87,18 @@ export default {
                             const numberOfRatings = artistByName.value.numberOfRatings + 1;
                             const artistToEdit = {
                                 id: parseInt(artistByName.value.id),
+                                name: artistByName.value.name,
+                                genre: artistByName.value.genre,
+                                price: parseInt(artistByName.value.price),
+                                instrument: artistByName.value.instrument,
+                                biography: artistByName.value.biography,
                                 numberOfRatings: artistByName.value.numberOfRatings + 1,
-                                rating: (artistByName.value.rating + parseInt(newReview.stars)) / numberOfRatings
+                                rating: (artistByName.value.rating + parseInt(newReview.stars)) / numberOfRatings,
+                                image: artistByName.value.image
                             }
                             console.log(artistToEdit);
+
+                            putArtistRating(artistToEdit);
                         });
                 });
         }

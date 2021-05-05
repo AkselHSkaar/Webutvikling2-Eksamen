@@ -1,6 +1,6 @@
 <template>
     <article>
-        <div class="card mb-3" :class="bookingGenre">
+        <div class="card mb-3" :style="styleObject">
             <div class="row g-0">
                 <div class="col-md-4 col-lg-3">
                     <img :src="`https://localhost:5001/images/${image}`" class="card-img-top" alt="...">
@@ -34,7 +34,8 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
+import genreService from '../../services/genreService'
 
 export default {
     name: 'BookingItem',
@@ -54,6 +55,18 @@ export default {
     },
     setup(props){
 
+        const { getGenreByName, genreByName } = genreService();
+
+        const styleObject = reactive({
+            border: '2px solid gray'
+        });
+
+        getGenreByName(props.genre)
+            .then(() => {
+                styleObject.border = `5px solid ${genreByName.value.color}`;
+                console.log(styleObject.border);
+            });
+
         const bookingGenre = ref(props.genre.toLowerCase());
 
         const changeGenreName = () => {
@@ -66,7 +79,7 @@ export default {
 
         changeGenreName();
 
-        return{ bookingGenre }
+        return{ bookingGenre, styleObject }
 
     }
 }

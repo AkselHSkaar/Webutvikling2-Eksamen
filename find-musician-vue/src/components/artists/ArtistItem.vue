@@ -1,6 +1,6 @@
 <template>
-    <article :class="artistGenre">
-        <div class="card">
+    <article>
+        <div class="card" :style="styleObject">
             <img :src="`https://localhost:5001/images/${image}`" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{ name }}</h5>
@@ -22,7 +22,8 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
+import genreService from '../../services/genreService'
 
 export default {
     name: 'ArtistItem',
@@ -37,22 +38,35 @@ export default {
     },
     setup(props){
 
-    const artistGenre = ref(props.genre.toLowerCase());
+        const { getGenreByName, genreByName } = genreService();
 
-    const changeGenreName = () => {
-        if ( artistGenre.value === "edm / dj" ){
-            artistGenre.value = "edm";
+        const styleObject = reactive({
+            border: '2px solid gray'
+        });
 
-        }else if ( artistGenre.value === "hip hop" ) {
-            artistGenre.value = "hiphop"
+        getGenreByName(props.genre)
+            .then(() => {
+                styleObject.border = `5px solid ${genreByName.value.color}`;
+                console.log(styleObject.border);
+            });
+
+        const artistGenre = ref(props.genre.toLowerCase());
+
+        const changeGenreName = () => {
+            if ( artistGenre.value === "edm / dj" ){
+                artistGenre.value = "edm";
+
+            }else if ( artistGenre.value === "hip hop" ) {
+                artistGenre.value = "hiphop"
+            }
         }
-    }
 
-    changeGenreName();
+        changeGenreName();
 
-    return {
-        artistGenre
-    }
+        return {
+            artistGenre,
+            styleObject
+        }
     }
 }
 </script>
@@ -68,38 +82,6 @@ img {
 .star{
         height: 25px;
         width: 25px;
-}
-
-.rock {
-    border: 2px solid #ff0000;
-}
-
-.country {
-    border: 2px solid #800000;
-}
-
-.pop {
-    border: 2px solid #800080;
-}
-
-.hiphop {
-    border: 2px solid #ffd700;
-}
-
-.jazz {
-    border: 2px solid #bada55;
-}
-
-.blues {
-    border: 2px solid #003366;
-}
-
-.folk {
-    border: 2px solid #7fe5f0;
-}
-
-.edm {
-    border: 2px solid #ff80ed;
 }
 
 </style>

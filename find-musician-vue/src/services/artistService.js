@@ -66,8 +66,7 @@ export default function artistService() {
     }
 
     const putArtistRating = ( artistToEdit ) => {
-        axios.put("https://localhost:5001/artist/", artistToEdit)
-            
+        return axios.put("https://localhost:5001/artist/", artistToEdit)
     }
 
 

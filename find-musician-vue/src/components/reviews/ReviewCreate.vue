@@ -96,9 +96,9 @@ export default {
                                 rating: (artistByName.value.rating + parseInt(newReview.stars)) / numberOfRatings,
                                 image: artistByName.value.image
                             }
-                            console.log(artistToEdit);
-
-                            putArtistRating(artistToEdit);
+                            putArtistRating(artistToEdit).then( () => {
+                                location.reload();
+                            });
                         });
                 });
         }

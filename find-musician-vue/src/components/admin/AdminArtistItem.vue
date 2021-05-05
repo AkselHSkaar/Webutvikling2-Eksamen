@@ -72,7 +72,7 @@ export default {
         rating: Number,
         image: String
     },
-    setup(props){
+    setup( props ){
 
         const {artistById, getArtistById, putArtist, deleteArtist} = artistService();
 

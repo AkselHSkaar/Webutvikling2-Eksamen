@@ -1,9 +1,9 @@
 <template>
     <section>
-        <div v-for="( newsletter, i ) in newsletterList" :key="i">
+        <div v-for="( email, i ) in emailList" :key="i">
             <admin-newsletter-item
-            :id="newsletter.id"
-            :email="newsletter.email"
+            :id="email.id"
+            :email="email.email"
             ></admin-newsletter-item>
         </div>
     </section>
@@ -20,13 +20,11 @@ export default {
     },
     setup() {
         
-        const { getNewsletter, newsletterList } = newsletterService();
+        const { getEmail, emailList } = newsletterService();
 
-        getNewsletter();
+        getEmail();
 
-        console.log(newsletterList)
-
-        return { newsletterList }
+        return { emailList }
 
     }
 }

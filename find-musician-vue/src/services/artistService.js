@@ -3,7 +3,7 @@ import { reactive, toRefs } from 'vue'
 
 export default function artistService() {
 
-    const artists = reactive({ artistList: [], artistById: {}, artistByName: "", searchResult: [] });
+    const artists = reactive({ artistList: [], artistById: {}, artistByName: {}, searchResult: [] });
 
     const getArtists = () =>{
         return axios("https://localhost:5001/artist")

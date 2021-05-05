@@ -66,11 +66,9 @@ export default {
     name: 'ReviewCreate',
     setup() {
         
-        const { artistList, getArtists/*, getArtistByName, putArtistRating*/ } = artistService();
+        const { artistList, getArtists, getArtistByName, artistByName } = artistService();
         const { createNewReview } = reviewService();
         const newReview = reactive({ stars: "3", title: "", text: "", artist: "" });
-
-        //const consoleLog = () => { console.log(newReview.stars) };
 
         getArtists();
 
@@ -83,15 +81,19 @@ export default {
             }
     
             createNewReview( postReview )
-            /*.then(() => {
-                const artistToRate = getArtistByName(newReview.artist);
-                artistToRate.numberOfRatings = parseInt(artistToRate.numberOfRatings) + 1;
-                artistToRate.rating = (parseInt(artistToRate.rating) + parseInt(newReview.stars)) / artistToRate.numberOfRatings;
-                putArtistRating(artistToRate);
-                console.log(artistToRate);
+                .then(() => {
+                    getArtistByName(postReview.artist);
+                    console.log(artistByName);
+                    //Får ut hele artisten man har reviewet til "artistByName"
+                    
+                    const artistToEdit = {
+                        id: parseInt(artistByName.id),
+                        rating: parseInt(artistByName.rating)
+                    }
+                    console.log(artistToEdit);
+                    
 
-            })*/
-            .then(() => location.reload());
+                });
         }
 
         return {

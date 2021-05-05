@@ -85,6 +85,19 @@ export default {
                     getArtistByName(postReview.artist)
                         .then(() => {
                             const addNumberOfRatings = artistByName.value.numberOfRatings + 1;
+                            const currentRating = artistByName.value.rating;
+                            const newRating = postReview.stars;
+
+                            const calculateRating = () => {
+                                if (addNumberOfRatings >= 2) {
+                                    return addNumberOfRatings -1;
+                                } else {
+                                    return 1;
+                                }
+                            }
+                            
+                            const totalRating = (((currentRating * calculateRating()) + newRating) / addNumberOfRatings);
+
                             const artistToEdit = {
                                 id: parseInt(artistByName.value.id),
                                 name: artistByName.value.name,
@@ -93,7 +106,7 @@ export default {
                                 instrument: artistByName.value.instrument,
                                 biography: artistByName.value.biography,
                                 numberOfRatings: addNumberOfRatings,
-                                rating: (artistByName.value.rating + parseFloat(newReview.stars)) / addNumberOfRatings,
+                                rating: totalRating,
                                 image: artistByName.value.image
                             }
                             putArtistRating(artistToEdit).then( () => {

@@ -1,7 +1,8 @@
 <template>
     <article>
         <div class="card">
-            <img :src="`https://localhost:5001/images/${image}`" class="card-img-top" alt="...">
+            <img v-if="fromAssets == true" :src="require('@/assets/artist-placeholder.jpg')" class="card-img-top" alt="...">
+            <img v-else :src="`https://localhost:5001/images/${image}`" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title text-capitalize">{{ name }}</h5>
                 <div class="d-flex align-items-start pb-3">
@@ -23,6 +24,7 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 
 export default {
     name: 'ArtistItem',
@@ -34,6 +36,18 @@ export default {
         biography: String,
         rating: Number,
         image: String
+    },
+    setup( props ) {
+
+        const fromAssets = ref(false);
+
+        if ( props.image == "" ){
+            fromAssets.value = true;
+        }
+
+        return {
+            fromAssets
+        }
     }
 }
 </script>

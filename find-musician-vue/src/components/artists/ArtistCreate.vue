@@ -73,10 +73,18 @@ export default {
                 image: newArtist.image
             }
 
-            createNewArtist( postArtist, imageObject )
-                .then(() => {
-                    location.reload();
-                });
+            if (newArtist.image != null){
+                createNewArtist( postArtist, imageObject )
+                    .then(() => {
+                        location.reload();
+                    });
+            } else {
+                createNewArtist( postArtist, false )
+                    .then(() => {
+                        location.reload();
+                    });
+            }
+            
         }
 
         const missingFields = ref(true);

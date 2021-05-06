@@ -52,16 +52,7 @@ export default {
 
         const artistGenre = ref(props.genre.toLowerCase());
 
-        const changeGenreName = () => {
-            if ( artistGenre.value === "edm / dj" ){
-                artistGenre.value = "edm";
-
-            }else if ( artistGenre.value === "hip hop" ) {
-                artistGenre.value = "hiphop"
-            }
-        }
-
-        changeGenreName();
+        
 
         return {
             artistGenre,

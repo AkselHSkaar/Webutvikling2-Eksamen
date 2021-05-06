@@ -1,9 +1,8 @@
 <template>
     <div>
-        <page-hero title="Artister" description="Lorem ipsum dolor sitt amet." image="artist-hero-bg.jpg"></page-hero>
+        <page-hero title="Artister" description="Her finner du en oversikt over artistene i vår database." image="artist-hero-bg.jpg"></page-hero>
         <div class="container py-5">
             <artist-list></artist-list>
-            <artist-modal></artist-modal>
         </div>
         <div class="container pb-5">
             <div class="mb-5">

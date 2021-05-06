@@ -1,23 +1,23 @@
 <template>
-    <article class="m-3">
+    <article>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-text">{{ email }}</h5>
-            </div>
-            <div class="flex">
-                <button @click="getEmail" class="btn btn-primary" type="button" data-bs-toggle="collapse" :data-bs-target="`#collapse${id}`" aria-expanded="false" aria-controls="collapse">
-                    Rediger
-                </button>
-                <button @click="deleteFromDb" class="btn btn-danger">
-                    Slett
-                </button>
-                <div class="collapse" :id="`collapse${id}`">
-                    <div class="form-floating mb-3">
-                        <input v-model="emailById.email" type="text" id="name-input" class="form-control" placeholder="Navn">
-                        <label for="name-input">Ny email</label>
-                    </div>
-                    <div>
-                        <input @click="updateEmail(emailById.id)" type="button" value="Rediger email" class="form-control bg-success text-white mt-2">
+                <h5 class="card-text mb-3">{{ email }}</h5>
+                <div class="flex">
+                    <button @click="getEmail" class="btn btn-primary me-2" type="button" data-bs-toggle="collapse" :data-bs-target="`#collapse${id}`" aria-expanded="false" aria-controls="collapse">
+                        Rediger
+                    </button>
+                    <button @click="deleteFromDb" class="btn btn-danger">
+                        Slett
+                    </button>
+                    <div class="collapse" :id="`collapse${id}`">
+                        <div class="form-floating my-3">
+                            <input v-model="emailById.email" type="text" id="name-input" class="form-control" placeholder="Navn">
+                            <label for="name-input">Rediger e-post</label>
+                        </div>
+                        <div>
+                            <input @click="updateEmail(emailById.id)" type="button" value="Rediger email" class="btn btn-success">
+                        </div>
                     </div>
                 </div>
             </div>

@@ -4,8 +4,7 @@
             <div class="row gy-2">
                 <div class="row col-12 col-lg-6">
                     <a class="col-12 navbar-brand h1 mb-0" href="#">FindAMusician</a>
-                    <p class="col-12 col-lg-10">Quickly design and customize responsive mobile-first sites with
-                        Bootstrap, the world’s most popular front-end open source toolkit</p>
+                    <p class="col-12 col-lg-10">Find A Musician leverer høykvalitets musikalsk underholdning til ditt arrangement. Ingen oppdrag er for små eller for store!</p>
                 </div>
                 <div class="gy-2 col-12 col-md-6 col-lg-3">
                     <div class="col-12 col-sm-6 col-lg-12">

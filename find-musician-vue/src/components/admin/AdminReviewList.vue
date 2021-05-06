@@ -30,8 +30,6 @@ export default {
 
         getReviews();
 
-        console.log(reviewList)
-
         return {
             reviewList
         }

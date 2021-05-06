@@ -14,7 +14,7 @@
                 <option v-for="( genre, i ) in genreList" :key="i" :value="genre.name">{{genre.name}}</option>
             </select>
             <div class="form-floating mb-3">
-                <input v-model="price" @blur="inputChange" type="text" id="price-input" class="form-control" placeholder="Pris" required>
+                <input v-model="price" @blur="inputChange" type="number" min="1" max="1000" id="price-input" class="form-control" placeholder="Pris" required>
                 <label for="price-input">Pris per time</label>
             </div>
             <div class="form-floating mb-3">
@@ -78,9 +78,8 @@ export default {
         const missingFields = ref(true);
 
         const inputChange = () => {
-            if (newArtist.name != "" && newArtist.genre != "" && newArtist.price != "" && newArtist.instrument != "" && newArtist.biography != "") {
+            if (newArtist.name != "" && newArtist.genre != "" && newArtist.price != "" && newArtist.price >= 1 && newArtist.price <= 1000 && newArtist.instrument != "" && newArtist.biography != "") {
                 missingFields.value = false;
-                console.log(missingFields.value);
             }
         }
 

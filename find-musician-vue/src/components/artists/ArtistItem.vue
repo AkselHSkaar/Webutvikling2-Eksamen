@@ -11,7 +11,7 @@
                     <img v-if="parseInt(rating) > 2" class="star" :src="require('@/assets/star.png')">
                     <img v-if="parseInt(rating) > 3" class="star" :src="require('@/assets/star.png')">
                     <img v-if="parseInt(rating) > 4" class="star" :src="require('@/assets/star.png')">
-                    <p v-show="parseInt(rating) >= 1">{{rating.toFixed(1)}}</p>
+                    <p v-show="parseInt(rating) >= 1" class="rating-number">{{rating.toFixed(1)}}</p>
                 </div>
                 <p>Sjanger: {{ genre }}, pris per time: {{ price }},- NOK</p>
                 <p>Instrument: {{ instrument }}</p>
@@ -47,7 +47,6 @@ export default {
         getGenreByName(props.genre)
             .then(() => {
                 styleObject.border = `5px solid ${genreByName.value.color}`;
-                console.log(styleObject.border);
             });
 
         const artistGenre = ref(props.genre.toLowerCase());
@@ -70,9 +69,14 @@ img {
     object-fit: cover;
 }
 
-.star{
+.star {
         height: 25px;
         width: 25px;
+}
+
+.rating-number {
+    margin-top: 2px;
+    margin-left: 0.5rem;
 }
 
 </style>

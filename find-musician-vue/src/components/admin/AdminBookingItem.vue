@@ -67,7 +67,7 @@
                                 <input @change="setImage" class="form-control" type="file">
                             </div>
                             <div>
-                                <input @click="updateBooking(bookingById.id)" type="button" value="Rediger oppdrag" class="form-control bg-success text-white mt-2">
+                                <input @click="updateBooking(bookingById.id)" type="button" value="Rediger oppdrag" class="btn btn-success mt-4">
                             </div>
                         </form>
                     </div>

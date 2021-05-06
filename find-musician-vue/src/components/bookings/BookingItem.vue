@@ -3,7 +3,8 @@
         <div class="card">
             <div class="row g-0">
                 <div class="col-md-4 col-lg-3">
-                    <img :src="`https://localhost:5001/images/${image}`" class="card-img-top" alt="...">
+                    <img v-if="fromAssets == true" :src="require('@/assets/oppdrag-placeholder.png')" class="card-img-top" alt="...">
+                    <img v-else :src="`https://localhost:5001/images/${image}`" class="card-img-top" alt="...">
                 </div>
                 <div class="col-md-8 col-lg-9">
                     <div class="card-body">
@@ -35,6 +36,7 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 
 export default {
     name: 'BookingItem',
@@ -51,6 +53,17 @@ export default {
         customerEmail: String,
         customerPhone: String,
         image: String
+    },
+    setup( props ){
+
+        const fromAssets = ref(false);
+
+        if ( props.image == "" ){
+            fromAssets.value = true;
+        }
+
+        return { fromAssets }
+        
     }
 }
 </script>

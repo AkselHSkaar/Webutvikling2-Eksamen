@@ -16,6 +16,8 @@ WebAPi:
 - location.reload på alle sider [ ]
 - endre kommentarer til engselsk [ ]
 - gjøre ferdig content [ ]
+- style rating [ ]
+- TOTALPRIS / PRIS PER TIME [ ]
 
 
 - legge til required atributter i forms [ ]

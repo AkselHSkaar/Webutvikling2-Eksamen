@@ -13,7 +13,7 @@
                 <label for="name-input">Beskrivelse</label>
             </div>
             <div class="form-floating mb-3">
-                <input v-model="date" @blur="inputChange" type="text" id="date-input" class="form-control" placeholder="Navn" required>
+                <input v-model="date" type="date" @blur="inputChange" class="form-control" placeholder="Navn" required>
                 <label for="name-input">dato</label>
             </div>
             <div class="form-floating mb-3">
@@ -81,7 +81,7 @@ export default {
             customerEmail: "",
             customerPhone: "",
             image: ""
-            })
+        })
 
         const {genreList, getGenres} = genreService();
         getGenres();
@@ -110,6 +110,8 @@ export default {
                 image: newBooking.image
             }
 
+            console.log(postBooking.date)
+
             createNewBooking( postBooking, imageObject );
         }
 
@@ -118,9 +120,6 @@ export default {
         const inputChange = () => {
             if (newBooking.title != "" && newBooking.description != "" && newBooking.date != "" && newBooking.startTime != "" && newBooking.endTime != "" && newBooking.genre != "" && newBooking.price != "" && newBooking.customerName != "" && newBooking.customerEmail != "" && newBooking.customerPhone != "") {
                 missingFields.value = false;
-                console.log(missingFields.value);
-            } else {
-                console.log(missingFields.value);
             }
         }
 

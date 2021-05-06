@@ -29,7 +29,9 @@ export default {
         artist: String
     },
     setup(props){
+
         const ratingArray = ref([]);
+        
         for (let i = 0; i < props.stars; i++) {
             ratingArray.value.push(i);
         }

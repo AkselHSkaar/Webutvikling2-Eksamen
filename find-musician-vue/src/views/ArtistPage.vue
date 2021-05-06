@@ -1,6 +1,10 @@
 <template>
     <div>
-        <page-hero title="Artister" description="Her finner du en oversikt over artistene i vår database." image="artist-hero-bg.jpg"></page-hero>
+        <page-hero 
+            title="Artister" 
+            description="Her finner du en oversikt over artistene i vår database." 
+            image="artist-hero-bg.jpg">
+        </page-hero>
         <div class="container py-5">
             <artist-list></artist-list>
         </div>

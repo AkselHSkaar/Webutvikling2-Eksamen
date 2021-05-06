@@ -27,20 +27,17 @@ export default function artistService() {
     }
 
     const searchForArtist = ( input ) => {
-        //Return is needed to wait for response before soring artistList
         return axios(`https://localhost:5001/artist/Search/${input}`)
                 .then( response => {
                     artists.searchResult = response.data;
                 } );
     }
 
-    //Post metode for å legge til ny artist med bilde.
     const createNewArtist = ( postArtist, imageObject ) => {
-        //Legger til tekstfeltene i database
+        //Adding the text filds to the database
         axios.post("https://localhost:5001/artist/", postArtist)
             .then( response => {
-
-                //Sender inn bilde til images i wwwroot via uploadImage funksjon i artistController  
+                //Sending the image to /images in wwwroot via uploadImage function in artistController  
                 axios({
                     method: "POST",
                     url: "https://localhost:5001/artist/UploadImage",
@@ -48,11 +45,11 @@ export default function artistService() {
                     config: { headers: {"Content-type" : "multipart/form-data"} }
                 })
 
-                //Pusher ny artist inn i artistList
                 artists.artistList.push( response.data );
             } );
     }
 
+    //Updating artist with new image and text
     const putArtist = ( artistToEdit, imageObject ) => {
         axios.put("https://localhost:5001/artist/", artistToEdit)
             .then( () => {
@@ -64,15 +61,16 @@ export default function artistService() {
                 })
             })
     }
-
+    
+    //Updating artist without changing the image
     const putArtistNoImage = ( artistToEdit ) => {
         axios.put("https://localhost:5001/artist/", artistToEdit)
     }
 
+    //Update artist rating
     const putArtistRating = ( artistToEdit ) => {
         return axios.put("https://localhost:5001/artist/", artistToEdit)
     }
-
 
     const deleteArtist = ( id ) => {
         axios.delete(`https://localhost:5001/artist/${id}`)

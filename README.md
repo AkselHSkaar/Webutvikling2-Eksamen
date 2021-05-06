@@ -22,10 +22,14 @@ WebAPi:
 - legge til label over dropdowns [x] 
 - gjøre ferdig content [x]
 - input type="date" [x]
+- endre kommentarer til engselsk [x]
+- fikse at det ikke går å sende inn blank email i nyhetsbrev [x]
+- Placeholder image for artist [x]
+- Placeholder image for oppdrag [x]
 
-- endre kommentarer til engselsk [ ]
+- fikse at det ikke går å sende inn review uten full form []
+- Artist id bug (fjerne id) [ ]
 - Gjøre koden finere [ ]
-
 
 
 ### ekstra ###

@@ -10,7 +10,7 @@
                 <p>Sjanger: {{ genre }}</p>
                 <p>Instrument: {{ instrument }}</p>
                 <div>
-                    <button @click="getArtist" class="btn btn-primary" type="button" data-bs-toggle="collapse" :data-bs-target="`#collapse${id}`" aria-expanded="false" aria-controls="collapse">
+                    <button @click="getArtist" class="btn btn-primary me-3" type="button" data-bs-toggle="collapse" :data-bs-target="`#collapse${id}`" aria-expanded="false" aria-controls="collapse">
                         Rediger
                     </button>
                     <button @click="deleteFromDb" class="btn btn-danger" type="button">
@@ -18,7 +18,7 @@
                     </button>
                 </div>
                 <div class="collapse" :id="`collapse${id}`">
-                    <div>
+                    <div class="mt-4">
                         <form>
                             <div class="form-floating mb-3">
                                 <input v-model="artistById.name" type="text" id="name-input" class="form-control" placeholder="Navn">
@@ -47,7 +47,7 @@
                                 <input @change="setImage" class="form-control" type="file">
                             </div>
                             <div>
-                                <input @click="updateArtist(artistById.id)" type="button" value="Rediger artist" class="form-control bg-success text-white mt-2">
+                                <input @click="updateArtist(artistById.id)" type="button" value="Oppdater artist" class="btn btn-success mt-4">
                             </div>
                         </form>
                     </div>
@@ -127,7 +127,7 @@ export default {
                 location.reload();
                 }
                 editArtistNoImage(artistById.value);
-        }
+            }
         }
 
         const deleteFromDb = () => {

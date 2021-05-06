@@ -34,12 +34,14 @@
                     <h5>Nyhetsbrev</h5>
                     <ul class="list-unstyled text-small">
                         <p>Meld deg på nyhetsbrevet og motta varsler om nye oppdrag og artister på mail!</p>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">E-post</label>
-                            <input v-model="email" type="email" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                        </div>
-                        <button @click="addEmailToNewsletter" type="button" class="btn btn-primary">Meld meg på!</button>
+                        <form :onsubmit="handleForm">
+                            <div class="mb-3">
+                                <label for="footerEmailInput" class="form-label">E-post</label>
+                                <input v-model="email" @blur="inputChange" type="email" class="form-control" id="footerEmailInput" aria-describedby="emailHelp" required>
+                            </div>
+                            <button @click="submitCheck" type="button" class="btn mt-2" :class="missingFields ? 'btn-secondary' : 'btn-success'">Meld meg på!</button>
+                            <p v-show="signupSuccess" class="mt-3">Du har blitt meldt på nyhetsbrevet!</p>
+                        </form>
                     </ul>
                 </div>
             </div>
@@ -55,7 +57,7 @@
 
 <script>
 import newsletterService from '../../services/newsletterService'
-import { reactive, toRefs } from 'vue'
+import { ref, reactive, toRefs } from 'vue'
 
 export default {
     name: 'TheFooter',
@@ -63,16 +65,42 @@ export default {
 
         const { createNew } = newsletterService();
         const newEmail = reactive({ email: "" });
+        const handleForm = (event) => { event.preventDefault(); } 
+        const signupSuccess = ref(false);
 
         const addEmailToNewsletter = () => {
+                createNew(newEmail).then(() => {
+                    newEmail.email = "";
+                    missingFields.value = true;
+                    signupSuccess.value = true;
+                    setTimeout(() => { signupSuccess.value = false; }, 3000);
+                });
+        }
+
+        const missingFields = ref(true);
+
+        const inputChange = () => {
             if (newEmail.email != "") {
-                createNew(newEmail);
+                missingFields.value = false;
+            } else {
+                missingFields.value = true;
             }
         }
 
+        const submitCheck = () => {
+            if (!missingFields.value) {
+                addEmailToNewsletter();
+            }
+        } 
+
         return {
             ...toRefs(newEmail),
-            addEmailToNewsletter
+            addEmailToNewsletter,
+            inputChange,
+            submitCheck,
+            missingFields,
+            handleForm,
+            signupSuccess
         }
 
     }

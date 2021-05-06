@@ -1,42 +1,45 @@
 <template>
     <section>
-        <div>
-            <h2 class="mb-5">Legg til en ny artist</h2>
-        </div>
-        <div class="form-floating mb-3">
-            <input v-model="name" type="text" id="name-input" class="form-control" placeholder="Navn">
-            <label for="name-input">Navn</label>
-        </div>
-        <select v-model="genre" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-            <option value="0" disabled>Velg en sjanger</option>>
-            <option v-for="( genre, i ) in genreList" :key="i" :value="genre.name">{{genre.name}}</option>
-        </select>
-        <div class="form-floating mb-3">
-            <input v-model="price" type="text" id="price-input" class="form-control" placeholder="Pris">
-            <label for="price-input">Pris per time</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input v-model="instrument" type="text" id="instrument-input" class="form-control" placeholder="Instrument">
-            <label for="instrument-input">Instrument: (Fullt band, Sang, Gitar..)</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input v-model="biography" type="text" id="biography-input" class="form-control" placeholder="Biografi">
-            <label for="biography-input">Biografi</label>
-        </div>
-        <div>
+        <form>
             <div>
-                <label>Bilde</label>
+                <h2 class="mb-5">Legg til en ny artist</h2>
             </div>
-            <input @change="setImage" class="form-control" type="file">
-        </div>
-        <div>
-            <input @click="addArtist" type="button" value="Legg til artist" class="form-control bg-success text-white mt-2">
-        </div>
+            <div class="form-floating mb-3">
+                <input v-model="name" @blur="inputChange" type="text" id="name-input" class="form-control" placeholder="Navn" required>
+                <label for="name-input">Navn</label>
+            </div>
+            <select v-model="genre" @blur="inputChange" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
+                <option value="0" disabled>Velg en sjanger</option>>
+                <option v-for="( genre, i ) in genreList" :key="i" :value="genre.name">{{genre.name}}</option>
+            </select>
+            <div class="form-floating mb-3">
+                <input v-model="price" @blur="inputChange" type="text" id="price-input" class="form-control" placeholder="Pris" required>
+                <label for="price-input">Pris per time</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input v-model="instrument" @blur="inputChange" type="text" id="instrument-input" class="form-control" placeholder="Instrument" required>
+                <label for="instrument-input">Instrument: (Fullt band, Sang, Gitar..)</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input v-model="biography" @blur="inputChange" type="text" id="biography-input" class="form-control" placeholder="Biografi" required>
+                <label for="biography-input">Biografi</label>
+            </div>
+            <div>
+                <div>
+                    <label>Bilde</label>
+                </div>
+                <input @change="setImage" class="form-control" type="file">
+            </div>
+            <div class="mt-4">
+                <input @click="submitCheck" type="submit" value="Legg til artist" class="btn" :class="missingFields ? 'btn-secondary' : 'btn-success'">
+            </div>
+        </form>
+        
     </section>
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue'
+import { ref, reactive, toRefs } from 'vue'
 import artistService from '../../services/artistService'
 import genreService from '../../services/genreService'
 
@@ -71,11 +74,29 @@ export default {
             createNewArtist( postArtist, imageObject );
         }
 
+        const missingFields = ref(true);
+
+        const inputChange = () => {
+            if (newArtist.name != "" && newArtist.genre != "" && newArtist.price != "" && newArtist.instrument != "" && newArtist.biography != "") {
+                missingFields.value = false;
+                console.log(missingFields.value);
+            }
+        }
+
+        const submitCheck = () => {
+            if (!missingFields.value) {
+                addArtist();
+            }
+        } 
+
         return {
             ...toRefs(newArtist),
             addArtist,
             setImage,
-            genreList
+            genreList,
+            missingFields,
+            inputChange,
+            submitCheck
         }
     }
 }

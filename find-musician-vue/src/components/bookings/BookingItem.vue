@@ -93,36 +93,4 @@ img {
     object-fit: cover;
 }
 
-.rock {
-    border: 2px solid #ff0000;
-}
-
-.country {
-    border: 2px solid #800000;
-}
-
-.pop {
-    border: 2px solid #800080;
-}
-
-.hiphop {
-    border: 2px solid #ffd700;
-}
-
-.jazz {
-    border: 2px solid #bada55;
-}
-
-.blues {
-    border: 2px solid #003366;
-}
-
-.folk {
-    border: 2px solid #7fe5f0;
-}
-
-.edm {
-    border: 2px solid #ff80ed;
-}
-
 </style>

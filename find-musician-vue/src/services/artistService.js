@@ -40,7 +40,7 @@ export default function artistService() {
         axios.post("https://localhost:5001/artist/", postArtist)
             .then( response => {
 
-                //Sending the image to images in wwwroot via uploadImage function in artistController  
+                //Sending the image to /images in wwwroot via uploadImage function in artistController  
                 axios({
                     method: "POST",
                     url: "https://localhost:5001/artist/UploadImage",
@@ -66,7 +66,7 @@ export default function artistService() {
             })
     }
     
-    // Updating an existing artist. This function is used when the user wats to update text, but not image
+    // Updating an existing artist. This function is used when the user wants to update text, but not image
     const putArtistNoImage = ( artistToEdit ) => {
         axios.put("https://localhost:5001/artist/", artistToEdit)
     }

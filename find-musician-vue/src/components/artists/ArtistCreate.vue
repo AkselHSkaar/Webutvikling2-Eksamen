@@ -76,8 +76,7 @@ export default {
             if (newArtist.image != null){
                 createNewArtist( postArtist, imageObject )
                     .then(() => {
-                        console.log(imageObject);
-                        //location.reload();
+                        location.reload();
                     });
             } else {
                 createNewArtist( postArtist, false )

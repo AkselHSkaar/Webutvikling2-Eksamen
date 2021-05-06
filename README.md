@@ -11,8 +11,10 @@ WebAPi:
 - Lage farger på artister ut i fra sjanger (hex i tabell) [x]
 - rating systemet [x]
 
-- Max value i artist pris input (for at slider skal funke) [ ]
+- Max value i artist pris input (for at slider skal funke) [ ] (min:="1" max="1000" atributter i HTML)
 - location.reload etter addArtistPage [ ]
+- legge til required atributter i forms [ ]
+- Disable buttun før alt er fyllt ut
 - endre kommentarer til engselsk [ ]
 - gjøre ferdig content [ ]
 

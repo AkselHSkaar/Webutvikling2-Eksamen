@@ -6,27 +6,26 @@
             </div>
             <div class="form-floating mb-3">
                 <input v-model="title" @blur="inputChange" type="text" id="title-input" class="form-control" placeholder="Navn" required>
-                <label for="name-input">Tittel</label>
+                <label for="title-input">Tittel</label>
             </div>
             <div class="form-floating mb-3">
                 <input v-model="description" @blur="inputChange" type="text" id="description-input" class="form-control" placeholder="Navn" required>
-                <label for="name-input">Beskrivelse</label>
+                <label for="description-input">Beskrivelse</label>
             </div>
             <div class="form-floating mb-3">
-                <input v-model="date" type="date" @blur="inputChange" class="form-control" placeholder="Navn" required>
-                <label for="name-input">dato</label>
+                <input v-model="date" type="date" id="date-input" @blur="inputChange" class="form-control" placeholder="Navn" required>
+                <label for="date-input">dato</label>
             </div>
             <div class="form-floating mb-3">
-                <input v-model="startTime" @blur="inputChange" type="text" id="startTime-input" class="form-control" placeholder="Navn" required>
-                <label for="name-input">Start klokkeslett</label>
+                <input v-model="startTime" @blur="inputChange" type="text" id="start-time-input" class="form-control" placeholder="Navn" required>
+                <label for="start-time-input">Start klokkeslett</label>
             </div>
             <div class="form-floating mb-3">
-                <input v-model="endTime" @blur="inputChange" type="text" id="endTime-input" class="form-control" placeholder="Navn" required>
-                <label for="name-input">Slutt klokkeslett</label>
+                <input v-model="endTime" @blur="inputChange" type="text" id="end-time-input" class="form-control" placeholder="Navn" required>
+                <label for="end-time-input">Slutt klokkeslett</label>
             </div>
-            <label class="form-label">Velg en sjanger</label>
-            <select v-model="genre" @blur="inputChange" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
-                <option value="0" disabled>Velg en sjanger</option>>
+            <select v-model="genre" @blur="inputChange" id="select-genre-input" class="form-select form-select-lg mb-3 py-3 fs-6" aria-label=".form-select-lg example" required>
+                <option value="" disabled>Velg en sjanger</option>>
                 <option v-for="( genre, i ) in genreList" :key="i" :value="genre.name">{{genre.name}}</option>
             </select>
             <div class="form-floating mb-3">

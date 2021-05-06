@@ -24,38 +24,42 @@
         </div>
             <div v-if="searchInput != ''" class="row g-4">
                 <div class="col-6" v-for="( booking, i ) in searchResult" :key="i">
-                    <booking-item
-                        :id="booking.id"
-                        :title="booking.title"
-                        :description="booking.description"
-                        :date="booking.date"
-                        :startTime="booking.startTime"
-                        :endTime="booking.endTime"
-                        :genre="booking.genre"
-                        :price="booking.price"
-                        :customerName="booking.customerName"
-                        :customerEmail="booking.customerEmail"
-                        :customerPhone="booking.customerPhone"
-                        :image="booking.image"
-                    ></booking-item>
+                    <div :class="booking.genre" class="rounded-3">
+                        <booking-item
+                            :id="booking.id"
+                            :title="booking.title"
+                            :description="booking.description"
+                            :date="booking.date"
+                            :startTime="booking.startTime"
+                            :endTime="booking.endTime"
+                            :genre="booking.genre"
+                            :price="booking.price"
+                            :customerName="booking.customerName"
+                            :customerEmail="booking.customerEmail"
+                            :customerPhone="booking.customerPhone"
+                            :image="booking.image"
+                        ></booking-item>
+                    </div>
                 </div>
             </div>
             <div v-else class="row g-4">
                 <div class="col-6" v-for="( booking, i ) in defaultBookingList" :key="i">
-                    <booking-item
-                        :id="booking.id"
-                        :title="booking.title"
-                        :description="booking.description"
-                        :date="booking.date"
-                        :startTime="booking.startTime"
-                        :endTime="booking.endTime"
-                        :genre="booking.genre"
-                        :price="booking.price"
-                        :customerName="booking.customerName"
-                        :customerEmail="booking.customerEmail"
-                        :customerPhone="booking.customerPhone"
-                        :image="booking.image"
-                    ></booking-item>
+                    <div :class="booking.genre" class="rounded-3">
+                        <booking-item
+                            :id="booking.id"
+                            :title="booking.title"
+                            :description="booking.description"
+                            :date="booking.date"
+                            :startTime="booking.startTime"
+                            :endTime="booking.endTime"
+                            :genre="booking.genre"
+                            :price="booking.price"
+                            :customerName="booking.customerName"
+                            :customerEmail="booking.customerEmail"
+                            :customerPhone="booking.customerPhone"
+                            :image="booking.image"
+                        ></booking-item>
+                    </div>
                 </div>
             </div>
     </section>
@@ -81,7 +85,14 @@ export default {
         const checkedGenres = ref([]);
 
         getBookings().then(() => defaultBookingList.value = bookingList.value);
-        getGenres().then(() => defaultGenreList.value = genreList.value);
+        getGenres().then(() => {
+            defaultGenreList.value = genreList.value;
+            genreList.value.forEach(genre => {
+                let style = document.createElement('style');
+                style.innerHTML = `.${genre.name} { border: 5px solid ${genre.color} }`;
+                document.getElementsByTagName('head')[0].appendChild(style);
+            });
+        });
 
         const searchInput = ref("");
         const priceRangeSlider = ref("10000");

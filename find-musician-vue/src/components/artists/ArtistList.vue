@@ -36,29 +36,32 @@
         <div>
             <div v-if="searchInput != ''" class="row g-4">
                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3" v-for="( artist, i ) in searchResult" :key="i">
-                    <artist-item
-                        :name="artist.name"
-                        :genre="artist.genre"
-                        :price="artist.price"
-                        :instrument="artist.instrument"
-                        :biography="artist.biography"
-                        :rating="artist.rating"
-                        :image="artist.image"
-                    ></artist-item>
-                    
+                    <div :class="artist.genre" class="rounded-3">
+                        <artist-item
+                            :name="artist.name"
+                            :genre="artist.genre"
+                            :price="artist.price"
+                            :instrument="artist.instrument"
+                            :biography="artist.biography"
+                            :rating="artist.rating"
+                            :image="artist.image"
+                        ></artist-item>
+                    </div>
                 </div>
             </div>
             <div v-else class="row g-4">
                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3" v-for="( artist, i ) in defaultArtistList" :key="i">
-                    <artist-item
-                        :name="artist.name"
-                        :genre="artist.genre"
-                        :price="artist.price"
-                        :instrument="artist.instrument"
-                        :biography="artist.biography"
-                        :rating="artist.rating"
-                        :image="artist.image"
-                    ></artist-item>
+                    <div :class="artist.genre" class="rounded-3">
+                        <artist-item
+                            :name="artist.name"
+                            :genre="artist.genre"
+                            :price="artist.price"
+                            :instrument="artist.instrument"
+                            :biography="artist.biography"
+                            :rating="artist.rating"
+                            :image="artist.image"
+                        ></artist-item>
+                    </div>
                 </div>
             </div>
         </div>
@@ -81,7 +84,14 @@ export default {
         const checkedGenres = ref([]);
 
         getArtists().then(() => defaultArtistList.value = artistList.value);
-        getGenres().then(() => defaultGenreList.value = genreList.value);
+        getGenres().then(() => {
+            defaultGenreList.value = genreList.value
+            genreList.value.forEach(genre => {
+                let style = document.createElement('style');
+                style.innerHTML = `.${genre.name} { border: 5px solid ${genre.color} }`;
+                document.getElementsByTagName('head')[0].appendChild(style);
+            });
+        });
 
         const searchInput = ref("");
         const sortSelect = ref("0"); 
@@ -165,7 +175,7 @@ export default {
                 adjustPriceRange();
                 filterGenres();
             }
-        } 
+        }
 
         return{
             artistList,

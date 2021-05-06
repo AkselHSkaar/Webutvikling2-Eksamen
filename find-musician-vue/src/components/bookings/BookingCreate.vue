@@ -1,6 +1,6 @@
 <template>
     <section>
-        <form>
+        <form :onsubmit="handleForm">
             <div>
                 <h2 class="mb-5">Legg til et nytt oppdrag</h2>
             </div>
@@ -84,6 +84,7 @@ export default {
         })
 
         const {genreList, getGenres} = genreService();
+        const handleForm = (event) => { event.preventDefault(); }
         
         getGenres();
 
@@ -111,7 +112,10 @@ export default {
                 image: newBooking.image
             }
 
-            createNewBooking( postBooking, imageObject );
+            createNewBooking( postBooking, imageObject )
+                .then(() => {
+                    location.reload();
+                });
         }
 
         const missingFields = ref(true);
@@ -135,7 +139,8 @@ export default {
             genreList,
             missingFields,
             inputChange,
-            submitCheck
+            submitCheck,
+            handleForm
         }
     }
 }

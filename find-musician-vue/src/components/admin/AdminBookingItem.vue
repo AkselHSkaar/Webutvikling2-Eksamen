@@ -12,59 +12,53 @@
                 <p>{{ customerName }}</p>
                 <p>{{ customerEmail }}</p>
                 <p>{{ customerPhone }}</p>
-                <button @click="getBooking" class="btn btn-primary" type="button" data-bs-toggle="collapse" :data-bs-target="`#collapse${id}`" aria-expanded="false" aria-controls="collapse">
-                    Rediger
-                </button>
-                <button @click="deleteFromDb" class="btn btn-danger" type="button">
-                    Slett
-                </button>
-                <div class="collapse" :id="`collapse${id}`">
+                <div>
+                    <button @click="getBooking" class="btn btn-primary me-3" type="button" data-bs-toggle="collapse" :data-bs-target="`#collapse${id}`" aria-expanded="false" aria-controls="collapse">Rediger</button>
+                    <button @click="deleteFromDb" class="btn btn-danger" type="button">Slett</button>
+                </div>
+                <div class="collapse mt-4" :id="`collapse${id}`">
                     <div>
                         <form>
                             <div class="form-floating mb-3">
-                                <input v-model="bookingById.title" type="text" id="title-input" class="form-control" placeholder="Navn">
-                                <label for="title-input">Tittel</label>
+                                <input v-model="bookingById.title" type="text" class="form-control">
+                                <label>Tittel</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input v-model="bookingById.description" type="text" id="description-input" class="form-control" placeholder="Navn">
-                                <label for="description-input">Beskrivelse</label>
+                                <textarea v-model="bookingById.description" class="form-control"></textarea>
+                                <label>Beskrivelse</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input v-model="bookingById.date" type="date" class="form-control" placeholder="Navn" required>
+                                <input v-model="bookingById.date" type="date" class="form-control" required>
                                 <label>dato</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input v-model="bookingById.date" type="text" id="date-input" class="form-control" placeholder="Navn">
-                                <label for="date-input">Dato</label>
+                                <input v-model="bookingById.startTime" type="text" class="form-control">
+                                <label>Start klokkeslett</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input v-model="bookingById.startTime" type="text" id="startTime-input" class="form-control" placeholder="Navn">
-                                <label for="startTime-input">Start klokkeslett</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input v-model="bookingById.endTime" type="text" id="endTime-input" class="form-control" placeholder="Navn">
-                                <label for="EndTime-input">Slutt klokkelsett</label>
+                                <input v-model="bookingById.endTime" type="text" class="form-control">
+                                <label>Slutt klokkelsett</label>
                             </div>
                             <select v-model="bookingById.genre" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                                 <option value="0" disabled>Sjanger</option>>
                                 <option v-for="( genre, i ) in genreList" :key="i" :value="genre.name">{{genre.name}}</option>
                             </select>
                             <div class="form-floating mb-3">
-                                <input v-model="bookingById.price" type="text" id="price-input" class="form-control" placeholder="Sjanger">
-                                <label for="price-input">Pris</label>
+                                <input v-model="bookingById.price" type="text" class="form-control">
+                                <label>Pris</label>
                             </div>
                             <h5>Kontaktinfo:</h5>
                             <div class="form-floating mb-3">
-                                <input v-model="bookingById.customerName" type="text" id="customerName-input" class="form-control" placeholder="Sjanger">
-                                <label for="customerName-input">Navn</label>
+                                <input v-model="bookingById.customerName" type="text" class="form-control">
+                                <label>Navn</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input v-model="bookingById.customerEmail" type="text" id="customerEmail-input" class="form-control" placeholder="Sjanger">
-                                <label for="customerEmail-input">Email</label>
+                                <input v-model="bookingById.customerEmail" type="text" class="form-control">
+                                <label>Email</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input v-model="bookingById.customerPhone" type="text" id="customerPhone-input" class="form-control" placeholder="Sjanger">
-                                <label for="customerPhone-input">Telefonnummer</label>
+                                <input v-model="bookingById.customerPhone" type="text" class="form-control">
+                                <label>Telefonnummer</label>
                             </div>
                             <div>
                                 <div>

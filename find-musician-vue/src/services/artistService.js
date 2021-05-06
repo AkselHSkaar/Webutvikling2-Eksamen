@@ -27,19 +27,16 @@ export default function artistService() {
     }
 
     const searchForArtist = ( input ) => {
-        //Return is needed to wait for response before soring artistList
         return axios(`https://localhost:5001/artist/Search/${input}`)
                 .then( response => {
                     artists.searchResult = response.data;
                 } );
     }
 
-    //Post method for adding new artist with image.
     const createNewArtist = ( postArtist, imageObject ) => {
-        //Adding the text fileds to the database
+        //Adding the text filds to the database
         axios.post("https://localhost:5001/artist/", postArtist)
             .then( response => {
-
                 //Sending the image to /images in wwwroot via uploadImage function in artistController  
                 axios({
                     method: "POST",
@@ -48,12 +45,11 @@ export default function artistService() {
                     config: { headers: {"Content-type" : "multipart/form-data"} }
                 })
 
-                //Pushing new artist to artistList
                 artists.artistList.push( response.data );
             } );
     }
 
-    //Updating an existing artist. This function is only used when the user also wats to update the image
+    //Updating artist with new image and text
     const putArtist = ( artistToEdit, imageObject ) => {
         axios.put("https://localhost:5001/artist/", artistToEdit)
             .then( () => {
@@ -66,12 +62,12 @@ export default function artistService() {
             })
     }
     
-    // Updating an existing artist. This function is used when the user wants to update text, but not image
+    //Updating artist without changing the image
     const putArtistNoImage = ( artistToEdit ) => {
         axios.put("https://localhost:5001/artist/", artistToEdit)
     }
 
-    //This function is for updating an artist with new rating
+    //Update artist rating
     const putArtistRating = ( artistToEdit ) => {
         return axios.put("https://localhost:5001/artist/", artistToEdit)
     }

@@ -83,6 +83,7 @@ export default {
         
                 createNewReview( postReview )
                     .then(() => {
+                        //Get artist and update artist rating
                         getArtistByName(postReview.artist)
                             .then(() => {
                                 const addNumberOfRatings = artistByName.value.numberOfRatings + 1;
@@ -110,6 +111,7 @@ export default {
                                     rating: totalRating,
                                     image: artistByName.value.image
                                 }
+                                
                                 putArtistRating(artistToEdit).then( () => {
                                     location.reload();
                                 });

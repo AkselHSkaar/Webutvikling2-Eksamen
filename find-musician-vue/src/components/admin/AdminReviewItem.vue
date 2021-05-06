@@ -11,9 +11,7 @@
                 <h6 class="card-subtitle mb-2 text-muted">Artist: {{artist}}</h6>
                 <p class="card-text">{{text}}</p>
             </div>
-            <button @click="deleteFromDb" class="btn btn-danger">
-                Slett
-            </button>
+            <button @click="deleteFromDb" class="btn btn-danger">Slett</button>
         </div>
     </article>
 </template>
@@ -55,7 +53,7 @@ export default {
 </script>
 
 <style scoped>
-    .star{
+    .star {
         height: 25px;
     }
 </style>

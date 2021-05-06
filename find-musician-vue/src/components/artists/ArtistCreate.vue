@@ -49,6 +49,7 @@ export default {
         
         const newArtist = reactive({ name: "", genre: "", price: "", instrument: "", biography: "", image: "" })
         const {genreList, getGenres} = genreService();
+
         getGenres();
 
         const imageObject = new FormData();

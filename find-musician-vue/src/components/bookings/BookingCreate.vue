@@ -84,6 +84,7 @@ export default {
         })
 
         const {genreList, getGenres} = genreService();
+        
         getGenres();
 
         const imageObject = new FormData();

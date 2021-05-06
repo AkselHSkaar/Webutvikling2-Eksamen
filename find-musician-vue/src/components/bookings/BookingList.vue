@@ -85,8 +85,10 @@ export default {
         const checkedGenres = ref([]);
 
         getBookings().then(() => defaultBookingList.value = bookingList.value);
+
         getGenres().then(() => {
             defaultGenreList.value = genreList.value;
+            //Create global classes with border colors from genres
             genreList.value.forEach(genre => {
                 let style = document.createElement('style');
                 style.innerHTML = `.${genre.name} { border: 5px solid ${genre.color} }`;
@@ -97,6 +99,7 @@ export default {
         const searchInput = ref("");
         const priceRangeSlider = ref("10000");
 
+        //Hide genre checkboxes if no artist with that genre exists
         const checkIfGenreExists = (nameOfGenre) => {
             let genreExists = false;
             bookingList.value.forEach(booking => {
@@ -107,11 +110,13 @@ export default {
             return genreExists;
         }
 
+        //Filter bookings by budget
         const adjustPriceRange = () => {
             searchResult.value = searchResult.value.filter(booking => booking.price <= parseInt(priceRangeSlider.value));
             defaultBookingList.value = defaultBookingList.value.filter(booking => booking.price <= parseInt(priceRangeSlider.value));
         }
 
+        //Filter bookings by selected genres
         const filterGenres = () => {
             if (checkedGenres.value.length != 0) {
                 searchResult.value = searchResult.value.filter(booking => checkedGenres.value.includes(booking.genre));
@@ -129,15 +134,14 @@ export default {
             }
         }
 
+        //Filter bookings based on text input
         const updateBookingList = () =>{ 
             defaultBookingList.value = bookingList.value;
             if (searchInput.value != '') {
                 searchForBooking( searchInput.value )
-                    //.then(() => sortBookingList())
                     .then(() => adjustPriceRange())
                     .then(() => filterGenres());
             } else {
-                //sortBookingList();
                 adjustPriceRange();
                 filterGenres();
             }

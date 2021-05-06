@@ -58,7 +58,7 @@ export default {
 
         const fromAssets = ref(false);
 
-        if ( props.image == "" ){
+        if ( props.image == "" ) {
             fromAssets.value = true;
         }
 

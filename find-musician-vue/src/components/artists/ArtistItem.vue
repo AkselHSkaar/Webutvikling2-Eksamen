@@ -1,8 +1,8 @@
 <template>
     <article>
         <div class="card">
-            <img v-if="fromAssets == true" :src="require('@/assets/artist-placeholder.jpg')" class="card-img-top" alt="...">
-            <img v-else :src="`https://localhost:5001/images/${image}`" class="card-img-top" alt="...">
+            <img v-if="fromAssets == true" :src="require('@/assets/artist-placeholder.jpg')" class="card-img-top">
+            <img v-else :src="`https://localhost:5001/images/${image}`" class="card-img-top">
             <div class="card-body">
                 <h5 class="card-title text-capitalize">{{ name }}</h5>
                 <div class="d-flex align-items-start pb-3">

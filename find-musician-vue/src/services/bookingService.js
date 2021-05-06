@@ -20,7 +20,6 @@ export default function bookingService() {
     }
 
     const searchForBooking = ( input ) => {
-        //Return is needed to wait for response before sorting bookingList
         return axios(`https://localhost:5001/booking/Search/${input}`)
                 .then( response => {
                     booking.searchResult = response.data;
@@ -30,7 +29,6 @@ export default function bookingService() {
     const createNewBooking = ( postBooking, imageObject ) => {
         axios.post("https://localhost:5001/booking/", postBooking)
             .then( response => {
-
                 axios({
                     method: "POST",
                     url: "https://localhost:5001/booking/UploadImage",
@@ -54,6 +52,7 @@ export default function bookingService() {
             })
     }
 
+    //Update booking without changing image
     const putBookingNoImage = ( bookingToEdit ) => {
         axios.put("https://localhost:5001/booking/", bookingToEdit)
     }

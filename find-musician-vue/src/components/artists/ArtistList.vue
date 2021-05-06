@@ -87,6 +87,7 @@ export default {
         
         getGenres().then(() => {
             defaultGenreList.value = genreList.value
+            //Create global classes with border colors from genres
             genreList.value.forEach(genre => {
                 let style = document.createElement('style');
                 style.innerHTML = `.${genre.name} { border: 5px solid ${genre.color} }`;
@@ -118,6 +119,7 @@ export default {
             searchResult.value.sort((a, b) => (a.price < b.price) ? 1 : -1);
         }
 
+        //Hide genre checkboxes if no artist with that genre exists
         const checkIfGenreExists = (nameOfGenre) => {
             let genreExists = false;
             artistList.value.forEach(artist => {
@@ -128,6 +130,7 @@ export default {
             return genreExists;
         }
 
+        //Sort results
         const sortArtistList = () => {
             if (sortSelect.value != "") {
                 if (sortSelect.value == "1") {
@@ -142,11 +145,13 @@ export default {
             }
         }
 
+        //Filter artist by max price
         const adjustPriceRange = () => {
             searchResult.value = searchResult.value.filter(artist => artist.price <= parseInt(priceRangeSlider.value));
             defaultArtistList.value = defaultArtistList.value.filter(artist => artist.price <= parseInt(priceRangeSlider.value));
         }
 
+        //Filter artists by selected genres
         const filterGenres = () => {
             if (checkedGenres.value.length != 0) {
                 searchResult.value = searchResult.value.filter(artist => checkedGenres.value.includes(artist.genre));
@@ -164,6 +169,7 @@ export default {
             }
         }
 
+        //Filter artists based on text input
         const updateArtistList = () =>{ 
             defaultArtistList.value = artistList.value;
             if (searchInput.value != '') {

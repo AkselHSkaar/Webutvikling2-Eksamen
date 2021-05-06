@@ -128,7 +128,7 @@ export default {
             newReview
         }
     }
-}
+} 
 </script>
 
 <style scoped>

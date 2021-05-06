@@ -7,8 +7,9 @@
                 </div>
                 <div class="col-md-8 col-lg-9">
                     <div class="card-body">
-                        <h5 class="card-title">{{ title }}</h5>
-                        <p class="fs-5">Dato: {{ date }}, fra kl {{ startTime }} til kl {{ endTime }}</p>
+                        <h5 class="card-title mb-2">{{ title }}</h5>
+                        <p class="fs-5">Dato: {{ date }}</p>
+                        <p class="fs-5">Fra kl {{ startTime }} til kl {{ endTime }}</p>
                         <p>Sjanger: {{ genre }}</p>
                         <p>Budsjett: {{ price }}</p>
                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" :data-bs-target="`#collapse${id}`" aria-expanded="false" aria-controls="collapse">

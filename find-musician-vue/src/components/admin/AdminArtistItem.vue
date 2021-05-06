@@ -19,25 +19,24 @@
                 </div>
                 <div class="collapse" :id="`collapse${id}`">
                     <div class="mt-4">
-                        <form>
+                        <form :onsubmit="handleForm">
                             <div class="form-floating mb-3">
-                                <input v-model="artistById.name" type="text" id="name-input" class="form-control" placeholder="Navn">
+                                <input v-model="artistById.name" @blur="inputChange" type="text" id="name-input" class="form-control" placeholder="Navn">
                                 <label for="name-input">Navn</label>
                             </div>
-                            <select v-model="artistById.genre" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                                <option value="0" disabled>Sjanger</option>>
+                            <select v-model="artistById.genre" @blur="inputChange" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                                 <option v-for="( genre, i ) in genreList" :key="i" :value="genre.name">{{genre.name}}</option>
                             </select>
                             <div class="form-floating mb-3">
-                                <input v-model="artistById.price" type="text" id="price-input" class="form-control" placeholder="Pris">
+                                <input v-model="artistById.price" @blur="inputChange" type="number" min="1" max="1000" id="price-input" class="form-control" placeholder="Pris">
                                 <label for="price-input">Pris per time</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input v-model="artistById.instrument" type="text" id="instrument-input" class="form-control" placeholder="Instrument">
+                                <input v-model="artistById.instrument" @blur="inputChange" type="text" id="instrument-input" class="form-control" placeholder="Instrument">
                                 <label for="instrument-input">Instrument: (Sang, Gitar..)</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input v-model="artistById.biography" type="text" id="biography-input" class="form-control" placeholder="Biografi">
+                                <input v-model="artistById.biography" @blur="inputChange" type="text" id="biography-input" class="form-control" placeholder="Biografi">
                                 <label for="biography-input">Biografi</label>
                             </div>
                             <div>
@@ -47,7 +46,7 @@
                                 <input @change="setImage" class="form-control" type="file">
                             </div>
                             <div>
-                                <input @click="updateArtist(artistById.id)" type="button" value="Oppdater artist" class="btn btn-success mt-4">
+                                <input @click="submitCheck" type="submit" value="Oppdater artist" class="btn btn-success mt-4">
                             </div>
                         </form>
                     </div>
@@ -79,6 +78,7 @@ export default {
         const { artistById, getArtistById, putArtist, putArtistNoImage, deleteArtist } = artistService();
         const { genreList, getGenres } = genreService();
         const changedImage = ref(false);
+        const handleForm = (event) => { event.preventDefault(); }
 
         getGenres();
 
@@ -107,8 +107,10 @@ export default {
                 rating: element.rating,
                 image: image
             }
-                putArtist( artistToEdit, imageObject );
-                location.reload();
+                putArtist( artistToEdit, imageObject )
+                    .then(() => {
+                        location.reload();
+                    });
             }
                 editArtist(artistById.value, artistById.image);
             }else{
@@ -123,8 +125,10 @@ export default {
                     rating: element.rating,
                     image: props.image
                 }
-                putArtistNoImage( artistToEdit );
-                location.reload();
+                putArtistNoImage( artistToEdit )
+                    .then(() => {
+                        location.reload();
+                    });
                 }
                 editArtistNoImage(artistById.value);
             }
@@ -135,13 +139,35 @@ export default {
             location.reload();
         }
 
+        const missingFields = ref(false);
+
+        const inputChange = () => {
+            if (artistById.name != "" && artistById.genre != "" && parseInt(artistById.value.price) >= 1 && parseInt(artistById.value.price) <= 1000 && artistById.instrument != "" && artistById.biography != "") {
+                missingFields.value = false;
+                console.log(missingFields.value);
+            } else {
+                missingFields.value = true;
+                console.log(missingFields.value);
+            }
+        }
+
+        const submitCheck = () => {
+            if (!missingFields.value) {
+                updateArtist();
+            }
+        }
+
         return {
             artistById,
             updateArtist,
             genreList,
             getArtist,
             deleteFromDb,
-            setImage
+            setImage,
+            missingFields,
+            inputChange,
+            submitCheck,
+            handleForm
         }
     }
 }

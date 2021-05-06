@@ -51,7 +51,7 @@ export default function artistService() {
 
     //Updating artist with new image and text
     const putArtist = ( artistToEdit, imageObject ) => {
-        axios.put("https://localhost:5001/artist/", artistToEdit)
+        return axios.put("https://localhost:5001/artist/", artistToEdit)
             .then(async () => {
                 await axios({
                     method: "POST",
@@ -64,7 +64,7 @@ export default function artistService() {
     
     //Updating artist without changing the image
     const putArtistNoImage = ( artistToEdit ) => {
-        axios.put("https://localhost:5001/artist/", artistToEdit)
+        return axios.put("https://localhost:5001/artist/", artistToEdit)
     }
 
     //Update artist rating

@@ -12,7 +12,7 @@ WebAPi:
 - rating systemet [x]
 
 
-- rense databasen [ ]
+- rense databasen [x]
 - location.reload på alle sider [ ]
 - endre kommentarer til engselsk [ ]
 - gjøre ferdig content [ ]
@@ -20,9 +20,9 @@ WebAPi:
 - TOTALPRIS / PRIS PER TIME [ ]
 
 
-- legge til required atributter i forms [ ]
-- Max value i artist pris input (for at slider skal funke) [ ] (min:="1" max="1000" atributter i HTML)
-- Disable buttun før alt er fyllt ut [ ]
+- legge til required atributter i forms [x]
+- Max value i artist pris input (for at slider skal funke) [x] (min:="1" max="1000" atributter i HTML)
+- Disable buttun før alt er fyllt ut [x]
 
 
 

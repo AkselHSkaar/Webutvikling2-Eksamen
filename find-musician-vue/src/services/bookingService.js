@@ -29,7 +29,7 @@ export default function bookingService() {
     const createNewBooking = ( postBooking, imageObject ) => {
         return axios.post("https://localhost:5001/booking/", postBooking)
             .then(async response => {
-                if (!imageObject){
+                if (imageObject){
                     await axios({
                         method: "POST",
                         url: "https://localhost:5001/booking/UploadImage",

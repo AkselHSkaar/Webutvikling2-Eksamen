@@ -1,5 +1,5 @@
 <template>
-    <div class="hero-wrapper container-xl my-xl-5 my-lg-0 rounded-3 border shadow-lg">
+    <div class="hero-wrapper container-sm my-xl-5 my-lg-0 rounded-3 border shadow-lg">
       <div class="hero-content-wrapper row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3">
         <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
           <h1 class="display-4 fw-bold lh-1">Book artister til ditt arrangement</h1>
@@ -26,6 +26,7 @@ export default {
 </script>
 
 <style scoped>
+
     .hero-wrapper{
       position: relative;
       overflow: hidden;
@@ -58,4 +59,5 @@ export default {
         bottom: 0;
         z-index: 1;
     }
+    
 </style>

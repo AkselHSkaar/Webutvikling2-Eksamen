@@ -36,9 +36,9 @@ export default function artistService() {
     const createNewArtist = ( postArtist, imageObject ) => {
         //Adding the text filds to the database
         return axios.post("https://localhost:5001/artist/", postArtist)
-            .then( response => {
+            .then(async response => {
                 //Sending the image to /images in wwwroot via uploadImage function in artistController  
-                axios({
+                await axios({
                     method: "POST",
                     url: "https://localhost:5001/artist/UploadImage",
                     data: imageObject,
@@ -52,8 +52,8 @@ export default function artistService() {
     //Updating artist with new image and text
     const putArtist = ( artistToEdit, imageObject ) => {
         axios.put("https://localhost:5001/artist/", artistToEdit)
-            .then( () => {
-                axios({
+            .then(async () => {
+                await axios({
                     method: "POST",
                     url: "https://localhost:5001/artist/UploadImage",
                     data: imageObject,

@@ -12,7 +12,7 @@
                 <input v-model="priceRangeSlider" @change="updateBookingList()" type="range" class="form-range" id="customRange1" min="1" max="10000">
             </div>
             <div class="col-12 pt-3">
-                <div class="form-group d-flex flex-row">
+                <div class="form-group d-flex flex-row flex-wrap">
                     <div v-for="( genre, i ) in defaultGenreList" :key="i">
                         <div v-if="checkIfGenreExists(genre.name)" class="form-check form-check-inline">
                             <input @change="filterGenreList(genre.name)" class="form-check-input" type="checkbox" :id="`${genre.name}-checkbox`" :value="genre.id">
@@ -23,7 +23,7 @@
             </div>
         </div>
             <div v-if="searchInput != ''" class="row g-4">
-                <div class="col-6" v-for="( booking, i ) in searchResult" :key="i">
+                <div class="col-12 col-lg-6" v-for="( booking, i ) in searchResult" :key="i">
                     <div :class="booking.genre" class="rounded-3">
                         <booking-item
                             :id="booking.id"
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div v-else class="row g-4">
-                <div class="col-6" v-for="( booking, i ) in defaultBookingList" :key="i">
+                <div class="col-12 col-lg-6" v-for="( booking, i ) in defaultBookingList" :key="i">
                     <div :class="booking.genre" class="rounded-3">
                         <booking-item
                             :id="booking.id"

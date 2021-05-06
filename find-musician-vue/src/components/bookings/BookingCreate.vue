@@ -112,10 +112,17 @@ export default {
                 image: newBooking.image
             }
 
-            createNewBooking( postBooking, imageObject )
-                .then(() => {
-                    location.reload();
-                });
+            if (newBooking.image != null){
+                createNewBooking( postBooking, imageObject )
+                    .then(() => {
+                        location.reload();
+                    });
+            } else {
+                createNewBooking( postBooking, false )
+                    .then(() => {
+                        location.reload();
+                    });
+            }
         }
 
         const missingFields = ref(true);

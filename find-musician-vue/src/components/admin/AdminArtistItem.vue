@@ -142,12 +142,10 @@ export default {
         const missingFields = ref(false);
 
         const inputChange = () => {
-            if (artistById.name != "" && artistById.genre != "" && parseInt(artistById.value.price) >= 1 && parseInt(artistById.value.price) <= 1000 && artistById.instrument != "" && artistById.biography != "") {
+            if (artistById.value.name != "" && artistById.value.genre != "" && parseInt(artistById.value.price) >= 1 && parseInt(artistById.value.price) <= 1000 && artistById.value.instrument != "" && artistById.value.biography != "") {
                 missingFields.value = false;
-                console.log(missingFields.value);
             } else {
                 missingFields.value = true;
-                console.log(missingFields.value);
             }
         }
 

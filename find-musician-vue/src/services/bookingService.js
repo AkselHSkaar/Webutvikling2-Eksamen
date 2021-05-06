@@ -28,22 +28,24 @@ export default function bookingService() {
 
     const createNewBooking = ( postBooking, imageObject ) => {
         return axios.post("https://localhost:5001/booking/", postBooking)
-            .then( response => {
-                axios({
-                    method: "POST",
-                    url: "https://localhost:5001/booking/UploadImage",
-                    data: imageObject,
-                    config: { headers: {"Content-type" : "multipart/form-data"} }
-                })
+            .then(async response => {
+                if (!imageObject){
+                    await axios({
+                        method: "POST",
+                        url: "https://localhost:5001/booking/UploadImage",
+                        data: imageObject,
+                        config: { headers: {"Content-type" : "multipart/form-data"} }
+                    })
+                }
 
                 booking.bookingList.push( response.data );
             } )
     }
 
     const putBooking = ( bookingToEdit, imageObject ) => {
-        axios.put("https://localhost:5001/booking/", bookingToEdit)
-            .then( () => {
-                axios({
+        return axios.put("https://localhost:5001/booking/", bookingToEdit)
+            .then(async () => {
+                await axios({
                     method: "POST",
                     url: "https://localhost:5001/artist/UploadImage",
                     data: imageObject,
@@ -54,7 +56,7 @@ export default function bookingService() {
 
     //Update booking without changing image
     const putBookingNoImage = ( bookingToEdit ) => {
-        axios.put("https://localhost:5001/booking/", bookingToEdit)
+        return axios.put("https://localhost:5001/booking/", bookingToEdit)
     }
 
     const deleteBooking = ( id ) => {

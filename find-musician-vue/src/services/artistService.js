@@ -46,7 +46,6 @@ export default function artistService() {
                         config: { headers: {"Content-type" : "multipart/form-data"} }
                     })
                 }
-
                 artists.artistList.push( response.data );
             } );
     }

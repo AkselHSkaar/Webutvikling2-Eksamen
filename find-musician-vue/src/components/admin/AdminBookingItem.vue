@@ -18,46 +18,45 @@
                 </div>
                 <div class="collapse mt-4" :id="`collapse${id}`">
                     <div>
-                        <form>
+                        <form :onsubmit="handleForm">
                             <div class="form-floating mb-3">
-                                <input v-model="bookingById.title" type="text" class="form-control">
+                                <input v-model="bookingById.title" @blur="inputChange" type="text" class="form-control">
                                 <label>Tittel</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <textarea v-model="bookingById.description" class="form-control"></textarea>
+                                <textarea v-model="bookingById.description" @blur="inputChange" class="form-control"></textarea>
                                 <label>Beskrivelse</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input v-model="bookingById.date" type="date" class="form-control" required>
+                                <input v-model="bookingById.date" @blur="inputChange" type="date" class="form-control" required>
                                 <label>dato</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input v-model="bookingById.startTime" type="text" class="form-control">
+                                <input v-model="bookingById.startTime" @blur="inputChange" type="text" class="form-control">
                                 <label>Start klokkeslett</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input v-model="bookingById.endTime" type="text" class="form-control">
+                                <input v-model="bookingById.endTime" @blur="inputChange" type="text" class="form-control">
                                 <label>Slutt klokkelsett</label>
                             </div>
-                            <select v-model="bookingById.genre" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                                <option value="0" disabled>Sjanger</option>>
+                            <select v-model="bookingById.genre" @blur="inputChange" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                                 <option v-for="( genre, i ) in genreList" :key="i" :value="genre.name">{{genre.name}}</option>
                             </select>
                             <div class="form-floating mb-3">
-                                <input v-model="bookingById.price" type="text" class="form-control">
+                                <input v-model="bookingById.price" @blur="inputChange" type="number" min="1" max="10000" class="form-control">
                                 <label>Pris</label>
                             </div>
                             <h5>Kontaktinfo:</h5>
                             <div class="form-floating mb-3">
-                                <input v-model="bookingById.customerName" type="text" class="form-control">
+                                <input v-model="bookingById.customerName" @blur="inputChange" type="text" class="form-control">
                                 <label>Navn</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input v-model="bookingById.customerEmail" type="text" class="form-control">
+                                <input v-model="bookingById.customerEmail" @blur="inputChange" type="text" class="form-control">
                                 <label>Email</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input v-model="bookingById.customerPhone" type="text" class="form-control">
+                                <input v-model="bookingById.customerPhone" @blur="inputChange" type="text" class="form-control">
                                 <label>Telefonnummer</label>
                             </div>
                             <div>
@@ -67,7 +66,7 @@
                                 <input @change="setImage" class="form-control" type="file">
                             </div>
                             <div>
-                                <input @click="updateBooking(bookingById.id)" type="button" value="Rediger oppdrag" class="btn btn-success mt-4">
+                                <input @click="submitCheck" type="submit" value="Rediger oppdrag" class="btn btn-success mt-4">
                             </div>
                         </form>
                     </div>
@@ -103,6 +102,7 @@ export default {
         const { getBookingById, bookingById, putBooking, putBookingNoImage, deleteBooking } = bookingService();
         const { getGenres, genreList } = genreService();
         const changedImage = ref(false);
+        const handleForm = (event) => { event.preventDefault(); }
 
         getGenres();
 
@@ -135,8 +135,12 @@ export default {
                 customerPhone: element.customerPhone,
                 image: image
             }
-                putBooking( bookingToEdit, imageObject );
-                location.reload();
+
+
+                putBooking( bookingToEdit, imageObject )
+                    .then(() => {
+                        location.reload();
+                    });
             }
 
             editBooking(bookingById.value, bookingById.image);
@@ -158,8 +162,10 @@ export default {
                         image: props.image
                     }
 
-                    putBookingNoImage( bookingToEdit );
-                    location.reload();
+                    putBookingNoImage( bookingToEdit )
+                        .then(() => {
+                            location.reload();
+                        });
                 }
 
                 editBookingNoImage(bookingById.value);
@@ -172,13 +178,33 @@ export default {
             location.reload();
         }
 
+        const missingFields = ref(false);
+
+        const inputChange = () => {
+            if (bookingById.value.title != "" && bookingById.value.description != "" && parseInt(bookingById.value.price) >= 1 && parseInt(bookingById.value.price) <= 1000 && bookingById.value.date != "" && bookingById.value.startTime != "" && bookingById.value.endTime != "" && bookingById.value.genre != "" && bookingById.value.customerName != "" && bookingById.value.customerEmail != "" && bookingById.value.customerPhone != "") {
+                missingFields.value = false;
+            } else {
+                missingFields.value = true;
+            }
+        }
+
+        const submitCheck = () => {
+            if (!missingFields.value) {
+                updateBooking();
+            }
+        }
+
         return {
             getBooking,
             bookingById,
             updateBooking,
             deleteFromDb,
             setImage,
-            genreList
+            genreList,
+            missingFields,
+            inputChange,
+            submitCheck,
+            handleForm
         }
         
     }

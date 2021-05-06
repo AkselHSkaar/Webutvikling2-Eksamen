@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-hero title="Administrator" description="Lorem ipsum dolor sitt amet." image="artist-hero-bg.jpg"></page-hero>
+        <page-hero title="Administrator" description="Velg hva du vil administrere." image="artist-hero-bg.jpg"></page-hero>
         <div class="container py-5">
             <div class="row g-4">
                 <div class="col-12 col-sm-6 col-lg-4">

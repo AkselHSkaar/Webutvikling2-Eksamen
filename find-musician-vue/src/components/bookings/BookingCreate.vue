@@ -29,7 +29,7 @@
                 <option v-for="( genre, i ) in genreList" :key="i" :value="genre.name">{{genre.name}}</option>
             </select>
             <div class="form-floating mb-3">
-                <input v-model="price" @blur="inputChange" type="text" id="price-input" class="form-control" placeholder="Pris" required>
+                <input v-model="price" @blur="inputChange" type="number" min="1" max="10000" id="price-input" class="form-control" placeholder="Pris" required>
                 <label for="price-input">Totalpris for oppdrag</label>
             </div>
             <div>
@@ -116,11 +116,8 @@ export default {
         const missingFields = ref(true);
 
         const inputChange = () => {
-            if (newBooking.title != "" && newBooking.description != "" && newBooking.date != "" && newBooking.startTime != "" && newBooking.endTime != "" && newBooking.genre != "" && newBooking.price != "" && newBooking.customerName != "" && newBooking.customerEmail != "" && newBooking.customerPhone != "") {
+            if (newBooking.title != "" && newBooking.description != "" && newBooking.date != "" && newBooking.startTime != "" && newBooking.endTime != "" && newBooking.genre != "" && newBooking.price != "" && newBooking.price >= 1 && newBooking.price <= 10000 && newBooking.customerName != "" && newBooking.customerEmail != "" && newBooking.customerPhone != "") {
                 missingFields.value = false;
-                console.log(missingFields.value);
-            } else {
-                console.log(missingFields.value);
             }
         }
 

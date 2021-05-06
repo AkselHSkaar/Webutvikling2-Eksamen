@@ -64,7 +64,6 @@ export default {
         getGenreByName(props.genre)
             .then(() => {
                 styleObject.border = `5px solid ${genreByName.value.color}`;
-                console.log(styleObject.border);
             });
 
         const bookingGenre = ref(props.genre.toLowerCase());

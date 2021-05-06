@@ -2,11 +2,15 @@
     <div class="hero-wrapper container-xl my-xl-5 my-lg-0 rounded-3 border shadow-lg">
       <div class="hero-content-wrapper row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3">
         <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-          <h1 class="display-4 fw-bold lh-1">Border hero with cropped image and shadows</h1>
-          <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-            <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Primary</button>
-            <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+          <h1 class="display-4 fw-bold lh-1">Book artister til ditt arrangement</h1>
+          <p class="lead">På Find A Musician finner du profesjonelle artister som er klare til å levere en fantstisk musikkoplevelse til ditt arrangement. Vi har artister i alle sjangere og har lang erfaring med å levere underholdning av høyeste kvalitet!</p>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3 mt-4">
+            <router-link :to="{ name:'AddBookingPage' }">
+              <button class="btn btn-primary btn-lg px-4 me-md-2">Lag et oppdrag</button>
+            </router-link>
+            <router-link :to="{ name:'ArtistPage' }">
+              <button type="button" class="btn btn-outline-secondary btn-lg px-4">Se våre artister</button>
+            </router-link>
           </div>
         </div>
       </div>

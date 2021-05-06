@@ -3,10 +3,14 @@
       <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
         <div class="col-lg-6 col-xxl-6">
           <h1 class="display-4 fw-bold lh-1 mb-3">Profesjonelle artister med lang erfaring fra bransjen</h1>
-          <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-            <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Vis artister</button>
-            <button type="button" class="btn btn-outline-secondary btn-lg px-4">Registrer en artist</button>
+          <p class="lead">Alle våre artister har lang erfaring fra bransjen og har fra før gjennomført mange events. Du kan derfor være sikker på at artistene våre opptrer profesjonellt og at alt går som planlagt.</p>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-4">
+            <router-link :to="{ name:'ArtistPage' }">
+                <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Vis artister</button>
+            </router-link>
+            <router-link :to="{ name:'AddArtistPage' }">
+                <button type="button" class="btn btn-outline-secondary btn-lg px-4">Registrer en artist</button>
+            </router-link>
           </div>
         </div>
         <div class="col-12 col-lg-6 col-xxl-6">

@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="col-12 col-sm-6 col-lg-4">
-                <label for="customRange1" class="form-label">Budsjett: {{priceRangeSlider}}kr per time</label>
+                <label for="customRange1" class="form-label">Budsjett: {{priceRangeSlider}}kr</label>
                 <input v-model="priceRangeSlider" @change="updateBookingList()" type="range" class="form-range" id="customRange1" min="1" max="10000">
             </div>
             <div class="col-12 pt-3">

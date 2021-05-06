@@ -24,10 +24,10 @@
                                 <input v-model="artistById.name" type="text" id="name-input" class="form-control" placeholder="Navn">
                                 <label for="name-input">Navn</label>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input v-model="artistById.genre" type="text" id="genre-input" class="form-control" placeholder="Sjanger">
-                                <label for="genre-input">Sjanger</label>
-                            </div>
+                            <select v-model="artistById.genre" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                <option value="0" disabled>Sjanger</option>>
+                                <option v-for="( genre, i ) in genreList" :key="i" :value="genre.name">{{genre.name}}</option>
+                            </select>
                             <div class="form-floating mb-3">
                                 <input v-model="artistById.price" type="text" id="price-input" class="form-control" placeholder="Pris">
                                 <label for="price-input">Pris per time</label>
@@ -59,6 +59,7 @@
 
 <script>
 import artistService from '../../services/artistService'
+import genreService from '../../services/genreService'
 import { ref } from 'vue'
 
 export default {
@@ -75,8 +76,11 @@ export default {
     },
     setup( props ){
 
-        const {artistById, getArtistById, putArtist, putArtistNoImage, deleteArtist} = artistService();
+        const { artistById, getArtistById, putArtist, putArtistNoImage, deleteArtist } = artistService();
+        const { genreList, getGenres } = genreService();
         const changedImage = ref(false);
+
+        getGenres();
 
         const getArtist = () => {
             getArtistById( props.id );
@@ -134,6 +138,7 @@ export default {
         return {
             artistById,
             updateArtist,
+            genreList,
             getArtist,
             deleteFromDb,
             setImage

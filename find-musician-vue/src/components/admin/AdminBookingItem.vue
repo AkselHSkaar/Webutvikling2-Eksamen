@@ -45,10 +45,10 @@
                                 <input v-model="bookingById.endTime" type="text" id="endTime-input" class="form-control" placeholder="Navn">
                                 <label for="EndTime-input">Slutt klokkelsett</label>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input v-model="bookingById.genre" type="text" id="genre-input" class="form-control" placeholder="Sjanger">
-                                <label for="genre-input">Sjanger</label>
-                            </div>
+                            <select v-model="bookingById.genre" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                <option value="0" disabled>Sjanger</option>>
+                                <option v-for="( genre, i ) in genreList" :key="i" :value="genre.name">{{genre.name}}</option>
+                            </select>
                             <div class="form-floating mb-3">
                                 <input v-model="bookingById.price" type="text" id="price-input" class="form-control" placeholder="Sjanger">
                                 <label for="price-input">Pris</label>
@@ -85,6 +85,7 @@
 
 <script>
 import bookingService from '../../services/bookingService'
+import genreService from '../../services/genreService'
 import { ref } from 'vue'
 
 export default {
@@ -106,7 +107,10 @@ export default {
     setup(props){
 
         const { getBookingById, bookingById, putBooking, putBookingNoImage, deleteBooking } = bookingService();
+        const { getGenres, genreList } = genreService();
         const changedImage = ref(false);
+
+        getGenres();
 
         const getBooking = () => {
             getBookingById( props.id );
@@ -179,7 +183,8 @@ export default {
             bookingById,
             updateBooking,
             deleteFromDb,
-            setImage
+            setImage,
+            genreList
         }
         
     }

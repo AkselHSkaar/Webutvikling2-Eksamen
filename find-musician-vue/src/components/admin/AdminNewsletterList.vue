@@ -1,7 +1,7 @@
 <template>
     <section>
-        <div class="row">
-            <div v-for="( email, i ) in emailList" :key="i" class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <div class="row g-4">
+            <div class="col-12 col-sm-6 col-lg-4 col-xl-3" v-for="( email, i ) in emailList" :key="i">
                 <admin-newsletter-item
                     :id="email.id"
                     :email="email.email"

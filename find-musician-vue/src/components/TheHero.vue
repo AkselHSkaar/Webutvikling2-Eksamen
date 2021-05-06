@@ -14,7 +14,7 @@
           </div>
         </div>
       </div>
-      <img :src="require('@/assets/musician-playing.jpg')" class="hero-image w-50">
+      <img :src="require('@/assets/musician-playing.jpg')" class="hero-image w-50 d-none d-lg-block">
       <div class="hero-image-overlay w-50"></div>
     </div>
 </template>

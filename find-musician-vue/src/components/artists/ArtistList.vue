@@ -23,7 +23,7 @@
                 <input v-model="priceRangeSlider" @change="updateArtistList()" type="range" class="form-range" id="customRange1" min="1" max="1000">
             </div>
             <div class="col-12 pt-3">
-                <div class="form-group d-flex flex-row">
+                <div class="form-group d-flex flex-row flex-wrap">
                     <div v-for="( genre, i ) in defaultGenreList" :key="i">
                         <div v-if="checkIfGenreExists(genre.name)" class="form-check form-check-inline">
                             <input @change="filterGenreList(genre.name)" class="form-check-input" type="checkbox" :id="`${genre.name}-checkbox`" :value="genre.id">

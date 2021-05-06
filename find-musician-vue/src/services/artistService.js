@@ -34,13 +34,13 @@ export default function artistService() {
                 } );
     }
 
-    //Post metode for å legge til ny artist med bilde.
+    //Post method for adding new artist with image.
     const createNewArtist = ( postArtist, imageObject ) => {
-        //Legger til tekstfeltene i database
+        //Adding the text fileds to the database
         axios.post("https://localhost:5001/artist/", postArtist)
             .then( response => {
 
-                //Sender inn bilde til images i wwwroot via uploadImage funksjon i artistController  
+                //Sending the image to images in wwwroot via uploadImage function in artistController  
                 axios({
                     method: "POST",
                     url: "https://localhost:5001/artist/UploadImage",
@@ -48,11 +48,12 @@ export default function artistService() {
                     config: { headers: {"Content-type" : "multipart/form-data"} }
                 })
 
-                //Pusher ny artist inn i artistList
+                //Pushing new artist to artistList
                 artists.artistList.push( response.data );
             } );
     }
 
+    //Updating an existing artist. This function is only used when the user also wats to update the image
     const putArtist = ( artistToEdit, imageObject ) => {
         axios.put("https://localhost:5001/artist/", artistToEdit)
             .then( () => {
@@ -64,15 +65,16 @@ export default function artistService() {
                 })
             })
     }
-
+    
+    // Updating an existing artist. This function is used when the user wats to update text, but not image
     const putArtistNoImage = ( artistToEdit ) => {
         axios.put("https://localhost:5001/artist/", artistToEdit)
     }
 
+    //This function is for updating an artist with new rating
     const putArtistRating = ( artistToEdit ) => {
         return axios.put("https://localhost:5001/artist/", artistToEdit)
     }
-
 
     const deleteArtist = ( id ) => {
         axios.delete(`https://localhost:5001/artist/${id}`)

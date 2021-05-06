@@ -127,7 +127,7 @@ export default {
                 location.reload();
                 }
                 editArtistNoImage(artistById.value);
-        }
+            }
         }
 
         const deleteFromDb = () => {

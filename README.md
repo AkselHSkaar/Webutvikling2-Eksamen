@@ -26,8 +26,8 @@ WebAPi:
 - fikse at det ikke går å sende inn blank email i nyhetsbrev [x]
 - Placeholder image for artist [x]
 - Placeholder image for oppdrag [x]
+- fikse at det ikke går å sende inn review uten full form [x]
 
-- fikse at det ikke går å sende inn review uten full form []
 - Artist id bug (fjerne id) [ ]
 - Gjøre koden finere [ ]
 

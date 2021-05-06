@@ -1,6 +1,6 @@
 <template>
     <article>
-        <div class="card" :style="styleObject">
+        <div class="card">
             <img :src="`https://localhost:5001/images/${image}`" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title text-capitalize">{{ name }}</h5>
@@ -13,7 +13,8 @@
                     <img v-if="parseInt(rating) > 4" class="star" :src="require('@/assets/star.png')">
                     <p v-show="parseInt(rating) >= 1" class="rating-number">{{rating.toFixed(1)}}</p>
                 </div>
-                <p>Sjanger: {{ genre }}, pris per time: {{ price }},- NOK</p>
+                <p>Sjanger: {{ genre }}</p> 
+                <p>per time: {{ price }},- NOK</p>
                 <p>Instrument: {{ instrument }}</p>
                 <p class="card-text">{{ biography }}</p>
             </div>
@@ -22,8 +23,6 @@
 </template>
 
 <script>
-import { ref, reactive } from 'vue'
-import genreService from '../../services/genreService'
 
 export default {
     name: 'ArtistItem',
@@ -35,28 +34,6 @@ export default {
         biography: String,
         rating: Number,
         image: String
-    },
-    setup(props){
-
-        const { getGenreByName, genreByName } = genreService();
-
-        const styleObject = reactive({
-            border: '2px solid gray'
-        });
-
-        getGenreByName(props.genre)
-            .then(() => {
-                styleObject.border = `5px solid ${genreByName.value.color}`;
-            });
-
-        const artistGenre = ref(props.genre.toLowerCase());
-
-        
-
-        return {
-            artistGenre,
-            styleObject
-        }
     }
 }
 </script>

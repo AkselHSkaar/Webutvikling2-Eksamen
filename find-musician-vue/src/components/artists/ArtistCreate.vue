@@ -1,6 +1,6 @@
 <template>
     <section>
-        <form>
+        <form :onsubmit="handleForm">
             <div>
                 <h2 class="mb-5">Legg til en ny artist</h2>
             </div>
@@ -49,6 +49,7 @@ export default {
         
         const newArtist = reactive({ name: "", genre: "", price: "", instrument: "", biography: "", image: "" })
         const {genreList, getGenres} = genreService();
+        const handleForm = (event) => { event.preventDefault(); }
 
         getGenres();
 
@@ -72,7 +73,10 @@ export default {
                 image: newArtist.image
             }
 
-            createNewArtist( postArtist, imageObject );
+            createNewArtist( postArtist, imageObject )
+                .then(() => {
+                    location.reload();
+                });
         }
 
         const missingFields = ref(true);
@@ -96,7 +100,8 @@ export default {
             genreList,
             missingFields,
             inputChange,
-            submitCheck
+            submitCheck,
+            handleForm
         }
     }
 }

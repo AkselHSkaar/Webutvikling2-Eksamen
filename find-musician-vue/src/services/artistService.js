@@ -35,7 +35,7 @@ export default function artistService() {
 
     const createNewArtist = ( postArtist, imageObject ) => {
         //Adding the text filds to the database
-        axios.post("https://localhost:5001/artist/", postArtist)
+        return axios.post("https://localhost:5001/artist/", postArtist)
             .then( response => {
                 //Sending the image to /images in wwwroot via uploadImage function in artistController  
                 axios({

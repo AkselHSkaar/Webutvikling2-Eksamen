@@ -123,7 +123,7 @@ export default {
             const editBooking = ( element, image ) => {
             const bookingToEdit = {
                 id: parseInt( element.id ),
-                title: element.title,
+                title: element.title.toLowerCase(),
                 description: element.description,
                 date: element.date,
                 startTime: element.startTime,
@@ -145,7 +145,7 @@ export default {
                 const editBookingNoImage = ( element ) => {
                     const bookingToEdit = {
                         id: parseInt( element.id ),
-                        title: element.title,
+                        title: element.title.toLowerCase(),
                         description: element.description,
                         date: element.date,
                         startTime: element.startTime,

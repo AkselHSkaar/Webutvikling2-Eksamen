@@ -99,7 +99,7 @@ export default {
             const editArtist = (element, image) => {
             const artistToEdit = {
                 id: parseInt( element.id ),
-                name: element.name,
+                name: element.name.toLowerCase(),
                 genre: element.genre,
                 price: parseInt( element.price ),
                 instrument: element.instrument,
@@ -115,7 +115,7 @@ export default {
                 const editArtistNoImage = (element) => {
                 const artistToEdit = {
                     id: parseInt( element.id ),
-                    name: element.name,
+                    name: element.name.toLowerCase(),
                     genre: element.genre,
                     price: parseInt( element.price ),
                     instrument: element.instrument,

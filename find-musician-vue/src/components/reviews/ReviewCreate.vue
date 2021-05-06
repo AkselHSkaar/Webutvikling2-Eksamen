@@ -7,8 +7,8 @@
                     <label for="title-input">Tittel</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <select v-model="artist" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                        <option value="0" disabled>Velg en artist</option>
+                    <select v-model="artist" class="form-select form-select-lg mb-3 pt-2" aria-label=".form-select-lg example">
+                        <option value="" disabled>Velg en artist</option>
                         <option v-for="( artist, i ) in artistList" :key="i" :value="artist.name">{{artist.name}}</option>
                     </select>
                 </div>

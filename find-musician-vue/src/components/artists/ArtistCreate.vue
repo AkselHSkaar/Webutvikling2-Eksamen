@@ -62,7 +62,7 @@ export default {
 
         const addArtist = () => {
             const postArtist = {
-                name: newArtist.name,
+                name: newArtist.name.toLowerCase(),
                 genre: newArtist.genre,
                 price: parseInt(newArtist.price),
                 instrument: newArtist.instrument,

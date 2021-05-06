@@ -97,7 +97,7 @@ export default {
 
         const addBooking = () => {
             const postBooking = {
-                title: newBooking.title,
+                title: newBooking.title.toLowerCase(),
                 description: newBooking.description,
                 date: newBooking.date,
                 startTime: newBooking.startTime,

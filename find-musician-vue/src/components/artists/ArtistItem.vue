@@ -3,7 +3,7 @@
         <div class="card" :style="styleObject">
             <img :src="`https://localhost:5001/images/${image}`" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">{{ name }}</h5>
+                <h5 class="card-title text-capitalize">{{ name }}</h5>
                 <div class="d-flex align-items-start pb-3">
                     <p v-show="parseInt(rating) < 1">Ingen rating enda</p>
                     <img v-if="parseInt(rating) > 0" class="star" :src="require('@/assets/star.png')">

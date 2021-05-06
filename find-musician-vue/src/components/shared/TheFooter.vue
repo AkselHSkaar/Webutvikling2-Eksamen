@@ -4,7 +4,7 @@
             <div class="row gy-2">
                 <div class="row col-12 col-lg-6">
                     <a class="col-12 navbar-brand h1 mb-0" href="#">FindAMusician</a>
-                    <p class="col-12 col-lg-10">Find A Musician leverer høykvalitets musikalsk underholdning til ditt arrangement. Ingen oppdrag er for små eller for store!</p>
+                    <p class="col-12 col-lg-10">FindAMusician leverer høykvalitets musikalsk underholdning til ditt arrangement. Ingen oppdrag er for små eller for store!</p>
                 </div>
                 <div class="gy-2 col-12 col-md-6 col-lg-3">
                     <div class="col-12 col-sm-6 col-lg-12">
@@ -47,7 +47,7 @@
         <div class="bg-primary text-white text-center text-lg-start">
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
                 © 2021 Copyright:
-                <a class="text-white text-decoration-none" href="https://mdbootstrap.com/">HireAMusician.com</a>
+                <a class="text-white text-decoration-none" href="https://mdbootstrap.com/">FindAMusician.com</a>
             </div>
         </div>
     </footer>
@@ -65,7 +65,9 @@ export default {
         const newEmail = reactive({ email: "" });
 
         const addEmailToNewsletter = () => {
-            createNew(newEmail);
+            if (newEmail.email != "") {
+                createNew(newEmail);
+            }
         }
 
         return {

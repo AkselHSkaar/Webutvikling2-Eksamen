@@ -3,17 +3,17 @@
         <div>
             <form>
                 <div class="form-floating mb-3">
-                    <input v-model="title" type="text" id="title-input" class="form-control" placeholder="Navn">
+                    <input v-model="title" type="text" id="title-input" class="form-control" placeholder="Tittel" required>
                     <label for="title-input">Tittel</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <select v-model="artist" class="form-select form-select-lg mb-3 pt-2" aria-label=".form-select-lg example">
+                    <select v-model="artist" class="form-select form-select-lg mb-3 pt-2" aria-label=".form-select-lg example" required>
                         <option value="" disabled>Velg en artist</option>
                         <option v-for="( artist, i ) in artistList" :key="i" :value="artist.name" class="text-capitalize">{{artist.name}}</option>
                     </select>
                 </div>
                 <div class="form-floating mb-3">
-                    <input v-model="text" type="text" id="text-input" class="form-control" placeholder="Navn">
+                    <input v-model="text" type="text" id="text-input" class="form-control" placeholder="Anmeldelse" required>
                     <label for="text-input">Anmeldelse:</label>
                 </div>
                 <div class="form-floating mb-3">
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div>
-                    <input @click="addReview" type="button" value="Legg til anmeldelse" class="form-control bg-success text-white mt-2">
+                    <input @click="addReview" type="button" value="Legg til anmeldelse" class="btn btn-success mt-2">
                 </div>
             </form>
         </div>
@@ -73,47 +73,52 @@ export default {
         getArtists();
 
         const addReview = () => {
-            const postReview = {
-                stars: parseInt(newReview.stars),
-                title: newReview.title,
-                text: newReview.text,
-                artist: newReview.artist
-            }
-    
-            createNewReview( postReview )
-                .then(() => {
-                    getArtistByName(postReview.artist)
-                        .then(() => {
-                            const addNumberOfRatings = artistByName.value.numberOfRatings + 1;
-                            const currentRating = artistByName.value.rating;
-                            const newRating = postReview.stars;
+            if (newReview.title != "" && newReview.text != "" && newReview.artist != "") {
+                const postReview = {
+                    stars: parseInt(newReview.stars),
+                    title: newReview.title,
+                    text: newReview.text,
+                    artist: newReview.artist
+                }
+        
+                createNewReview( postReview )
+                    .then(() => {
+                        getArtistByName(postReview.artist)
+                            .then(() => {
+                                const addNumberOfRatings = artistByName.value.numberOfRatings + 1;
+                                const currentRating = artistByName.value.rating;
+                                const newRating = postReview.stars;
 
-                            const calculateRating = () => {
-                                if (addNumberOfRatings >= 2) {
-                                    return addNumberOfRatings -1;
-                                } else {
-                                    return 1;
+                                const calculateRating = () => {
+                                    if (addNumberOfRatings >= 2) {
+                                        return addNumberOfRatings -1;
+                                    } else {
+                                        return 1;
+                                    }
                                 }
-                            }
-                            
-                            const totalRating = (((currentRating * calculateRating()) + newRating) / addNumberOfRatings);
+                                
+                                const totalRating = (((currentRating * calculateRating()) + newRating) / addNumberOfRatings);
 
-                            const artistToEdit = {
-                                id: parseInt(artistByName.value.id),
-                                name: artistByName.value.name,
-                                genre: artistByName.value.genre,
-                                price: parseInt(artistByName.value.price),
-                                instrument: artistByName.value.instrument,
-                                biography: artistByName.value.biography,
-                                numberOfRatings: addNumberOfRatings,
-                                rating: totalRating,
-                                image: artistByName.value.image
-                            }
-                            putArtistRating(artistToEdit).then( () => {
-                                location.reload();
+                                const artistToEdit = {
+                                    id: parseInt(artistByName.value.id),
+                                    name: artistByName.value.name,
+                                    genre: artistByName.value.genre,
+                                    price: parseInt(artistByName.value.price),
+                                    instrument: artistByName.value.instrument,
+                                    biography: artistByName.value.biography,
+                                    numberOfRatings: addNumberOfRatings,
+                                    rating: totalRating,
+                                    image: artistByName.value.image
+                                }
+                                putArtistRating(artistToEdit).then( () => {
+                                    location.reload();
+                                });
                             });
-                        });
-                });
+                    });
+            } else {
+                alert("Alle felter er ikke fyllt ut");
+            }
+            
         }
 
         return {

@@ -12,8 +12,8 @@
                     </button>
                     <div class="collapse" :id="`collapse${id}`">
                         <div class="form-floating my-3">
-                            <input v-model="emailById.email" type="text" id="name-input" class="form-control" placeholder="Navn">
-                            <label for="name-input">Rediger e-post</label>
+                            <input v-model="emailById.email" type="text" class="form-control" placeholder="Navn">
+                            <label>Rediger e-post</label>
                         </div>
                         <div>
                             <input @click="updateEmail(emailById.id)" type="button" value="Rediger email" class="btn btn-success">

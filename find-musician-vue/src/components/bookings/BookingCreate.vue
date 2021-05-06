@@ -110,8 +110,6 @@ export default {
                 image: newBooking.image
             }
 
-            console.log(postBooking.date)
-
             createNewBooking( postBooking, imageObject );
         }
 

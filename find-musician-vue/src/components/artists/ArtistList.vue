@@ -84,6 +84,7 @@ export default {
         const checkedGenres = ref([]);
 
         getArtists().then(() => defaultArtistList.value = artistList.value);
+        
         getGenres().then(() => {
             defaultGenreList.value = genreList.value
             genreList.value.forEach(genre => {

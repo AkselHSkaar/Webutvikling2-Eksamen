@@ -9,7 +9,7 @@
                     </div>
                 </div>
                 <h5 class="card-title">{{title}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Artist: {{artist}}</h6>
+                <h6 class="card-subtitle mb-2 text-muted text-capitalize">Artist: {{artist}}</h6>
                 <p class="card-text">{{text}}</p>
             </div>
         </div>

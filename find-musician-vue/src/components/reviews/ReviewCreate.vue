@@ -9,7 +9,7 @@
                 <div class="form-floating mb-3">
                     <select v-model="artist" class="form-select form-select-lg mb-3 pt-2" aria-label=".form-select-lg example">
                         <option value="" disabled>Velg en artist</option>
-                        <option v-for="( artist, i ) in artistList" :key="i" :value="artist.name">{{artist.name}}</option>
+                        <option v-for="( artist, i ) in artistList" :key="i" :value="artist.name" class="text-capitalize">{{artist.name}}</option>
                     </select>
                 </div>
                 <div class="form-floating mb-3">

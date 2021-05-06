@@ -65,6 +65,10 @@ export default function artistService() {
             })
     }
 
+    const putArtistNoImage = ( artistToEdit ) => {
+        axios.put("https://localhost:5001/artist/", artistToEdit)
+    }
+
     const putArtistRating = ( artistToEdit ) => {
         return axios.put("https://localhost:5001/artist/", artistToEdit)
     }
@@ -83,6 +87,7 @@ export default function artistService() {
         createNewArtist,
         putArtist,
         putArtistRating,
+        putArtistNoImage,
         deleteArtist
     }
 }

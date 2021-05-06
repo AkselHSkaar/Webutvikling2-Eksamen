@@ -59,6 +59,7 @@
 
 <script>
 import artistService from '../../services/artistService'
+import { ref } from 'vue'
 
 export default {
     name: 'AdminArtistItem',
@@ -74,7 +75,8 @@ export default {
     },
     setup( props ){
 
-        const {artistById, getArtistById, putArtist, deleteArtist} = artistService();
+        const {artistById, getArtistById, putArtist, putArtistNoImage, deleteArtist} = artistService();
+        const changedImage = ref(false);
 
         const getArtist = () => {
             getArtistById( props.id );
@@ -85,9 +87,11 @@ export default {
         const setImage = ( e ) => {
             imageObject.append("file", e.target.files[0]);
             artistById.image = e.target.files[0].name;
+            changedImage.value = true;
         }
 
         const updateArtist = () => {
+            if (changedImage.value) {
             const editArtist = (element, image) => {
             const artistToEdit = {
                 id: parseInt( element.id ),
@@ -99,14 +103,27 @@ export default {
                 rating: element.rating,
                 image: image
             }
-
-            putArtist( artistToEdit, imageObject );
-            location.reload();
-
+                putArtist( artistToEdit, imageObject );
+                location.reload();
             }
-
-            editArtist(artistById.value, artistById.image);
-
+                editArtist(artistById.value, artistById.image);
+            }else{
+                const editArtistNoImage = (element) => {
+                const artistToEdit = {
+                    id: parseInt( element.id ),
+                    name: element.name,
+                    genre: element.genre,
+                    price: parseInt( element.price ),
+                    instrument: element.instrument,
+                    biography: element.biography,
+                    rating: element.rating,
+                    image: props.image
+                }
+                putArtistNoImage( artistToEdit );
+                location.reload();
+                }
+                editArtistNoImage(artistById.value);
+        }
         }
 
         const deleteFromDb = () => {

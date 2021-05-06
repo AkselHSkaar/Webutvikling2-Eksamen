@@ -11,7 +11,7 @@
                     <img v-if="parseInt(rating) > 2" class="star" :src="require('@/assets/star.png')">
                     <img v-if="parseInt(rating) > 3" class="star" :src="require('@/assets/star.png')">
                     <img v-if="parseInt(rating) > 4" class="star" :src="require('@/assets/star.png')">
-                    <p>{{rating.toFixed(1)}}</p>
+                    <p v-show="parseInt(rating) >= 1">{{rating.toFixed(1)}}</p>
                 </div>
                 <p>Sjanger: {{ genre }}, pris per time: {{ price }},- NOK</p>
                 <p>Instrument: {{ instrument }}</p>

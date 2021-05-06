@@ -21,6 +21,7 @@
 <script>
 import { ref } from 'vue'
 import reviewService from '../../services/reviewService'
+import artistService from '../../services/artistService'
 
 export default {
     name: 'AdminReviewItem',
@@ -34,6 +35,7 @@ export default {
     setup(props){
 
         const { deleteReview } = reviewService();
+        const { getArtistByName, artistByName, putArtistRating } = artistService();
         const ratingArray = ref([]);
 
 
@@ -42,8 +44,50 @@ export default {
         }
 
         const deleteFromDb = () => {
-            deleteReview( props.id );
-            location.reload();
+            deleteReview( props.id )
+                .then(() => {
+                    getArtistByName(props.artist)
+                            .then(() => {
+                                const addNumberOfRatings = artistByName.value.numberOfRatings - 1;
+                                const currentRating = artistByName.value.rating;
+                                const newRating = props.stars;
+
+                                const calculateRating = () => {
+                                    if (addNumberOfRatings >= 1) {
+                                        return addNumberOfRatings +1;
+                                    } else {
+                                        return 1;
+                                    }
+                                }
+
+                                const calculateDivider = () => {
+                                    if (addNumberOfRatings >= 2) {
+                                        return addNumberOfRatings;
+                                    } else {
+                                        return 1;
+                                    }
+                                }
+                                
+                                const totalRating = (((parseFloat(currentRating) * calculateRating()) - parseInt(newRating)) / calculateDivider());
+
+                                const artistToEdit = {
+                                    id: parseInt(artistByName.value.id),
+                                    name: artistByName.value.name,
+                                    genre: artistByName.value.genre,
+                                    price: parseInt(artistByName.value.price),
+                                    instrument: artistByName.value.instrument,
+                                    biography: artistByName.value.biography,
+                                    numberOfRatings: addNumberOfRatings,
+                                    rating: totalRating,
+                                    image: artistByName.value.image
+                                }
+                                
+                                putArtistRating(artistToEdit)
+                                    .then( () => {
+                                        location.reload();
+                                    });
+                            });
+                });
         }
 
         return {

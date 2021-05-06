@@ -31,7 +31,7 @@ export default function reviewService() {
     }
 
     const deleteReview = ( id ) => {
-        axios.delete(`https://localhost:5001/review/${id}`)
+        return axios.delete(`https://localhost:5001/review/${id}`)
     }
 
     return {

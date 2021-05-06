@@ -34,12 +34,12 @@
                     <h5>Nyhetsbrev</h5>
                     <ul class="list-unstyled text-small">
                         <p>Meld deg på nyhetsbrevet og motta varsler om nye oppdrag og artister på mail!</p>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">E-post</label>
-                                <input v-model="email" type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
-                            </div>
-                            <button @click="addEmailToNewsletter" type="button" class="btn btn-primary">Meld meg på!</button>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">E-post</label>
+                            <input v-model="email" type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <button @click="addEmailToNewsletter" type="button" class="btn btn-primary">Meld meg på!</button>
                     </ul>
                 </div>
             </div>

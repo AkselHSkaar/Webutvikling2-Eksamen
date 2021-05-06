@@ -21,7 +21,6 @@
 import ArtistList from '../components/artists/ArtistList'
 import ReviewList from '../components/reviews/ReviewList'
 import PageHero from '../components/shared/PageHero'
-import ArtistModal from '../components/artists/ArtistModal'
 import ReviewCreate from '../components/reviews/ReviewCreate'
 
 export default {
@@ -30,7 +29,6 @@ export default {
         ArtistList,
         ReviewList,
         PageHero,
-        ArtistModal,
         ReviewCreate
     }
 }

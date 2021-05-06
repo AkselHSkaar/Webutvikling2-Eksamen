@@ -54,6 +54,10 @@ export default function bookingService() {
             })
     }
 
+    const putBookingNoImage = ( bookingToEdit ) => {
+        axios.put("https://localhost:5001/booking/", bookingToEdit)
+    }
+
     const deleteBooking = ( id ) => {
         axios.delete(`https://localhost:5001/booking/${id}`)
     }
@@ -65,6 +69,7 @@ export default function bookingService() {
         searchForBooking,
         createNewBooking,
         putBooking,
+        putBookingNoImage,
         deleteBooking 
     }
 }

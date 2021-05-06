@@ -30,6 +30,10 @@
                                 <label for="description-input">Beskrivelse</label>
                             </div>
                             <div class="form-floating mb-3">
+                                <input v-model="bookingById.date" type="date" class="form-control" placeholder="Navn" required>
+                                <label>dato</label>
+                            </div>
+                            <div class="form-floating mb-3">
                                 <input v-model="bookingById.date" type="text" id="date-input" class="form-control" placeholder="Navn">
                                 <label for="date-input">Dato</label>
                             </div>
@@ -81,6 +85,7 @@
 
 <script>
 import bookingService from '../../services/bookingService'
+import { ref } from 'vue'
 
 export default {
     name: 'AdminBookingItem',
@@ -100,7 +105,8 @@ export default {
     },
     setup(props){
 
-        const { getBookingById, bookingById, putBooking, deleteBooking } = bookingService();
+        const { getBookingById, bookingById, putBooking, putBookingNoImage, deleteBooking } = bookingService();
+        const changedImage = ref(false);
 
         const getBooking = () => {
             getBookingById( props.id );
@@ -111,9 +117,11 @@ export default {
         const setImage = ( e ) => {
             imageObject.append("file", e.target.files[0]);
             bookingById.image = e.target.files[0].name;
+            changedImage.value = true;
         }
 
         const updateBooking = () => {
+            if (changedImage.value) {
             const editBooking = ( element, image ) => {
             const bookingToEdit = {
                 id: parseInt( element.id ),
@@ -134,6 +142,30 @@ export default {
             }
 
             editBooking(bookingById.value, bookingById.image);
+            
+            }else {
+                const editBookingNoImage = ( element ) => {
+                    const bookingToEdit = {
+                        id: parseInt( element.id ),
+                        title: element.title,
+                        description: element.description,
+                        date: element.date,
+                        startTime: element.startTime,
+                        endTime: element.endTime,
+                        genre: element.genre,
+                        price: parseInt( element.price ),
+                        customerName: element.customerName,
+                        customerEmail: element.customerEmail,
+                        customerPhone: element.customerPhone,
+                        image: props.image
+                    }
+
+                    putBookingNoImage( bookingToEdit );
+                    location.reload();
+                }
+
+                editBookingNoImage(bookingById.value);
+            }
 
         }
 

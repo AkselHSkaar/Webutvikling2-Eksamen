@@ -8,6 +8,7 @@
                 <input v-model="name" @blur="inputChange" type="text" id="name-input" class="form-control" placeholder="Navn" required>
                 <label for="name-input">Navn</label>
             </div>
+            <label class="form-label">Velg en sjanger</label>
             <select v-model="genre" @blur="inputChange" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
                 <option value="0" disabled>Velg en sjanger</option>>
                 <option v-for="( genre, i ) in genreList" :key="i" :value="genre.name">{{genre.name}}</option>

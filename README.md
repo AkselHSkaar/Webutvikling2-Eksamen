@@ -19,13 +19,12 @@ WebAPi:
 - Max value i artist pris input (for at slider skal funke) [x] (min:="1" max="1000" atributter i HTML)
 - Disable buttun før alt er fyllt ut [x]
 - TOTALPRIS / PRIS PER TIME [x]
-
-- legge til label over dropdowns [ ] 
-- gjøre ferdig content [ ]
+- legge til label over dropdowns [x] 
+- gjøre ferdig content [x]
+- input type="date" [x]
 
 - endre kommentarer til engselsk [ ]
 - Gjøre koden finere [ ]
-- input type="date"
 
 
 

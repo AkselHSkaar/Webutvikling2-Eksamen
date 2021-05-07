@@ -50,6 +50,13 @@ export default function artistService() {
             } );
     }
 
+    const createNewArtistNoImage = ( postArtist ) => {
+        return axios.post("https://localhost:5001/artist/", postArtist)
+            .then( response => {
+                artists.artistList.push( response.data );
+            } );
+    }
+
     //Updating artist with new image and text
     const putArtist = ( artistToEdit, imageObject ) => {
         return axios.put("https://localhost:5001/artist/", artistToEdit)
@@ -84,6 +91,7 @@ export default function artistService() {
         getArtistByName,
         searchForArtist,
         createNewArtist,
+        createNewArtistNoImage,
         putArtist,
         putArtistRating,
         putArtistNoImage,

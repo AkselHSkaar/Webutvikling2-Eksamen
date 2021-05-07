@@ -95,7 +95,7 @@ export default {
             newBooking.image = e.target.files[0].name;
         }
 
-        const { createNewBooking } = bookingService();
+        const { createNewBooking, createNewBookingNoImage } = bookingService();
 
         const addBooking = () => {
             const postBooking = {
@@ -112,13 +112,13 @@ export default {
                 image: newBooking.image
             }
 
-            if (newBooking.image != null){
+            if (newBooking.image != ""){
                 createNewBooking( postBooking, imageObject )
                     .then(() => {
                         location.reload();
                     });
             } else {
-                createNewBooking( postBooking, false )
+                createNewBookingNoImage( postBooking )
                     .then(() => {
                         location.reload();
                     });

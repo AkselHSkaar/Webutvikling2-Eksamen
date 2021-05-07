@@ -43,7 +43,7 @@ export default function bookingService() {
     }
 
     const createNewBookingNoImage = ( postBooking ) => {
-        axios.post("https://localhost:5001/booking/", postBooking)
+        return axios.post("https://localhost:5001/booking/", postBooking)
             .then( response => {
                 booking.bookingList.push( response.data );
             } )

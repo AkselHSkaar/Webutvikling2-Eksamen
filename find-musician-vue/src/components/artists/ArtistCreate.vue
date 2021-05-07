@@ -60,7 +60,7 @@ export default {
             newArtist.image = e.target.files[0].name;
         }
 
-        const { createNewArtist } = artistService();
+        const { createNewArtist, createNewArtistNoImage } = artistService();
 
         const addArtist = () => {
             const postArtist = {
@@ -73,13 +73,13 @@ export default {
                 image: newArtist.image
             }
 
-            if (newArtist.image != null){
+            if (newArtist.image != ""){
                 createNewArtist( postArtist, imageObject )
                     .then(() => {
                         location.reload();
                     });
             } else {
-                createNewArtist( postArtist, false )
+                createNewArtistNoImage( postArtist )
                     .then(() => {
                         location.reload();
                     });

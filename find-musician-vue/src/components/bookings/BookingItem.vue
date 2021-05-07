@@ -12,7 +12,7 @@
                         <p class="fs-5">Dato: {{ date }}</p>
                         <p class="fs-5">Fra kl {{ startTime }} til kl {{ endTime }}</p>
                         <p>Sjanger: {{ genre }}</p>
-                        <p>Budsjett: {{ price }}</p>
+                        <p>Budsjett: {{ price }}kr</p>
                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" :data-bs-target="`#collapse${id}`" aria-expanded="false" aria-controls="collapse">
                             Les mer
                         </button>

@@ -20,7 +20,7 @@ export default function reviewService() {
     }
 
     const getByArtist = ( artist ) => {
-        axios(`https://localhost:5001/review/getByTitle/${artist}`)
+        return axios(`https://localhost:5001/review/getByArtist/${artist}`)
             .then( response => {
                 review.reviewByArtist = response.data;
             } )

@@ -79,12 +79,8 @@ export default function artistService() {
         return axios.put("https://localhost:5001/artist/", artistToEdit)
     }
 
-    const deleteArtist = ( id, artist, numberOfRatings ) => {
-        axios.delete(`https://localhost:5001/artist/${id}`)
-        console.log(numberOfRatings);
-            for ( let i = 0; i < numberOfRatings; i ++ ){
-                axios.delete(`https://localhost:5001/review/delete/${artist}`)
-            }
+    const deleteArtist = ( id ) => {
+        return axios.delete(`https://localhost:5001/artist/${id}`)
     }
 
     return {

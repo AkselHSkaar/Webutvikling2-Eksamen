@@ -60,6 +60,7 @@
 import artistService from '../../services/artistService'
 import genreService from '../../services/genreService'
 import { ref } from 'vue'
+import reviewService from '../../services/reviewService'
 
 export default {
     name: 'AdminArtistItem',
@@ -78,6 +79,7 @@ export default {
 
         const { artistById, getArtistById, putArtist, putArtistNoImage, deleteArtist } = artistService();
         const { genreList, getGenres } = genreService();
+        const { getByArtist, reviewByArtist, deleteReview } = reviewService();
         const changedImage = ref(false);
         const handleForm = (event) => { event.preventDefault(); }
 
@@ -136,10 +138,18 @@ export default {
         }
 
         const deleteFromDb = () => {
-            console.log( props.numberOfRatings );
-            deleteArtist( props.id, props.name, props.numberOfRatings );
-            //location.reload();
-                
+            getByArtist(props.name)
+                .then( () => {
+                    reviewByArtist.value.forEach(review => {
+                        deleteReview(review.id);
+                    });
+                })
+                .then(() => {
+                    deleteArtist(props.id)
+                        .then(() => {
+                            location.reload();
+                        })
+                });
         }
 
         const missingFields = ref(false);

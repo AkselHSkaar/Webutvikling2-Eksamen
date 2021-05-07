@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FindMusicianApi.Models;
+using System.Linq;
 
 namespace FindMusicianApi.Controllers {
 
@@ -26,6 +27,13 @@ namespace FindMusicianApi.Controllers {
         public async Task<Review> Get(int id){
             Review review = await _context.Review.FirstAsync( _review => _review.Id == id );
             return review;
+        }
+
+        [HttpGet("getByArtist/{artist}")]
+        public async Task<IEnumerable<Review>> GetByArtist(string artist){
+            List<Review> reviewArtistList = 
+            await _context.Review.Where(review => review.Artist.ToLower().Contains(artist.ToLower())).ToListAsync();
+            return reviewArtistList;
         }
 
         [HttpPost]

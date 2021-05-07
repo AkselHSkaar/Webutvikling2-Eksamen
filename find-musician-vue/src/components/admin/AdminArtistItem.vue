@@ -136,10 +136,10 @@ export default {
         }
 
         const deleteFromDb = () => {
-            deleteArtist( props.id, props.name, props.numberOfRatings )
-                .then( () =>{
-                    location.reload();
-                } )
+            console.log( props.numberOfRatings );
+            deleteArtist( props.id, props.name, props.numberOfRatings );
+            //location.reload();
+                
         }
 
         const missingFields = ref(false);

@@ -80,12 +80,11 @@ export default function artistService() {
     }
 
     const deleteArtist = ( id, artist, numberOfRatings ) => {
-        return axios.delete(`https://localhost:5001/artist/${id}`)
-            .then( () => {
-                for ( items in numberOfRatings ){
-                    axios.delete(`https://localhost:5001/rewiew/delete/${artist}`)
-                }
-            } );
+        axios.delete(`https://localhost:5001/artist/${id}`)
+        console.log(numberOfRatings);
+            for ( let i = 0; i < numberOfRatings; i ++ ){
+                axios.delete(`https://localhost:5001/review/delete/${artist}`)
+            }
     }
 
     return {

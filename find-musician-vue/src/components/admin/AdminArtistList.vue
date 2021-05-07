@@ -12,6 +12,7 @@
                     :instrument="artist.instrument"
                     :biography="artist.biography"
                     :rating="artist.rating"
+                    :numberOfRatings="artist.numberOfRatings"
                     :image="artist.image"
                     ></admin-artist-item>
                 </div>

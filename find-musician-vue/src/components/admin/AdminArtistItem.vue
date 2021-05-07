@@ -71,6 +71,7 @@ export default {
         instrument: String,
         biography: String,
         rating: Number,
+        numberOfRatings: Number,
         image: String
     },
     setup( props ){
@@ -135,8 +136,10 @@ export default {
         }
 
         const deleteFromDb = () => {
-            deleteArtist( props.id );
-            location.reload();
+            deleteArtist( props.id, props.name, props.numberOfRatings )
+                .then( () =>{
+                    location.reload();
+                } )
         }
 
         const missingFields = ref(false);

@@ -58,14 +58,6 @@ namespace FindMusicianApi.Controllers {
             return reviewToDelete;
         }
 
-        [HttpDelete("delete/{artist}")]
-        public async Task<Review> Delete(string artist){
-            Review reviewToDelete = await _context.Review.FirstOrDefaultAsync(review => review.Artist == artist);
-            _context.Remove(reviewToDelete);
-            await _context.SaveChangesAsync();
-            return reviewToDelete;
-        }
-
     }
 
 }

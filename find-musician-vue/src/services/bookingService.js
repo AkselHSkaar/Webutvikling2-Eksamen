@@ -29,14 +29,12 @@ export default function bookingService() {
     const createNewBooking = ( postBooking, imageObject ) => {
         return axios.post("https://localhost:5001/booking/", postBooking)
             .then(async response => {
-                if (imageObject){
-                    await axios({
-                        method: "POST",
-                        url: "https://localhost:5001/booking/UploadImage",
-                        data: imageObject,
-                        config: { headers: {"Content-type" : "multipart/form-data"} }
-                    })
-                }
+                await axios({
+                    method: "POST",
+                    url: "https://localhost:5001/booking/UploadImage",
+                    data: imageObject,
+                    config: { headers: {"Content-type" : "multipart/form-data"} }
+                })
 
                 booking.bookingList.push( response.data );
             } )

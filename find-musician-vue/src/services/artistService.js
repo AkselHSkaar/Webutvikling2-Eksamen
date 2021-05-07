@@ -38,14 +38,12 @@ export default function artistService() {
         return axios.post("https://localhost:5001/artist/", postArtist)
             .then(async response => {
                 //Sending the image to /images in wwwroot via uploadImage function in artistController
-                if (imageObject){
-                    await axios({
-                        method: "POST",
-                        url: "https://localhost:5001/artist/UploadImage",
-                        data: imageObject,
-                        config: { headers: {"Content-type" : "multipart/form-data"} }
-                    })
-                }
+                await axios({
+                    method: "POST",
+                    url: "https://localhost:5001/artist/UploadImage",
+                    data: imageObject,
+                    config: { headers: {"Content-type" : "multipart/form-data"} }
+                })
                 artists.artistList.push( response.data );
             } );
     }

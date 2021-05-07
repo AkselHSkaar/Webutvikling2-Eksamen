@@ -42,6 +42,13 @@ export default function bookingService() {
             } )
     }
 
+    const createNewBookingNoImage = ( postBooking ) => {
+        axios.post("https://localhost:5001/booking/", postBooking)
+            .then( response => {
+                booking.bookingList.push( response.data );
+            } )
+    }
+
     const putBooking = ( bookingToEdit, imageObject ) => {
         return axios.put("https://localhost:5001/booking/", bookingToEdit)
             .then(async () => {
@@ -69,6 +76,7 @@ export default function bookingService() {
         getBookingById,
         searchForBooking,
         createNewBooking,
+        createNewBookingNoImage,
         putBooking,
         putBookingNoImage,
         deleteBooking 

@@ -50,6 +50,7 @@ export default function artistService() {
             } );
     }
 
+    //Create new artist without an image
     const createNewArtistNoImage = ( postArtist ) => {
         return axios.post("https://localhost:5001/artist/", postArtist)
             .then( response => {

@@ -140,11 +140,13 @@ export default {
         const deleteFromDb = () => {
             getByArtist(props.name)
                 .then( () => {
+                    //Delete all reviews of artist from database
                     reviewByArtist.value.forEach(review => {
                         deleteReview(review.id);
                     });
                 })
                 .then(() => {
+                    //Delete the artist from the database
                     deleteArtist(props.id)
                         .then(() => {
                             location.reload();

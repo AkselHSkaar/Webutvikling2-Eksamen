@@ -79,10 +79,10 @@ export default {
                         location.reload();
                     });
             } else {
-                createNewArtist( postArtist, false )
+                createNewArtistNoImage( postArtist )
                     .then(() => {
                         location.reload();
-                    });
+                    })
             }
             
         }

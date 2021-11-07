@@ -1,6 +1,7 @@
-# Webutvikling2 eksamen
+# Webutvikling 2 eksamen
 
-Eksamensoppgave i webutvikling 2 på Høyskolen Kristiania, våren 2021. Laget av Aksel Skaar og Johan Felix Tschudi. 
+Eksamensoppgave i webutvikling 2 på Høyskolen Kristiania, våren 2021. 
+Laget av Aksel Skaar og Johan Felix Tschudi. 
 
 
 ## Setup

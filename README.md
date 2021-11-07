@@ -7,9 +7,9 @@ Karakter: A.
 
 ## Språk & rammeverk
 ### Front-end:
-- Vue.js
-- Bootstrap
-- Axios
+:heavy_check_mark: Vue.js
+:heavy_check_mark: Bootstrap
+:heavy_check_mark: Axios
 
 ### Back-end:
 - .NET / C#

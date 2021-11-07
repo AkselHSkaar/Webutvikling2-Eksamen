@@ -5,6 +5,15 @@ Laget av Aksel Skaar og Johan Felix Tschudi.
 
 Karakter: A.
 
+## Språk & rammeverk
+### Front-end:
+- Vue.js
+- Bootstrap
+- Axios
+
+### Back-end:
+- .NET / C#
+
 
 ## Setup
 ``` bash

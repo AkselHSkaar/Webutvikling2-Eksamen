@@ -17,16 +17,14 @@ Karakter: A.
 
 ## Setup
 ``` bash
-## find-musician-vue
-
+find-musician-vue
 # Install dependencies
 npm install
 
 # serve with hot reload at localhost:8080
 npm run serve
 
-## FindMusicianApi
-
+FindMusicianApi
 # Serve at localhost:5001
 dotnet run serve 
 ```

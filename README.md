@@ -1,19 +1,19 @@
 # :computer: Webutvikling 2 eksamen
 
-Eksamensoppgave i webutvikling 2 på Høyskolen Kristiania, våren 2021. 
+Eksamensoppgave i webutvikling 2 på Høyskolen Kristiania, våren 2021.\
 Laget av Aksel Skaar og Johan Felix Tschudi. 
 
 Karakter: A.
 
 ## Språk & rammeverk
 ### Front-end:
-:heavy_check_mark: Vue.js
-:heavy_check_mark: Bootstrap
-:heavy_check_mark: Axios
+:heavy_check_mark: Vue.js\
+:heavy_check_mark: Bootstrap\
+:heavy_check_mark: Axios\
 
 ### Back-end:
-- .NET / C#
-- SQLite
+:heavy_check_mark: .NET / C#\
+:heavy_check_mark: SQLite\
 
 
 ## Setup

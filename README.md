@@ -1,36 +1,21 @@
-# Webutvikling2-Eksamen
-V.2
+# Webutvikling2 eksamen
+
+Eksamensoppgave i webutvikling 2 på Høyskolen Kristiania, våren 2021. Laget av Aksel Skaar og Johan Felix Tschudi. 
 
 
-WebAPi:
-- På InitialCreate5
+## Setup
+``` bash
+## find-musician-vue
 
+# Install dependencies
+npm install
 
-### todoo's ###
-- Legge til ny tabell og oppsett for nyhetsbrev [x]
-- Lage farger på artister ut i fra sjanger (hex i tabell) [x]
-- rating systemet [x]
+# serve with hot reload at localhost:8080
+npm run serve
 
+## FindMusicianApi
 
-- rense databasen [x]
-- location.reload på alle sider [x]
-- style rating [x]
-- legge til required atributter i forms [x]
-- Max value i artist pris input (for at slider skal funke) [x] (min:="1" max="1000" atributter i HTML)
-- Disable buttun før alt er fyllt ut [x]
-- TOTALPRIS / PRIS PER TIME [x]
-- legge til label over dropdowns [x] 
-- gjøre ferdig content [x]
-- input type="date" [x]
-- endre kommentarer til engselsk [x]
-- fikse at det ikke går å sende inn blank email i nyhetsbrev [x]
-- Placeholder image for artist [x]
-- Placeholder image for oppdrag [x]
-- fikse at det ikke går å sende inn review uten full form [x]
+# Serve at localhost:5001
+dotnet run serve 
+```
 
-- Artist id bug (fjerne id) [ ]
-- Gjøre koden finere [ ]
-
-
-### ekstra ###
-- Fikse css for index.html i wwwroot [ ]

@@ -13,6 +13,7 @@ Karakter: A.
 
 ### Back-end:
 - .NET / C#
+- SQLite
 
 
 ## Setup

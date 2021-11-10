@@ -9,7 +9,6 @@ Karakter: A.
 ### Front-end:
 :heavy_check_mark: Vue.js\
 :heavy_check_mark: Bootstrap\
-:heavy_check_mark: Axios
 
 ### Back-end:
 :heavy_check_mark: .NET / C#\
